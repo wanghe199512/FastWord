@@ -7,7 +7,7 @@
     <artifactId>fast-word</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <name>rail-report</name>
-    <description>铁路报告导出核心服务</description>
+    <description>报告导出服务</description>
     <properties>
         <java.version>1.8</java.version>
     </properties>
