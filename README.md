@@ -1,4 +1,4 @@
-# AmazingWord
+# FastWord
 
 #### 介绍
 无需任何XML模板，通过几步即可生成包含图片及表格的Word文件
