@@ -1,6 +1,5 @@
 package com.fast.picture.basicDraw;
 
-import com.common.exception.PublicException;
 import com.fast.picture.basicDraw.themes.BasicDrawPictureUniversalThemes;
 import com.fast.picture.enums.Report;
 import com.fast.picture.file.FileUniversalAvailable;
@@ -90,7 +89,7 @@ public abstract class AbstractDrawBasicPicture extends BasicDrawPictureUniversal
     private void setDefaultPictureWidthHeight() {
         if (this.picture != null) {
             if (this.picture.getDefaultHeight() <= 0 && this.picture.getDefaultWidth() <= 0) {
-                throw new PublicException("Picture对象 要设置的 图片尺寸宽度或高度不能小于或等于0");
+                throw new RuntimeException("Picture对象 要设置的 图片尺寸宽度或高度不能小于或等于0");
             }
             this.defaultHeight = this.picture.getDefaultHeight();
             this.defaultWidth = this.picture.getDefaultWidth();

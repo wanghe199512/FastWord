@@ -1,4 +1,4 @@
-package com.common.utils;
+package com.fast.picture.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

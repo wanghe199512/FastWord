@@ -9,13 +9,9 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>fast-writer</artifactId>
+    <artifactId>fast-wordWriter</artifactId>
 
     <dependencies>
-        <dependency>
-            <groupId>com.fast</groupId>
-            <artifactId>fast-common</artifactId>
-        </dependency>
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>

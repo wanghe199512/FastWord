@@ -1,6 +1,6 @@
 package com.fast.picture.file;
 
-import com.common.utils.DateUtils;
+import com.fast.picture.utils.DateUtils;
 import com.fast.picture.enums.Report;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;

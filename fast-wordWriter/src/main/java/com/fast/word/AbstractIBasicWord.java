@@ -17,7 +17,7 @@ import java.io.File;
  * 抽象说明：
  *
  * @author wanghe
- * @link addParagraphPictureRows, addParagraphTableRows 组合使用时，在word中表现形式为各输出独占一行，且文字优先排列
+ * addParagraphPictureRows, addParagraphTableRows 组合使用时，在word中表现形式为各输出独占一行，且文字优先排列
  */
 public abstract class AbstractIBasicWord implements IBasicWord {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
