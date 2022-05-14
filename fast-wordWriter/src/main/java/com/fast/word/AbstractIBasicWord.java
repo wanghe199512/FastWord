@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.awt.*;
+import java.util.List;
 import java.io.File;
 
 /**
@@ -57,9 +58,16 @@ public abstract class AbstractIBasicWord implements IBasicWord {
         if (headers.length > 0) {
             this.addParagraphRows(ParagraphAlignment.RIGHT, this.defaultFont, headers);
         }
-       /* List<XWPFParagraph> paragraphs = this.writer.getDoc().getParagraphs();
+        List<XWPFParagraph> paragraphs = this.writer.getDoc().getParagraphs();
         XWPFParagraph paragraph = paragraphs.get(0);
-        paragraph.createRun().setBold(false);*/
+        paragraph.removeRun(0);
+        XWPFRun xwpfRun = paragraph.createRun();
+        xwpfRun.setText(title);
+        xwpfRun.setColor("CE0000");   // 设置主标题颜色
+        xwpfRun.setFontSize(this.defaultHeaderFont.getSize());
+        xwpfRun.setBold(this.defaultHeaderFont.isBold());
+        xwpfRun.setFontFamily(this.defaultHeaderFont.getFamily());
+        paragraph.addRun(xwpfRun);
         this.addBlankRow();
     }
 
@@ -68,7 +76,7 @@ public abstract class AbstractIBasicWord implements IBasicWord {
      *
      * @param alignment   文字方向
      * @param defaultFont 字体
-     * @param texts       要添加的文本
+     * @param texts       要添加的文本(独占一行 )
      */
     protected void addParagraphRows(ParagraphAlignment alignment, Font defaultFont, String... texts) {
         this.defaultFont = defaultFont;
@@ -119,7 +127,7 @@ public abstract class AbstractIBasicWord implements IBasicWord {
      * @param defaultWidth  显示的宽度
      * @param defaultHeight 显示的高度
      */
-    protected void addPicture(File picture, int defaultWidth, int defaultHeight) {
+    protected void addPicture(File picture, int defaultWidth, int defaultHeight){
         this.defaultHeight = defaultHeight;
         this.defaultWidth = defaultWidth;
         this.addPicture(picture);
@@ -135,7 +143,7 @@ public abstract class AbstractIBasicWord implements IBasicWord {
     protected void addTable(ITableBeansHandler handler) {
         try {
             this.writer.addTable(handler.drawTable());
-        } catch (Exception e) {
+        } catch (Throwable e) {
             e.printStackTrace();
         }
     }
