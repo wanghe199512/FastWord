@@ -9,5 +9,5 @@ public interface IBasicWord {
 
     public void reportWriter();
 
-    public void getWord2007(String savePath);
+    public String getWord2007(String fileName, String savePath);
 }

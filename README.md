@@ -31,7 +31,7 @@ private TableBeans getTableBeans() {
 ````
 3.  导出word文件
 ````
-new DiseaseReport("病害信息动态分析报告").getWord2007("d://aa");
+new DiseaseReport().getWord2007("动态分析报告","d://aa");
 ````
 其中DiseaseReport对象 extends自 AbstractIBasicWord，覆盖reportWriter()方法，如下添加：
 ````

@@ -4,11 +4,14 @@ import cn.hutool.core.io.FileUtil;
 import cn.hutool.poi.word.Word07Writer;
 import com.software.word.handller.ITableBeansHandler;
 import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
+import org.apache.poi.xwpf.usermodel.XWPFParagraph;
+import org.apache.poi.xwpf.usermodel.XWPFRun;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.awt.*;
 import java.io.File;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -23,7 +26,7 @@ public abstract class AbstractIBasicWord implements IBasicWord {
     /**
      * 文件名称  如果没有名称将使用默认UUID作为文件名称,此时word中标题也为此标题
      */
-    protected String fileName = UUID.randomUUID().toString();
+    protected String fileName;
     /**
      * 全局字体
      */
@@ -47,8 +50,8 @@ public abstract class AbstractIBasicWord implements IBasicWord {
 
     private final Word07Writer writer = new Word07Writer();
 
-    public AbstractIBasicWord(String fileName) {
-        this.fileName = fileName;
+    public AbstractIBasicWord() {
+
     }
 
     /**
@@ -57,6 +60,9 @@ public abstract class AbstractIBasicWord implements IBasicWord {
     protected void addHeader(String... headers) {
         this.writer.addText(ParagraphAlignment.CENTER, this.defaultHeaderFont, this.fileName);
         this.addParagraphRows(ParagraphAlignment.RIGHT, this.defaultFont, headers);
+       /* List<XWPFParagraph> paragraphs = this.writer.getDoc().getParagraphs();
+        XWPFParagraph paragraph = paragraphs.get(0);
+        paragraph.createRun().setBold(false);*/
         this.addBlankRow();
     }
 
@@ -116,16 +122,16 @@ public abstract class AbstractIBasicWord implements IBasicWord {
     public abstract void reportWriter();
 
     @Override
-    public void getWord2007(String savePath) {
+    public String getWord2007(String fileName, String savePath) {
+        String file = savePath.concat(File.separator).concat("已生成报告").concat(File.separator).concat(this.fileName).concat(".docx");
         try {
-            String fileName = savePath.concat(File.separator).concat("已生成报告").concat(File.separator)
-                    .concat(this.fileName).concat(".docx");
             this.reportWriter();
-            this.writer.flush(FileUtil.file(fileName));
+            this.writer.flush(FileUtil.file(file));
             this.writer.close();
-            logger.info("==> Preparing: {}", fileName);
+            logger.info("==> Preparing: {}", file);
         } catch (Exception e) {
             e.fillInStackTrace();
         }
+        return file;
     }
 }
