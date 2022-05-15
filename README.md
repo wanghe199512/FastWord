@@ -43,7 +43,7 @@ private TableBeans getTableBeans() {
 ````
 writer.getDocumentFile("动态分析报告","d://aa");
 ````
-其中DiseaseReport对象 extends自 AbstractIBasicWord，覆盖reportWriter()方法，如下添加：
+具体实现如下：
 ````
  WordFile07Writer writer = new WordFile07Writer();
  writer.addParagraphTableRows(new DefaultTableBeansHandler(this.getTableBeans()), "1、测试标题1");  //TODO 同时添加表格及文本
