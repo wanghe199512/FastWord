@@ -10,12 +10,16 @@ import java.util.Date;
  */
 public class DateUtils {
 
-    public static String getCurrentMonth() {
+    public static String getLocalMonth() {
         return new SimpleDateFormat("yyyy-MM").format(new Date());
     }
 
-    public static String getCurrentDate() {
+    public static String getLocalDate() {
         return new SimpleDateFormat("yyyy-MM-dd").format(new Date());
+    }
+
+    public static String getLocalYear() {
+        return new SimpleDateFormat("yyyy").format(new Date());
     }
 }
 

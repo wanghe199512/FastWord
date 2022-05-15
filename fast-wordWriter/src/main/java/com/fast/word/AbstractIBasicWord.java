@@ -1,6 +1,7 @@
 package com.fast.word;
 
 import cn.hutool.core.io.FileUtil;
+import cn.hutool.poi.word.PicType;
 import cn.hutool.poi.word.Word07Writer;
 import com.fast.word.handller.ITableBeansHandler;
 import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
@@ -10,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.awt.*;
+import java.io.InputStream;
 import java.util.List;
 import java.io.File;
 
@@ -25,15 +27,15 @@ public abstract class AbstractIBasicWord implements IBasicWord {
     /**
      * 全局字体
      */
-    protected final String fontName = "宋体";
+    private final String fontName = "宋体";
     /**
      * 默认正文字体
      */
-    protected Font defaultFont = new Font(this.fontName, Font.BOLD, 12);
+    private Font defaultFont = new Font(this.fontName, Font.BOLD, 12);
     /**
      * 默认标题头字体
      */
-    protected Font defaultHeaderFont = new Font(this.fontName, Font.BOLD, 30);
+    private final Font defaultHeaderFont = new Font(this.fontName, Font.BOLD, 30);
     /**
      * 图片宽度
      */
@@ -121,13 +123,26 @@ public abstract class AbstractIBasicWord implements IBasicWord {
     }
 
     /**
+     * 添加图片(输入流)
+     *
+     * @param stream 图片路径
+     */
+    protected void addPicture(InputStream stream, String fileName) {
+        try {
+            this.writer.addPicture(stream, PicType.PNG, fileName, this.defaultWidth, this.defaultHeight);
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
      * 自定义添加图片
      *
      * @param picture       图片路径
      * @param defaultWidth  显示的宽度
      * @param defaultHeight 显示的高度
      */
-    protected void addPicture(File picture, int defaultWidth, int defaultHeight){
+    protected void addPicture(File picture, int defaultWidth, int defaultHeight) {
         this.defaultHeight = defaultHeight;
         this.defaultWidth = defaultWidth;
         this.addPicture(picture);

@@ -1,7 +1,7 @@
 package com.fast.picture.file;
 
-import com.fast.picture.utils.DateUtils;
 import com.fast.picture.enums.Report;
+import com.fast.picture.utils.DateUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,7 +16,7 @@ import java.io.File;
 public class FileUniversalAvailable {
     private final Logger logger = LoggerFactory.getLogger(getClass());
     /**
-     * 报告名称
+     * 报告存储类型
      */
     private Report report;
     /**
@@ -36,11 +36,12 @@ public class FileUniversalAvailable {
      * 获取可用图片保存路径(example:线路/行别/1.png)
      */
     public File getFileAvailable() {
-        if (StringUtils.isEmpty(this.outputPath)) {
-            throw new RuntimeException("图像生成父目录层级结构不能为空,本次进程终止...");
+        if (StringUtils.isEmpty(this.outputPath) || this.report == null) {
+            throw new RuntimeException("图像生成父目录层级结构或报告存储类型[Report]不能为空,本次进程终止...");
         }
-        File saveFile = new File(this.getFileRootAvailablePath(), this.report.getName().equals("日报") ? DateUtils.getCurrentDate() : DateUtils.getCurrentMonth()
-                .concat(File.separator));
+        String reportName = this.report.getName();
+        File saveFile = new File(this.getFileRootAvailablePath(), (reportName.equals("日报") || reportName.equals("周报") ?
+                DateUtils.getLocalDate() : (reportName.equals("月报") ? DateUtils.getLocalMonth() : DateUtils.getLocalYear())).concat(File.separator));
         if (!saveFile.exists()) {
             saveFile.mkdirs();
         }
@@ -71,7 +72,6 @@ public class FileUniversalAvailable {
         }
     }
 
-
     public File getFileAvailable(String fileName) {
         return new File(this.getFileAvailable(), fileName);
     }
@@ -83,12 +83,4 @@ public class FileUniversalAvailable {
         return this.outputPath.concat(this.report.getName()).concat(File.separator);
     }
 
-    public String getRoot() {
-        return outputPath;
-    }
-
-    public FileUniversalAvailable setRoot(String root) {
-        this.outputPath = root;
-        return this;
-    }
 }
