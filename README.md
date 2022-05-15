@@ -11,7 +11,7 @@ fast-word的优势在哪里？
 
 fast-word当前版本是什么？
 
-当我决定提交到开源社区的时候，是1.0快照版本，但是已满足大部分开发场景需要，后续会不断完善。同时涉及到业务场景需要，千人千面，所以我向开发者们提供了对外可继承覆盖的方式去实现自己的开发需求，或许这并不符合软件开发的开闭原则，当然在以后的版本中会考虑并满足这些
+当我决定提交到开源社区的时候，是0.0.1快照版本，但是已满足大部分开发场景需要，后续会不断完善。同时涉及到业务场景需要，千人千面，所以我向开发者们提供了对外可继承覆盖的方式去实现自己的开发需求，或许这并不符合软件开发的开闭原则，当然在以后的版本中会考虑并满足这些
 
 #### 软件架构
 软件架构说明
@@ -41,14 +41,15 @@ private TableBeans getTableBeans() {
 ````
 3.  导出word文件
 ````
-new DiseaseReport().getWord2007("动态分析报告","d://aa");
+writer.getDocumentFile("动态分析报告","d://aa");
 ````
 其中DiseaseReport对象 extends自 AbstractIBasicWord，覆盖reportWriter()方法，如下添加：
 ````
-this.addParagraphTableRows(new DefaultTableBeansHandler(this.getTableBeans()), "1、测试标题1");  //TODO 同时添加表格及文本
-this.addParagraphRows("测试文本")  //TODO 单行文本
-this.addPicture(new File("D:\\RailReport\\铁科院日报\\2022-05-08\\京广\\上\\2.png")  //TODO 图片及文本
-this.addParagraphPictureRows(new File("D:\\RailReport\\铁科院日报\\2022-05-08\\京广\\上\\2.png"), "2、测试标题2"); //TODO 同时添加图片及文本
+ WordFile07Writer writer = new WordFile07Writer();
+ writer.addParagraphTableRows(new DefaultTableBeansHandler(this.getTableBeans()), "1、测试标题1");  //TODO 同时添加表格及文本
+ writer.addParagraphRows("测试文本")  //TODO 单行文本
+ writer.addPicture(new File("D:\\RailReport\\铁科院日报\\2022-05-08\\京广\\上\\2.png")  //TODO 图片及文本
+ writer.addParagraphPictureRows(new File("D:\\RailReport\\铁科院日报\\2022-05-08\\京广\\上\\2.png"), "2、测试标题2"); //TODO 同时添加图片及文本
 ````
 更多示例请参阅API
 #### 使用说明

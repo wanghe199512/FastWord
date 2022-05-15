@@ -7,7 +7,5 @@ package com.fast.word;
  */
 public interface IBasicWord {
 
-    public void reportWriter();
-
-    public String getWord2007(String fileName, String savePath);
+    public abstract String getDocumentFile(String fileName, String savePath);
 }
