@@ -1,6 +1,5 @@
 package writer;
 
-import com.fast.word.AbstractIBasicWord;
 import com.fast.word.WordFile07Writer;
 import com.fast.word.beans.TableBeans;
 import com.fast.word.handller.DefaultTableBeansHandler;
@@ -8,7 +7,6 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -18,7 +16,7 @@ import java.util.List;
  *
  * @author wanghe
  */
-public class Word {
+public class WordTest {
     private final Logger logger = LoggerFactory.getLogger(getClass());
 
     public WordFile07Writer reportWriter() {
@@ -49,7 +47,7 @@ public class Word {
 
     @Test
     public void genWord() {
-        String fileName = new Word().reportWriter().getDocumentFile("分析报告", "d://aa");
+        String fileName = new WordTest().reportWriter().getDocumentFile("分析报告", "d://aa");
         logger.info(" ===>{}", fileName);
 
     }
