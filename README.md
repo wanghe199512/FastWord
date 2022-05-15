@@ -54,10 +54,10 @@ writer.getDocumentFile("动态分析报告","d://aa");
 更多示例请参阅API
 #### 使用说明
 
-目前支持折线图及柱状图绘制，后续版本会不断优化并添加新的受支持的图表
+目前支持折线图,柱状图,散点图绘制，后续版本会不断优化并添加新的受支持的图表
 
 1.  关于创建table，默认使用DefaultTableBeansHandler，如根据业务自定义请继承相应接口并实现对应方法
-2.  关于图片生成 前缀均以DrawBasic开头,例如: DrawBasicLinePicture ，如我们提供的图表不受支持，自定义其他图表需继承AbstractDrawBasicPicture
+2.  关于图片生成 前缀均以DrawBasic开头,例如: DrawBasicLinePicture ，如我们提供的图表不受支持，自定义其他图表需继承AbstractDrawBasicPicture并重写相关方法，或发邮件给我们，我们将尽快添加处理
 3.  此开源插件暂未上架中央仓库，可以使用nexus私有仓库进行管理，上不上取决于使用的人数多少，如果对您有帮助，请点个star吧
 
 #### 参与贡献

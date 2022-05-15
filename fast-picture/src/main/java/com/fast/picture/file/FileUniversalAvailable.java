@@ -40,8 +40,8 @@ public class FileUniversalAvailable {
             throw new RuntimeException("图像生成父目录层级结构或报告存储类型[Report]不能为空,本次进程终止...");
         }
         String reportName = this.report.getName();
-        File saveFile = new File(this.getFileRootAvailablePath(), (reportName.equals("日报") || reportName.equals("周报") ?
-                DateUtils.getLocalDate() : (reportName.equals("月报") ? DateUtils.getLocalMonth() : DateUtils.getLocalYear())).concat(File.separator));
+        File saveFile = new File(this.getFileRootAvailablePath(), (reportName.equals("基础日报") || reportName.equals("基础周报") ?
+                DateUtils.getLocalDate() : (reportName.equals("基础月报") ? DateUtils.getLocalMonth() : DateUtils.getLocalYear())).concat(File.separator));
         if (!saveFile.exists()) {
             saveFile.mkdirs();
         }

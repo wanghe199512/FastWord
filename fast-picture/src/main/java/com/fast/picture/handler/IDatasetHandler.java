@@ -5,7 +5,14 @@ import org.jfree.data.general.Dataset;
 
 import java.util.List;
 
+/**
+ * 图表数据处理器接口
+ *
+ * @author wanghe
+ */
 public interface IDatasetHandler {
 
-    Dataset addDefaultDataSet(List<? extends BasicDataset> dataSetList);
+    Dataset handler(List<? extends BasicDataset> dataSetList, Class<?> cls) throws IllegalAccessException, InstantiationException;
+
+    void addValue(Object object, Object rowName, Object columnName);
 }

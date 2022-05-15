@@ -71,12 +71,15 @@ public abstract class AbstractDrawBasicPicture extends BasicDrawPictureUniversal
     public abstract JFreeChart createChart();
 
     @Override
-    public AbstractDrawBasicPicture addDefaultDataSet(List<? extends BasicDataset> dataSetList, IDatasetHandler handler) {
+    public abstract AbstractDrawBasicPicture addDefaultDataSet(List<? extends BasicDataset> dataSetList);
+
+    // TODO cls 泛型没有边界，可能会导致异常，待修复
+    protected AbstractDrawBasicPicture addDefaultDataSet(List<? extends BasicDataset> dataSetList, IDatasetHandler handler, Class<?> cls) {
         try {
             if (CollectionUtils.isEmpty(dataSetList)) {
                 throw new RuntimeException("默认初始化数据集dataSetList为空，本次进程结束！[处理失败...]");
             }
-            this.dataset = handler.addDefaultDataSet(dataSetList);
+            this.dataset = handler.handler(dataSetList, cls);
         } catch (Exception e) {
             e.printStackTrace();
         }

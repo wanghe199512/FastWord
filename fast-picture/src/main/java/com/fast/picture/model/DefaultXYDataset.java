@@ -4,10 +4,12 @@ import java.util.List;
 
 /**
  * 默认绘图数据集对象
+ * <p>
+ * 涉及到x，y轴坐标数据
  *
  * @author wanghe
  */
-public class DefaultPieDataset extends BasicDataset {
+public class DefaultXYDataset extends BasicDataset {
     /**
      * x坐标数据
      */
@@ -17,14 +19,14 @@ public class DefaultPieDataset extends BasicDataset {
      */
     public List<String> XAxisLabelList;
 
-    public DefaultPieDataset() {
+    public DefaultXYDataset() {
     }
 
-    public DefaultPieDataset(String dataSetName) {
+    public DefaultXYDataset(String dataSetName) {
         super(dataSetName);
     }
 
-    public DefaultPieDataset(String dataSetName, List<?> YAxisLabelList, List<String> XAxisLabelList) {
+    public DefaultXYDataset(String dataSetName, List<?> YAxisLabelList, List<String> XAxisLabelList) {
         this.dataSetName = dataSetName;
         this.YAxisLabelList = YAxisLabelList;
         this.XAxisLabelList = XAxisLabelList;
@@ -34,7 +36,7 @@ public class DefaultPieDataset extends BasicDataset {
         return YAxisLabelList;
     }
 
-    public DefaultPieDataset setYAxisLabelList(List<?> YAxisLabelList) {
+    public DefaultXYDataset setYAxisLabelList(List<?> YAxisLabelList) {
         this.YAxisLabelList = YAxisLabelList;
         return this;
     }
@@ -43,7 +45,7 @@ public class DefaultPieDataset extends BasicDataset {
         return XAxisLabelList;
     }
 
-    public DefaultPieDataset setXAxisLabelList(List<String> XAxisLabelList) {
+    public DefaultXYDataset setXAxisLabelList(List<String> XAxisLabelList) {
         this.XAxisLabelList = XAxisLabelList;
         return this;
     }
