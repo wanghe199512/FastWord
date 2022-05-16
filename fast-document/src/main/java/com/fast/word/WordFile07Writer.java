@@ -3,7 +3,9 @@ package com.fast.word;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.poi.word.PicType;
 import cn.hutool.poi.word.Word07Writer;
+import com.fast.word.beans.TableBeans;
 import com.fast.word.enums.Document;
+import com.fast.word.handller.DefaultTableBeansHandler;
 import com.fast.word.handller.ITableBeansHandler;
 import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
@@ -13,6 +15,7 @@ import java.awt.*;
 import java.io.File;
 import java.io.InputStream;
 import java.util.List;
+import java.util.Map;
 
 public class WordFile07Writer extends AbstractIBasicWord {
 
@@ -131,10 +134,41 @@ public class WordFile07Writer extends AbstractIBasicWord {
         this.writer.addText(ParagraphAlignment.LEFT, this.defaultFont, "");
     }
 
+    /**
+     * 使用自定义ITableBeansHandler处理器构建表格
+     *
+     * @param handler
+     */
     @Override
     public void addTable(ITableBeansHandler handler) {
         try {
             this.writer.addTable(handler.drawTable());
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 使用table数据bean构建默认数据表格
+     *
+     * @param tableBeans
+     */
+    public void addTable(TableBeans tableBeans) {
+        try {
+            this.addTable(new DefaultTableBeansHandler(tableBeans));
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 使用table数据bean和段落文字构建默认数据表格
+     *
+     * @param tableBeans
+     */
+    public void addParagraphTableRows(TableBeans tableBeans, String... texts) {
+        try {
+            this.addParagraphTableRows(new DefaultTableBeansHandler(tableBeans), texts);
         } catch (Throwable e) {
             e.printStackTrace();
         }

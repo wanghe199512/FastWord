@@ -11,7 +11,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>fast-document</artifactId>
-    <version>0.0.2-RELEASES</version>
+    <version>0.0.22-RELEASES</version>
     <packaging>jar</packaging>
 
     <dependencies>
