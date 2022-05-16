@@ -6,6 +6,7 @@
         <artifactId>fast-word</artifactId>
         <groupId>com.fast</groupId>
         <version>0.0.5-RELEASES</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
