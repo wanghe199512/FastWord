@@ -6,7 +6,6 @@
     <modules>
         <module>fast-picture</module>
         <module>fast-document</module>
-        <module>fastword-all</module>
     </modules>
     <groupId>com.fast</groupId>
     <artifactId>fast-word</artifactId>
