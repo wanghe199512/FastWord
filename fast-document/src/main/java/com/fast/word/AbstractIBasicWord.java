@@ -2,11 +2,14 @@ package com.fast.word;
 
 import cn.hutool.poi.word.Word07Writer;
 import com.fast.word.enums.Document;
+import com.fast.word.handller.ITableBeansHandler;
+import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.awt.*;
 import java.io.File;
+import java.io.InputStream;
 
 /**
  * 基础word
@@ -15,7 +18,7 @@ import java.io.File;
  * @author wanghe
  * addParagraphPictureRows, addParagraphTableRows 组合使用时，在word中表现形式为各输出独占一行，且文字优先排列
  */
-public abstract class AbstractIBasicWord implements IBasicWord {
+public abstract class AbstractIBasicWord implements IBasicWord, IDocumentWriter {
     protected final Logger logger = LoggerFactory.getLogger(this.getClass());
     /**
      * 全局字体
@@ -38,10 +41,24 @@ public abstract class AbstractIBasicWord implements IBasicWord {
      */
     protected int defaultHeight = 130;
 
-    protected final Word07Writer writer = new Word07Writer();
-
     public AbstractIBasicWord() {
     }
+
+    public abstract void addHeader(String title, String... headers);
+
+    public abstract void addParagraphRows(ParagraphAlignment alignment, Font defaultFont, String... texts);
+
+    public abstract void addParagraphRows(String... text);
+
+    public abstract void addParagraphPictureRows(File picture, String... texts);
+
+    public abstract void addPicture(File picture);
+
+    public abstract void addPicture(InputStream stream, String fileName);
+
+    public abstract void addPicture(File picture, int defaultWidth, int defaultHeight);
+
+    public abstract void addBlankRow();
 
     protected String getDocumentFile(String fileName, String savePath, Document document) {
         return savePath.concat(File.separator).concat("已生成报告").concat(File.separator).concat(document.getName())

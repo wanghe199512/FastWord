@@ -2,6 +2,7 @@ package com.fast.word;
 
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.poi.word.PicType;
+import cn.hutool.poi.word.Word07Writer;
 import com.fast.word.enums.Document;
 import com.fast.word.handller.ITableBeansHandler;
 import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
@@ -13,7 +14,10 @@ import java.io.File;
 import java.io.InputStream;
 import java.util.List;
 
-public class WordFile07Writer extends AbstractIBasicWord implements IDocumentWriter {
+public class WordFile07Writer extends AbstractIBasicWord {
+
+    private final Word07Writer writer = new Word07Writer();
+
     /**
      * @param title   主标题
      * @param headers 副标题
