@@ -1,8 +1,6 @@
 package com.fast.word;
 
-import cn.hutool.poi.word.Word07Writer;
-import com.fast.word.enums.Document;
-import com.fast.word.handller.ITableBeansHandler;
+import com.fast.word.enums.Documents;
 import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -60,10 +58,8 @@ public abstract class AbstractIBasicWord implements IBasicWord, IDocumentWriter 
 
     public abstract void addBlankRow();
 
-    protected String getDocumentFile(String fileName, String savePath, Document document) {
+    protected String getDocumentFile(String fileName, String savePath, Documents document) {
         return savePath.concat(File.separator).concat("已生成报告").concat(File.separator).concat(document.getName())
-                .concat(File.separator).concat(fileName).concat(".docx");
+                .concat(File.separator).concat(fileName).concat(document.getName().equals("Word文档") ? ".docx" : ".pdf");
     }
-
-    public abstract String getDocumentFile(String fileName, String savePath);
 }

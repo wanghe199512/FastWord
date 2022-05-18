@@ -1,6 +1,6 @@
 package com.fast.word.enums;
 
-public enum Document {
+public enum Documents {
 
     WORD(1, "Word文档"),
     PDF(2, "Pdf文档");
@@ -8,7 +8,7 @@ public enum Document {
     public int code;
     public String name;
 
-    Document(int code, String name) {
+    Documents(int code, String name) {
         this.code = code;
         this.name = name;
     }
@@ -17,7 +17,7 @@ public enum Document {
         return code;
     }
 
-    public Document setCode(int code) {
+    public Documents setCode(int code) {
         this.code = code;
         return this;
     }
@@ -26,7 +26,7 @@ public enum Document {
         return name;
     }
 
-    public Document setName(String name) {
+    public Documents setName(String name) {
         this.name = name;
         return this;
     }

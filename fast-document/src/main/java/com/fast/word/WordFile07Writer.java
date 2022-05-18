@@ -4,7 +4,7 @@ import cn.hutool.core.io.FileUtil;
 import cn.hutool.poi.word.PicType;
 import cn.hutool.poi.word.Word07Writer;
 import com.fast.word.beans.TableBeans;
-import com.fast.word.enums.Document;
+import com.fast.word.enums.Documents;
 import com.fast.word.handller.DefaultTableBeansHandler;
 import com.fast.word.handller.ITableBeansHandler;
 import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
@@ -15,8 +15,12 @@ import java.awt.*;
 import java.io.File;
 import java.io.InputStream;
 import java.util.List;
-import java.util.Map;
 
+/**
+ * word07操作
+ *
+ * @author wanghe
+ */
 public class WordFile07Writer extends AbstractIBasicWord {
 
     private final Word07Writer writer = new Word07Writer();
@@ -153,6 +157,7 @@ public class WordFile07Writer extends AbstractIBasicWord {
      *
      * @param tableBeans
      */
+    @Override
     public void addTable(TableBeans tableBeans) {
         try {
             this.addTable(new DefaultTableBeansHandler(tableBeans));
@@ -166,6 +171,7 @@ public class WordFile07Writer extends AbstractIBasicWord {
      *
      * @param tableBeans
      */
+    @Override
     public void addParagraphTableRows(TableBeans tableBeans, String... texts) {
         try {
             this.addParagraphTableRows(new DefaultTableBeansHandler(tableBeans), texts);
@@ -181,9 +187,8 @@ public class WordFile07Writer extends AbstractIBasicWord {
         this.addBlankRow();
     }
 
-    @Override
     public String getDocumentFile(String fileName, String savePath) {
-        String file = this.getDocumentFile(fileName, savePath, Document.WORD);
+        String file = this.getDocumentFile(fileName, savePath, Documents.WORD);
         try {
             this.writer.flush(FileUtil.file(file));
             this.writer.close();
