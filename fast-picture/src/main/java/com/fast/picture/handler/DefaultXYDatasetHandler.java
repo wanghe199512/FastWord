@@ -18,6 +18,7 @@ public class DefaultXYDatasetHandler implements IDatasetHandler {
 
     private Object defaultDataset = null;
 
+    @Override
     public Dataset handler(List<? extends BasicDataset> dataSetList, Class<?> cls) throws IllegalAccessException, InstantiationException {
         this.defaultDataset = cls.newInstance();
         for (BasicDataset dataset : dataSetList) {
@@ -26,7 +27,7 @@ public class DefaultXYDatasetHandler implements IDatasetHandler {
                 throw new RuntimeException("XAxisList，YAxisList长度必须一致，本次进程终止...");
             }
             for (int i = 0; i < XAxisList.size(); i++) {
-                this.addValue(YAxisList.get(i), dataset.getDataSetName(), (String) XAxisList.get(i));
+                this.addValue(YAxisList.get(i), dataset.getLegendName(), XAxisList.get(i));
             }
         }
         return (Dataset) this.defaultDataset;

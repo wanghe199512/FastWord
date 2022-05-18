@@ -15,7 +15,6 @@ import java.awt.*;
 import java.io.File;
 import java.io.InputStream;
 import java.util.List;
-import java.util.Map;
 
 public class WordFile07Writer extends AbstractIBasicWord {
 
@@ -142,7 +141,7 @@ public class WordFile07Writer extends AbstractIBasicWord {
     @Override
     public void addTable(ITableBeansHandler handler) {
         try {
-            this.writer.addTable(handler.drawTable());
+            this.writer.addTable(handler.createTable());
         } catch (Throwable e) {
             e.printStackTrace();
         }

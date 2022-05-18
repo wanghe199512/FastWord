@@ -5,7 +5,7 @@ import java.util.Map;
 
 public interface ITableBeansHandler {
 
-    List<Map<String, Object>> drawTable();
+    List<Map<String, Object>> createTable();
 
-    Map<String, Object> getTableHandler(int index) throws ArrayIndexOutOfBoundsException;
+    Map<String, Object> createTableHandler(int index) throws ArrayIndexOutOfBoundsException;
 }

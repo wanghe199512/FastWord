@@ -1,6 +1,7 @@
 package com.fast.word.beans;
 
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * 基础表格beans
@@ -8,36 +9,59 @@ import java.util.List;
  * @author wanghe
  */
 public class TableBeans {
-
-
-    public List<String> titleColumn;  // [aa,bb,cc]
-
-    public List<List<String>> columnList;  // 1,2,3
+    /**
+     * 表头
+     */
+    public List<String> titles;  // [aa,bb,cc]
+    /**
+     * 数据
+     */
+    public List<List<String>> dataList;  // 1,2,3
+    /**
+     * 是否总是显示表头（默认显示，false：当数据为空时不显示）
+     */
+    public boolean showHeader = true;
 
     public TableBeans() {
-
     }
 
-    public TableBeans(List<String> titleColumn, List<List<String>> valueColumn) {
-        this.titleColumn = titleColumn;
-        this.columnList = valueColumn;
+    public TableBeans(List<String> titles, List<List<String>> dataList) {
+        this.titles = titles;
+        this.dataList = dataList;
     }
 
-    public List<String> getTitleColumn() {
-        return titleColumn;
+    public TableBeans(String[] titles, List<LinkedHashMap<String, String>> tableList) {
+        if (tableList == null || tableList.size() == 0) {
+            throw new RuntimeException("tableList不能为空，本次进程终止....");
+        }
+        this.titles = Arrays.asList(titles);
+        this.dataList = tableList.stream().map(bean -> new ArrayList<>(new LinkedList<String>(bean.values()))).collect(Collectors.toList());
     }
 
-    public TableBeans setTitleColumn(List<String> titleColumn) {
-        this.titleColumn = titleColumn;
+    public List<String> getTitles() {
+        return titles;
+    }
+
+    public TableBeans setTitles(List<String> titles) {
+        this.titles = titles;
         return this;
     }
 
-    public List<List<String>> getColumnList() {
-        return columnList;
+    public List<List<String>> getDataList() {
+        return dataList;
     }
 
-    public TableBeans setColumnList(List<List<String>> columnList) {
-        this.columnList = columnList;
+    public TableBeans setDataList(List<List<String>> dataList) {
+        this.dataList = dataList;
+        return this;
+    }
+
+    public boolean isShowHeader() {
+        return showHeader;
+    }
+
+    public TableBeans setShowHeader(boolean showHeader) {
+        this.showHeader = showHeader;
         return this;
     }
 }

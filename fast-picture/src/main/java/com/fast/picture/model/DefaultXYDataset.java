@@ -1,5 +1,6 @@
 package com.fast.picture.model;
 
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -22,12 +23,12 @@ public class DefaultXYDataset extends BasicDataset {
     public DefaultXYDataset() {
     }
 
-    public DefaultXYDataset(String dataSetName) {
-        super(dataSetName);
+    public DefaultXYDataset(String legendName) {
+        super(legendName);
     }
 
-    public DefaultXYDataset(String dataSetName, List<?> YAxisLabelList, List<String> XAxisLabelList) {
-        this.dataSetName = dataSetName;
+    public DefaultXYDataset(String legendName, List<?> YAxisLabelList, List<String> XAxisLabelList) {
+        this.legendName = legendName;
         this.YAxisLabelList = YAxisLabelList;
         this.XAxisLabelList = XAxisLabelList;
     }

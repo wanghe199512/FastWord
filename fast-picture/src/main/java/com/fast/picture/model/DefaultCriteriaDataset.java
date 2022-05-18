@@ -14,8 +14,8 @@ public class DefaultCriteriaDataset extends BasicDataset {
     public DefaultCriteriaDataset() {
     }
 
-    public DefaultCriteriaDataset(String dataSetName, Number value) {
-        super(dataSetName);
+    public DefaultCriteriaDataset(String legendName, Number value) {
+        super(legendName);
         this.value = value;
     }
 

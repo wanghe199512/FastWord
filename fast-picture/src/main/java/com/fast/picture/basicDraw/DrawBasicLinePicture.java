@@ -17,13 +17,13 @@ import java.util.List;
  */
 public class DrawBasicLinePicture extends AbstractDrawBasicPicture {
 
-    public DrawBasicLinePicture(String defaultTitle, String XAxisLabel, String YAxisLabel, Picture picture) {
-        super(defaultTitle, XAxisLabel, YAxisLabel, picture);
+    public DrawBasicLinePicture(String title, String XAxisLabel, String YAxisLabel, Picture picture) {
+        super(title, XAxisLabel, YAxisLabel, picture);
     }
 
     @Override
     public JFreeChart createChart() {
-        return ChartFactory.createLineChart(this.defaultTitle, this.XAxisLabel, this.YAxisLabel, (CategoryDataset) this.dataset,
+        return ChartFactory.createLineChart(this.title, this.XAxisLabel, this.YAxisLabel, (CategoryDataset) this.dataset,
                 PlotOrientation.VERTICAL, true, true, false);
     }
 

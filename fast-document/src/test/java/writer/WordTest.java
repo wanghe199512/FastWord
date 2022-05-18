@@ -7,9 +7,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 /**
  * 病害信息动态分析报告
@@ -34,13 +32,13 @@ public class WordTest {
 
         /*writer.addParagraphPictureRows(new File("D:\\2.png"), "四、啦啦啦啦啦啦");*/
         writer.addParagraphRows("fast-word当前版本是什么？");
-        writer.addParagraphTableRows(new DefaultTableBeansHandler(this.getTableBeans()), "我是表格标题独占一行");
+        writer.addParagraphTableRows(this.getTableBeans(), "我是表格标题独占一行");
         return writer;
     }
 
     private TableBeans getTableBeans() {
         List<List<String>> childBeans = new ArrayList<>();
-        childBeans.add(Arrays.asList(new String[]{"王贺", "男", "27", "山西大同", "北京昌平"}));
+       // childBeans.add(Arrays.asList(new String[]{}));
         TableBeans bean = new TableBeans(Arrays.asList(new String[]{"姓名", "性别", "年龄", "户籍地", "居住地"}), childBeans);
         return bean;
     }

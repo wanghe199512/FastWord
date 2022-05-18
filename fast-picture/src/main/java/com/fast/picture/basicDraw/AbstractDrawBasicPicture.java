@@ -6,7 +6,6 @@ import com.fast.picture.file.FileUniversalAvailable;
 import com.fast.picture.handler.IDatasetHandler;
 import com.fast.picture.model.BasicDataset;
 import com.fast.picture.model.Picture;
-import org.apache.commons.collections.CollectionUtils;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
 import org.jfree.data.general.Dataset;
@@ -23,7 +22,7 @@ public abstract class AbstractDrawBasicPicture extends BasicDrawPictureUniversal
     /**
      * 图表标题
      */
-    protected String defaultTitle;
+    protected String title;
     /**
      * 图片宽度
      */
@@ -50,19 +49,19 @@ public abstract class AbstractDrawBasicPicture extends BasicDrawPictureUniversal
      */
     protected Dataset dataset;
 
-    public AbstractDrawBasicPicture(String defaultTitle) {
+    protected AbstractDrawBasicPicture(String title) {
         super(true);
-        this.defaultTitle = defaultTitle;
+        this.title = title;
     }
 
-    private AbstractDrawBasicPicture(String defaultTitle, String XAxisLabel, String YAxisLabel) {
-        this(defaultTitle);
+    protected AbstractDrawBasicPicture(String title, String XAxisLabel, String YAxisLabel) {
+        this(title);
         this.XAxisLabel = XAxisLabel;
         this.YAxisLabel = YAxisLabel;
     }
 
-    public AbstractDrawBasicPicture(String defaultTitle, String XAxisLabel, String YAxisLabel, Picture picture) {
-        this(defaultTitle, XAxisLabel, YAxisLabel);
+    protected AbstractDrawBasicPicture(String title, String XAxisLabel, String YAxisLabel, Picture picture) {
+        this(title, XAxisLabel, YAxisLabel);
         this.picture = picture;
         this.setDefaultPictureWidthHeight();
     }
@@ -73,10 +72,19 @@ public abstract class AbstractDrawBasicPicture extends BasicDrawPictureUniversal
     @Override
     public abstract AbstractDrawBasicPicture addDefaultDataSet(List<? extends BasicDataset> dataSetList);
 
-    // TODO cls 泛型没有边界，可能会导致异常，待修复
+
+    /**
+     * 添加数据到图表中
+     * TODO cls 泛型没有边界，可能会导致异常，待修复
+     *
+     * @param dataSetList 数据
+     * @param handler     指定数据处理器
+     * @param cls         必须是图表对象class
+     * @return
+     */
     protected AbstractDrawBasicPicture addDefaultDataSet(List<? extends BasicDataset> dataSetList, IDatasetHandler handler, Class<?> cls) {
         try {
-            if (CollectionUtils.isEmpty(dataSetList)) {
+            if (dataSetList == null || dataSetList.size() == 0) {  // TODO 解决部分情况下，jar包冲突
                 throw new RuntimeException("默认初始化数据集dataSetList为空，本次进程结束！[处理失败...]");
             }
             this.dataset = handler.handler(dataSetList, cls);

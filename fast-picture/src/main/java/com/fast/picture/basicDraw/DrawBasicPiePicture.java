@@ -15,13 +15,13 @@ import java.util.List;
  */
 public class DrawBasicPiePicture extends AbstractDrawBasicPicture {
 
-    public DrawBasicPiePicture(String defaultTitle, Picture picture) {
-        super(defaultTitle, null, null, picture);
+    public DrawBasicPiePicture(String title, Picture picture) {
+        super(title, null, null, picture);
     }
 
     @Override
     public JFreeChart createChart() {
-        return ChartFactory.createPieChart(this.defaultTitle, (DefaultPieDataset) this.dataset);
+        return ChartFactory.createPieChart(this.title, (DefaultPieDataset) this.dataset);
     }
 
     @Override

@@ -18,13 +18,13 @@ import java.util.List;
  */
 public class DrawBasicScatterPicture extends AbstractDrawBasicPicture {
 
-    public DrawBasicScatterPicture(String defaultTitle, String XAxisLabel, String YAxisLabel, Picture picture) {
-        super(defaultTitle, XAxisLabel, YAxisLabel, picture);
+    public DrawBasicScatterPicture(String title, String XAxisLabel, String YAxisLabel, Picture picture) {
+        super(title, XAxisLabel, YAxisLabel, picture);
     }
 
     @Override
     public JFreeChart createChart() {
-        return new JFreeChart(this.defaultTitle, new CategoryPlot((DefaultMultiValueCategoryDataset) this.dataset, new CategoryAxis(this.XAxisLabel), new NumberAxis(this.YAxisLabel), new ScatterRenderer()));
+        return new JFreeChart(this.title, new CategoryPlot((DefaultMultiValueCategoryDataset) this.dataset, new CategoryAxis(this.XAxisLabel), new NumberAxis(this.YAxisLabel), new ScatterRenderer()));
     }
 
     @Override

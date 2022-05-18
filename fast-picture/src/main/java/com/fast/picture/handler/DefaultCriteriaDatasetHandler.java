@@ -20,7 +20,7 @@ public class DefaultCriteriaDatasetHandler implements IDatasetHandler {
     public Dataset handler(List<? extends BasicDataset> dataSetList, Class<?> cls) throws IllegalAccessException, InstantiationException {
         this.defaultDataset = cls.newInstance();
         for (BasicDataset dataset : dataSetList) {
-            this.addValue("", dataset.getDataSetName(), ((DefaultCriteriaDataset) dataset).getValue());
+            this.addValue("", dataset.getLegendName(), ((DefaultCriteriaDataset) dataset).getValue());
         }
         return (Dataset) this.defaultDataset;
     }

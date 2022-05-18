@@ -12,7 +12,7 @@
     <packaging>jar</packaging>
 
     <artifactId>fast-picture</artifactId>
-    <version>0.0.5-RELEASES</version>
+    <version>0.0.51-RELEASES</version>
     <description>fast-word图片生成</description>
     <dependencies>
         <dependency>

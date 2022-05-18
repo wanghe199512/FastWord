@@ -4,21 +4,21 @@ public class BasicDataset {
     /**
      * 数据集名称
      */
-    public String dataSetName;
+    public String legendName;
 
     public BasicDataset() {
     }
 
-    public BasicDataset(String dataSetName) {
-        this.dataSetName = dataSetName;
+    public BasicDataset(String legendName) {
+        this.legendName = legendName;
     }
 
-    public String getDataSetName() {
-        return dataSetName;
+    public String getLegendName() {
+        return legendName;
     }
 
-    public BasicDataset setDataSetName(String dataSetName) {
-        this.dataSetName = dataSetName;
+    public BasicDataset setLegendName(String legendName) {
+        this.legendName = legendName;
         return this;
     }
 }
