@@ -14,11 +14,25 @@ import java.util.Arrays;
 import java.util.List;
 
 public class PictureTest {
+
+    @Test
+    public void DrawBasicLinePicture1() {
+        List<DefaultXYDataset> list = new ArrayList<>();
+        List<List<Number>> aaList = new ArrayList<>();
+        aaList.add(Arrays.asList(new Integer[]{2, 3, 4}));
+        aaList.add(Arrays.asList(new Integer[]{3, 9, 5}));
+        aaList.add(Arrays.asList(new Integer[]{0, 3, 23}));
+        DefaultXYDataset defaultDataSet = new DefaultXYDataset(Arrays.asList(new String[]{"2021","2022"}), aaList, Arrays.asList(new String[]{"水果", "蔬菜","鸡蛋"}));
+        list.add(defaultDataSet);
+        File file = new DrawBasicLinePicture("测试", "测试", "测试",
+                new Picture("测试折线图.png")).addDefaultDataSet(list).saveAsPNG("d://临时图片/", Report.基础年报);
+        System.out.println(file.getAbsolutePath());
+    }
+
     @Test
     public void DrawBasicLinePicture() {
         List<DefaultXYDataset> list = new ArrayList<>();
-        DefaultXYDataset defaultDataSet = new DefaultXYDataset("折线图",
-                Arrays.asList(new Integer[]{2, 3, 4}), Arrays.asList(new String[]{"水果", "蔬菜", "鸡蛋"}));
+        DefaultXYDataset defaultDataSet = new DefaultXYDataset("折线图", Arrays.asList(new Integer[]{2, 3, 4}), Arrays.asList(new String[]{"水果", "蔬菜", "鸡蛋"}));
         list.add(defaultDataSet);
         File file = new DrawBasicLinePicture("测试", "测试", "测试",
                 new Picture("测试折线图.png")).addDefaultDataSet(list).saveAsPNG("d://临时图片/", Report.基础年报);

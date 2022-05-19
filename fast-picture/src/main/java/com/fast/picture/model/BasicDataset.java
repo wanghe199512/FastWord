@@ -1,24 +1,31 @@
 package com.fast.picture.model;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class BasicDataset {
     /**
      * 数据集名称
      */
-    public String legendName;
+    public List<String> legendNames;
 
     public BasicDataset() {
     }
 
     public BasicDataset(String legendName) {
-        this.legendName = legendName;
+        this.legendNames = Arrays.asList(legendName);
     }
 
-    public String getLegendName() {
-        return legendName;
+    public BasicDataset(List<String> legendNames) {
+        this.legendNames = legendNames;
     }
 
-    public BasicDataset setLegendName(String legendName) {
-        this.legendName = legendName;
+    public List<String> getLegendNames() {
+        return legendNames;
+    }
+
+    public BasicDataset setLegendNames(List<String> legendNames) {
+        this.legendNames = legendNames;
         return this;
     }
 }

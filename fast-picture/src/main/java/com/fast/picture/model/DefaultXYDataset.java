@@ -1,6 +1,6 @@
 package com.fast.picture.model;
 
-import java.util.Collection;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -14,7 +14,7 @@ public class DefaultXYDataset extends BasicDataset {
     /**
      * x坐标数据
      */
-    public List<?> YAxisLabelList;
+    public List<List<Number>> YAxisLabelList;
     /**
      * y轴坐标数据
      */
@@ -27,17 +27,23 @@ public class DefaultXYDataset extends BasicDataset {
         super(legendName);
     }
 
-    public DefaultXYDataset(String legendName, List<?> YAxisLabelList, List<String> XAxisLabelList) {
-        this.legendName = legendName;
+    public DefaultXYDataset(List<String> legendNames, List<List<Number>> YAxisLabelList, List<String> XAxisLabelList) {
+        super(legendNames);
         this.YAxisLabelList = YAxisLabelList;
         this.XAxisLabelList = XAxisLabelList;
     }
 
-    public List<?> getYAxisLabelList() {
+    public DefaultXYDataset(String legendName, List<Number> YAxisLabelList, List<String> XAxisLabelList) {
+        this(legendName);
+        this.YAxisLabelList = Arrays.asList(YAxisLabelList);
+        this.XAxisLabelList = XAxisLabelList;
+    }
+
+    public List<List<Number>> getYAxisLabelList() {
         return YAxisLabelList;
     }
 
-    public DefaultXYDataset setYAxisLabelList(List<?> YAxisLabelList) {
+    public DefaultXYDataset setYAxisLabelList(List<List<Number>> YAxisLabelList) {
         this.YAxisLabelList = YAxisLabelList;
         return this;
     }

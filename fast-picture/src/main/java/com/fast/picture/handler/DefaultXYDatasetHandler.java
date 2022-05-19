@@ -18,16 +18,24 @@ public class DefaultXYDatasetHandler implements IDatasetHandler {
 
     private Object defaultDataset = null;
 
+    public Object getDefaultDataset() {
+        return defaultDataset;
+    }
+
+    public DefaultXYDatasetHandler setDefaultDataset(Object defaultDataset) {
+        this.defaultDataset = defaultDataset;
+        return this;
+    }
+
     @Override
     public Dataset handler(List<? extends BasicDataset> dataSetList, Class<?> cls) throws IllegalAccessException, InstantiationException {
         this.defaultDataset = cls.newInstance();
         for (BasicDataset dataset : dataSetList) {
-            List<?> XAxisList = ((DefaultXYDataset) dataset).getXAxisLabelList(), YAxisList = ((DefaultXYDataset) dataset).getYAxisLabelList();
-            if (XAxisList.size() != YAxisList.size()) {
-                throw new RuntimeException("XAxisList，YAxisList长度必须一致，本次进程终止...");
-            }
-            for (int i = 0; i < XAxisList.size(); i++) {
-                this.addValue(YAxisList.get(i), dataset.getLegendName(), XAxisList.get(i));
+            List<?> XAxisList = ((DefaultXYDataset) dataset).getXAxisLabelList(), YAxisLabelList = ((DefaultXYDataset) dataset).getYAxisLabelList(), legends = dataset.getLegendNames();
+            for (int i = 0; i < legends.size(); i++) {     // 根据图例顺序，对应纵轴数值数据集list
+                for (int j = 0; j < XAxisList.size(); j++) {
+                    this.addValue(((List<?>) YAxisLabelList.get(i)).get(j), legends.get(i), XAxisList.get(j));
+                }
             }
         }
         return (Dataset) this.defaultDataset;

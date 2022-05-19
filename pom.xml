@@ -92,6 +92,12 @@
         </snapshotRepository>
     </distributionManagement>
 
+   <!-- <scm>
+        <connection>https://gitee.com/wanghe199512/FastWord.git</connection>
+        <developerConnection>https://gitee.com/wanghe199512/FastWord.git</developerConnection>
+        <url>https://gitee.com/wanghe199512/FastWord.git</url>
+    </scm>-->
+
     <build>
         <plugins>
             <plugin>
@@ -105,6 +111,19 @@
                     <goals>deploy</goals>
                 </configuration>
             </plugin>
+            <!--<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.5</version>
+                <executions>
+                    <execution>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
