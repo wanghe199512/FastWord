@@ -1,5 +1,6 @@
 package com.fast.picture.model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,7 +15,7 @@ public class DefaultXYDataset extends BasicDataset {
     /**
      * x坐标数据
      */
-    public List<List<Number>> YAxisLabelList;
+    public List<List<Object>> YAxisLabelList;
     /**
      * y轴坐标数据
      */
@@ -23,27 +24,23 @@ public class DefaultXYDataset extends BasicDataset {
     public DefaultXYDataset() {
     }
 
-    public DefaultXYDataset(String legendName) {
-        super(legendName);
-    }
-
-    public DefaultXYDataset(List<String> legendNames, List<List<Number>> YAxisLabelList, List<String> XAxisLabelList) {
-        super(legendNames);
-        this.YAxisLabelList = YAxisLabelList;
+    public DefaultXYDataset(List<String> legendNames, List<List<Object>> YAxisLabelList, List<String> XAxisLabelList) {
+        this.legendNames = legendNames;
         this.XAxisLabelList = XAxisLabelList;
+        this.YAxisLabelList = YAxisLabelList;
     }
 
-    public DefaultXYDataset(String legendName, List<Number> YAxisLabelList, List<String> XAxisLabelList) {
-        this(legendName);
+    public DefaultXYDataset(String legendName, List<Object> YAxisLabelList, List<String> XAxisLabelList) {
+        super(legendName);
         this.YAxisLabelList = Arrays.asList(YAxisLabelList);
         this.XAxisLabelList = XAxisLabelList;
     }
 
-    public List<List<Number>> getYAxisLabelList() {
+    public List<List<Object>> getYAxisLabelList() {
         return YAxisLabelList;
     }
 
-    public DefaultXYDataset setYAxisLabelList(List<List<Number>> YAxisLabelList) {
+    public DefaultXYDataset setYAxisLabelList(List<List<Object>> YAxisLabelList) {
         this.YAxisLabelList = YAxisLabelList;
         return this;
     }

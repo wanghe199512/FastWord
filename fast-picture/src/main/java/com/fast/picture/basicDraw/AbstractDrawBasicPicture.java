@@ -8,6 +8,7 @@ import com.fast.picture.model.BasicDataset;
 import com.fast.picture.model.Picture;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.renderer.AbstractRenderer;
 import org.jfree.data.general.Dataset;
 
 import java.io.File;
@@ -115,7 +116,6 @@ public abstract class AbstractDrawBasicPicture extends BasicDrawPictureUniversal
         File availableFile = new FileUniversalAvailable(outputRootPath, report).getFileAvailable(this.picture.getFileName());
         JFreeChart drawPicture = this.createChart();
         try {
-            //  this.setShapesVisibleLabel((AbstractCategoryItemRenderer) drawPicture.getCategoryPlot().getRenderer());  // 导出设置显示数值等样式
             ChartUtilities.saveChartAsPNG(availableFile, drawPicture, this.defaultWidth, this.defaultHeight);
         } catch (IOException e) {
             e.printStackTrace();

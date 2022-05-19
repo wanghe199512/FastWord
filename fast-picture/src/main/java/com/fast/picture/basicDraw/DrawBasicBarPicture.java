@@ -23,8 +23,12 @@ public class DrawBasicBarPicture extends AbstractDrawBasicPicture {
 
     @Override
     public JFreeChart createChart() {
-        return ChartFactory.createBarChart(this.title, this.XAxisLabel, this.YAxisLabel, (CategoryDataset) this.dataset,
+
+        JFreeChart chart = ChartFactory.createBarChart(this.title, this.XAxisLabel, this.YAxisLabel, (CategoryDataset) this.dataset,
                 PlotOrientation.VERTICAL, true, true, false);
+        setBarRenderer(chart.getCategoryPlot(), true);
+        return chart;
+
     }
 
     @Override

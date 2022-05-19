@@ -30,13 +30,20 @@ public class DefaultXYDatasetHandler implements IDatasetHandler {
     @Override
     public Dataset handler(List<? extends BasicDataset> dataSetList, Class<?> cls) throws IllegalAccessException, InstantiationException {
         this.defaultDataset = cls.newInstance();
-        for (BasicDataset dataset : dataSetList) {
-            List<?> XAxisList = ((DefaultXYDataset) dataset).getXAxisLabelList(), YAxisLabelList = ((DefaultXYDataset) dataset).getYAxisLabelList(), legends = dataset.getLegendNames();
-            for (int i = 0; i < legends.size(); i++) {     // 根据图例顺序，对应纵轴数值数据集list
-                for (int j = 0; j < XAxisList.size(); j++) {
-                    this.addValue(((List<?>) YAxisLabelList.get(i)).get(j), legends.get(i), XAxisList.get(j));
+        try {
+            for (BasicDataset dataset : dataSetList) {
+                List<?> XAxisList = ((DefaultXYDataset) dataset).getXAxisLabelList(), YAxisLabelList = ((DefaultXYDataset) dataset).getYAxisLabelList(), legends = dataset.getLegendNames();
+                for (int i = 0; i < legends.size(); i++) {     // 以图例个数为基准循环
+                    if (YAxisLabelList.size() <= i) {  // 如果y轴的个数小于等于图例个数，后边的就不用画了
+                        continue;
+                    }
+                    for (int j = 0; j < ((List<?>) YAxisLabelList.get(i)).size(); j++) {  // 取嵌套循环list进行循环，
+                        this.addValue(((List<?>) YAxisLabelList.get(i)).get(j), legends.get(i), XAxisList.get(j));
+                    }
                 }
             }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
         return (Dataset) this.defaultDataset;
     }
