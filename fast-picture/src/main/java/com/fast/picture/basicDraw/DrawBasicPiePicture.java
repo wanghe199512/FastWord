@@ -21,7 +21,9 @@ public class DrawBasicPiePicture extends AbstractDrawBasicPicture {
 
     @Override
     public JFreeChart createChart() {
-        return ChartFactory.createPieChart(this.title, (DefaultPieDataset) this.dataset);
+        JFreeChart chart = ChartFactory.createPieChart(this.title, (DefaultPieDataset) this.dataset);
+        super.setPieRender(chart.getPlot());
+        return chart;
     }
 
     @Override

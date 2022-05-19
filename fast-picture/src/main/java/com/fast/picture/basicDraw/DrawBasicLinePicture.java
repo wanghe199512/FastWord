@@ -32,7 +32,7 @@ public class DrawBasicLinePicture extends AbstractDrawBasicPicture {
     public JFreeChart createChart() {
         JFreeChart chart = ChartFactory.createLineChart(this.title, this.XAxisLabel, this.YAxisLabel, (CategoryDataset) this.dataset,
                 PlotOrientation.VERTICAL, true, true, false);
-        setLineRender(chart.getCategoryPlot(), true, true);
+        super.setLineRender(chart.getCategoryPlot(), true, true);
         chart.setTextAntiAlias(true);
         return chart;
     }
