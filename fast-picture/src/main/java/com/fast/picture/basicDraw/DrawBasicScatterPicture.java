@@ -34,7 +34,7 @@ public class DrawBasicScatterPicture extends AbstractDrawBasicPicture {
     public JFreeChart createChart() {
         JFreeChart chart = new JFreeChart(this.title, new CategoryPlot((DefaultMultiValueCategoryDataset) this.dataset, new CategoryAxis(this.XAxisLabel), new NumberAxis(this.YAxisLabel), new ScatterRenderer()));
         CategoryPlot scatterPlot = (CategoryPlot) chart.getPlot();
-        scatterPlot.setInsets(new RectangleInsets(25, 10, 10, 10), true);
+        scatterPlot.setInsets(new RectangleInsets(5, 10, 10, 10), true);
         return chart;
     }
 

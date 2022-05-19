@@ -21,15 +21,6 @@ public class DefaultXYDatasetHandler implements IDatasetHandler {
 
     private Object defaultDataset = null;
 
-    public Object getDefaultDataset() {
-        return defaultDataset;
-    }
-
-    public DefaultXYDatasetHandler setDefaultDataset(Object defaultDataset) {
-        this.defaultDataset = defaultDataset;
-        return this;
-    }
-
     @Override
     public Dataset handler(List<? extends BasicDataset> dataSetList, Class<?> cls) throws IllegalAccessException, InstantiationException {
         this.defaultDataset = cls.newInstance();
@@ -58,5 +49,9 @@ public class DefaultXYDatasetHandler implements IDatasetHandler {
         if (this.defaultDataset instanceof DefaultMultiValueCategoryDataset) {
             ((DefaultMultiValueCategoryDataset) this.defaultDataset).add((List<?>) value, (String) rowName, (String) columnName);
         }
+    }
+
+    public Object getDefaultDataset() {
+        return defaultDataset;
     }
 }
