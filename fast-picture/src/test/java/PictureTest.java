@@ -25,7 +25,7 @@ public class PictureTest {
         DefaultXYDataset defaultDataSet = new DefaultXYDataset(Arrays.asList(new String[]{"2021","2022"}), aaList, Arrays.asList(new String[]{"水果", "蔬菜","鸡蛋"}));
         list.add(defaultDataSet);
         File file = new DrawBasicLinePicture("测试", "测试", "测试",
-                new Picture("测试折线图.png")).addDefaultDataSet(list).saveAsPNG("d://临时图片/", Report.基础年报);
+                new Picture("测试折线图2.png")).addDefaultDataSet(list).saveAsPNG("d://临时图片/", Report.基础年报);
         System.out.println(file.getAbsolutePath());
     }
 
