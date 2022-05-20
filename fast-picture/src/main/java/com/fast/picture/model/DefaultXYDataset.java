@@ -1,13 +1,21 @@
 package com.fast.picture.model;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 /**
  * 默认绘图数据集对象
  * <p>
- * 涉及到x，y轴坐标数据
+ * 适用范围：涉及到x，y轴坐标数据
+ * </p>
+ * <p>
+ * 默认构造:DefaultXYDataset(String legendName, List<? extends Number> YAxisLabelList, List<String> XAxisLabelList)
+ * 支持图例一对多数据的使用
+ * </p>
+ * <p>
+ * 增强构造：List<String> legendNames, List<List<? extends Number>> YAxisLabelList, List<String> XAxisLabelList
+ * 支持多对多使用
+ * </p>
  *
  * @author wanghe
  */
@@ -15,7 +23,7 @@ public class DefaultXYDataset extends BasicDataset {
     /**
      * x坐标数据
      */
-    public List<List<Object>> YAxisLabelList;
+    public List<List<? extends Number>> YAxisLabelList;
     /**
      * y轴坐标数据
      */
@@ -24,23 +32,26 @@ public class DefaultXYDataset extends BasicDataset {
     public DefaultXYDataset() {
     }
 
-    public DefaultXYDataset(List<String> legendNames, List<List<Object>> YAxisLabelList, List<String> XAxisLabelList) {
+    public DefaultXYDataset(List<String> legendNames, List<List<? extends Number>> YAxisLabelList, List<String> XAxisLabelList) {
         this.legendNames = legendNames;
         this.XAxisLabelList = XAxisLabelList;
         this.YAxisLabelList = YAxisLabelList;
     }
 
-    public DefaultXYDataset(String legendName, List<Object> YAxisLabelList, List<String> XAxisLabelList) {
+    /**
+     * 默认构造
+     */
+    public DefaultXYDataset(String legendName, List<? extends Number> YAxisLabelList, List<String> XAxisLabelList) {
         super(legendName);
-        this.YAxisLabelList = Arrays.asList(YAxisLabelList);
+        this.YAxisLabelList = Collections.singletonList(YAxisLabelList);
         this.XAxisLabelList = XAxisLabelList;
     }
 
-    public List<List<Object>> getYAxisLabelList() {
+    public List<List<? extends Number>> getYAxisLabelList() {
         return YAxisLabelList;
     }
 
-    public DefaultXYDataset setYAxisLabelList(List<List<Object>> YAxisLabelList) {
+    public DefaultXYDataset setYAxisLabelList(List<List<? extends Number>> YAxisLabelList) {
         this.YAxisLabelList = YAxisLabelList;
         return this;
     }

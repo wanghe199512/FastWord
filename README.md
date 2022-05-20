@@ -13,10 +13,6 @@ fast-word当前版本是什么？
 
 当我决定提交到开源社区的时候，是0.0.1快照版本，但是已满足大部分开发场景需要，后续会不断完善。同时涉及到业务场景需要，千人千面，所以我向开发者们提供了对外可继承覆盖的方式去实现自己的开发需求，或许这并不符合软件开发的开闭原则，当然在以后的版本中会考虑并满足这些
 
-#### 软件架构
-软件架构说明
-无
-
 
 #### 使用示例
 
@@ -28,6 +24,11 @@ private void createPictureExample() throws Exception {
      list.add(defaultDataSet);
      File file = new DrawBasicLinePicture("各大学人数排序", "学校", "人数") .addDefaultDataSet(list, new DefaultDatasetHandler()).saveAsPNG("d://aa/图片", Report.基础日报);
    }
+````
+DefaultXYDataset是适用于有x，y轴数据的图表实体（如折线，柱状），需要显式创建，默认构造如下（其他使用请参照PictureTest下示例）：
+````
+ DefaultXYDataset defaultDataSet = new DefaultXYDataset("折线图", Arrays.asList(new Integer[]{2, 3, 4}), 
+                Arrays.asList(new String[]{"水果", "蔬菜", "鸡蛋"}));
 ````
 
 2.  创建表格
@@ -41,7 +42,7 @@ private TableBeans getTableBeans() {
 ````
 3.  导出word文件
 ````
-writer.getDocumentFile("动态分析报告","d://aa");
+String docuemntFile = writer.getDocumentFile("动态分析报告","d://aa"); // 返回值为文档所在存储完整路径
 ````
 具体实现如下：
 ````

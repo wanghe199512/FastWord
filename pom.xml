@@ -81,6 +81,13 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+    <repositories>
+        <repository>
+            <id>github</id>
+            <name>GitHub OWNER Apache Maven Packages</name>
+            <url>https://maven.pkg.github.com/OWNER/REPOSITORY</url>
+        </repository>
+    </repositories>
     <distributionManagement>
         <repository>
             <id>nexus-releases</id>
@@ -90,8 +97,8 @@
             <id>nexus-snapshot</id>
             <url>http://127.0.0.1:10109/repository/nexus-snapshot/</url>
         </snapshotRepository>
-    </distributionManagement>
 
+    </distributionManagement>
    <!-- <scm>
         <connection>https://gitee.com/wanghe199512/FastWord.git</connection>
         <developerConnection>https://gitee.com/wanghe199512/FastWord.git</developerConnection>

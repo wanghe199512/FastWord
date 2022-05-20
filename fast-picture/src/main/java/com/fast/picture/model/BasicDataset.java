@@ -1,6 +1,6 @@
 package com.fast.picture.model;
 
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class BasicDataset {
@@ -17,7 +17,7 @@ public class BasicDataset {
     }
 
     public BasicDataset(String legendName) {
-        this.legendNames = Arrays.asList(legendName);
+        this.legendNames = Collections.singletonList(legendName);
     }
 
     public List<String> getLegendNames() {

@@ -3,8 +3,8 @@ import com.fast.picture.basicDraw.DrawBasicLinePicture;
 import com.fast.picture.basicDraw.DrawBasicPiePicture;
 import com.fast.picture.basicDraw.DrawBasicScatterPicture;
 import com.fast.picture.enums.Report;
-import com.fast.picture.model.DefaultXYDataset;
 import com.fast.picture.model.DefaultCriteriaDataset;
+import com.fast.picture.model.DefaultXYDataset;
 import com.fast.picture.model.Picture;
 import org.junit.Test;
 
@@ -18,7 +18,7 @@ public class PictureTest {
     @Test
     public void DrawBasicLinePicture1() {
         List<DefaultXYDataset> list = new ArrayList<>();
-        List<List<Object>> aaList = new ArrayList<>();
+        List<List<? extends Number>> aaList = new ArrayList<>();
         aaList.add(Arrays.asList(new Integer[]{2, 3, 4, 9, 6, 5, 1, 10}));
         aaList.add(Arrays.asList(new Integer[]{3, 9, 5, 8, 5, 3, 11, 12}));
         aaList.add(Arrays.asList(new Integer[]{0, 3, 2, 10, 3, 6, 3, 9}));
