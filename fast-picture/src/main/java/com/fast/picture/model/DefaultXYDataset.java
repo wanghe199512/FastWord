@@ -8,14 +8,6 @@ import java.util.List;
  * <p>
  * 适用范围：涉及到x，y轴坐标数据
  * </p>
- * <p>
- * 默认构造:DefaultXYDataset(String legendName, List<? extends Number> YAxisLabelList, List<String> XAxisLabelList)
- * 支持图例一对多数据的使用
- * </p>
- * <p>
- * 增强构造：List<String> legendNames, List<List<? extends Number>> YAxisLabelList, List<String> XAxisLabelList
- * 支持多对多使用
- * </p>
  *
  * @author wanghe
  */
@@ -40,6 +32,10 @@ public class DefaultXYDataset extends BasicDataset {
 
     /**
      * 默认构造
+     *
+     * @param legendName     图例名称
+     * @param YAxisLabelList 纵轴数据
+     * @param XAxisLabelList 横轴数据
      */
     public DefaultXYDataset(String legendName, List<? extends Number> YAxisLabelList, List<String> XAxisLabelList) {
         super(legendName);

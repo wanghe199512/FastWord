@@ -84,6 +84,10 @@ public class BasicDrawPictureUniversalThemes {
 
     /**
      * 设置折线图样式
+     *
+     * @param plot             plot
+     * @param showLabels       是否显示标签
+     * @param showShapeVisible 是否绘制形状
      */
     protected void setLineRender(CategoryPlot plot, boolean showLabels, boolean showShapeVisible) {
         plot.setInsets(new RectangleInsets(10, 10, 0, 10), false);
@@ -101,6 +105,9 @@ public class BasicDrawPictureUniversalThemes {
 
     /**
      * 设置柱状图渲染
+     *
+     * @param plot             plot
+     * @param isShowDataLabels 是否显示标签
      */
     public void setBarRenderer(CategoryPlot plot, boolean isShowDataLabels) {
         plot.setInsets(new RectangleInsets(5, 10, 5, 10));
@@ -116,6 +123,8 @@ public class BasicDrawPictureUniversalThemes {
 
     /**
      * 设置堆积柱状图渲染
+     *
+     * @param plot plot
      */
     public void setStackBarRender(CategoryPlot plot) {
         plot.setInsets(new RectangleInsets(5, 10, 5, 10));
@@ -129,6 +138,8 @@ public class BasicDrawPictureUniversalThemes {
 
     /**
      * 设置类别图表(CategoryPlot) X坐标轴线条颜色和样式
+     *
+     * @param plot plot
      */
     protected void setXAxisThemes(CategoryPlot plot) {
         Color lineColor = new Color(31, 121, 170);
@@ -138,6 +149,8 @@ public class BasicDrawPictureUniversalThemes {
 
     /**
      * 设置类别图表(CategoryPlot) Y坐标轴线条颜色和样式 同时防止数据无法显示
+     *
+     * @param plot plot
      */
     protected void setYAxisThemes(CategoryPlot plot) {
         Color lineColor = new Color(192, 208, 224);
@@ -154,6 +167,8 @@ public class BasicDrawPictureUniversalThemes {
 
     /**
      * 设置饼状图渲染
+     *
+     * @param plot plot
      */
     public void setPieRender(Plot plot) {
         plot.setInsets(new RectangleInsets(5, 10, 5, 10));

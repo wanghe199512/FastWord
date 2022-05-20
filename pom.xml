@@ -81,13 +81,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-    <repositories>
-        <repository>
-            <id>github</id>
-            <name>GitHub OWNER Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/OWNER/REPOSITORY</url>
-        </repository>
-    </repositories>
     <distributionManagement>
         <repository>
             <id>nexus-releases</id>

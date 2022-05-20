@@ -81,7 +81,7 @@ public abstract class AbstractDrawBasicPicture extends BasicDrawPictureUniversal
      * @param dataSetList 数据
      * @param handler     指定数据处理器
      * @param cls         必须是图表对象class
-     * @return
+     * @return  AbstractDrawBasicPicture
      */
     protected AbstractDrawBasicPicture addDefaultDataSet(List<? extends BasicDataset> dataSetList, IDatasetHandler handler, Class<?> cls) {
         try {

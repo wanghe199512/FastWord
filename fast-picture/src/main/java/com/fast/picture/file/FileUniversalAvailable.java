@@ -34,6 +34,8 @@ public class FileUniversalAvailable {
 
     /**
      * 获取可用图片保存路径(example:线路/行别/1.png)
+     *
+     * @return 图片全路径
      */
     public File getFileAvailable() {
         if (StringUtils.isEmpty(this.outputPath) || this.report == null) {
@@ -50,6 +52,8 @@ public class FileUniversalAvailable {
 
     /**
      * 删除过期文件
+     *
+     * @param fileRootAvailablePath 删除的根路径
      */
     public void deleteUnAvailableFile(String fileRootAvailablePath) {
         File[] listFiles = new File(fileRootAvailablePath).listFiles();
@@ -64,6 +68,8 @@ public class FileUniversalAvailable {
 
     /**
      * 删除单个文件
+     *
+     * @param availableName 删除的文件
      */
     public void deleteSimpleFile(String availableName) {
         File file = new File(availableName);
@@ -78,6 +84,8 @@ public class FileUniversalAvailable {
 
     /**
      * 获取报告根路径
+     *
+     * @return 报告所在完整路径
      */
     public String getFileRootAvailablePath() {
         return this.outputPath.concat(this.report.getName()).concat(File.separator);
