@@ -176,7 +176,7 @@ public class WordFile07Writer extends AbstractIBasicWord {
 
     public void addParagraphTableRows(List<?> beans, Class<?> beanCls, String... texts) {
         try {
-            this.addParagraphTableRows(new DefaultAnnotationTableHandler((List<Object>) beans, beanCls), texts);
+            this.addParagraphTableRows(new DefaultAnnotationTableHandler(beans, beanCls), texts);
 
         } catch (Throwable e) {
             e.printStackTrace();

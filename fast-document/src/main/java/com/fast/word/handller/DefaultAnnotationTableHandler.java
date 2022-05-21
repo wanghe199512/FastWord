@@ -15,12 +15,12 @@ import java.util.stream.Collectors;
  */
 public class DefaultAnnotationTableHandler extends DefaultTableBeansHandler implements IFastWordTabled {
 
-    public DefaultAnnotationTableHandler(List<Object> beans, Class<?> beanCls) {
+    public DefaultAnnotationTableHandler(List<?> beans, Class<?> beanCls) {
         this.tableBeans = new TableBeans(this.getTabledColumnNames(this.getDeclaredFields(beanCls)), this.geTabledColumnList(beans, this.getDeclaredFields(beanCls)));
     }
 
     @Override
-    public List<List<Object>> geTabledColumnList(List<Object> beans, Field[] declaredFields) {
+    public List<List<?>> geTabledColumnList(List<?> beans, Field[] declaredFields) {
         return new LinkedList<Object>(beans).stream().map(bean -> new LinkedList<Field>(Arrays.asList(declaredFields)).stream().map(field -> {
             try {
                 return field.get(bean);

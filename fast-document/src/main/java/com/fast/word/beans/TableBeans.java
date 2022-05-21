@@ -16,7 +16,7 @@ public class TableBeans {
     /**
      * 数据
      */
-    public List<List<Object>> dataList;  // 1,2,3
+    public List<? extends List<?>> dataList;  // 1,2,3
     /**
      * 是否总是显示表头（默认显示，false：只有在dataList数据为空时，showHeader生效）
      */
@@ -25,12 +25,12 @@ public class TableBeans {
     public TableBeans() {
     }
 
-    public TableBeans(List<String> titles, List<List<Object>> dataList) {
+    public TableBeans(List<String> titles, List<? extends List<?>> dataList) {
         this.titles = titles;
         this.dataList = dataList;
     }
 
-    public TableBeans(String[] titles, List<LinkedHashMap<String, String>> tableList) {
+    public TableBeans(String[] titles, List<? extends HashMap<String, String>> tableList) {
         if (tableList == null || tableList.size() == 0) {
             throw new RuntimeException("tableList不能为空，本次进程终止....");
         }
@@ -47,11 +47,11 @@ public class TableBeans {
         return this;
     }
 
-    public List<List<Object>> getDataList() {
+    public List<? extends List<?>> getDataList() {
         return dataList;
     }
 
-    public TableBeans setDataList(List<List<Object>> dataList) {
+    public TableBeans setDataList(List<? extends List<?>> dataList) {
         this.dataList = dataList;
         return this;
     }

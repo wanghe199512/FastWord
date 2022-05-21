@@ -37,7 +37,7 @@ public class WordTest {
     }
 
     private TableBeans getTableBeans() {
-        List<List<Object>> childBeans = new ArrayList<>();
+        List<List<String>> childBeans = new ArrayList<>();
         // childBeans.add(Arrays.asList(new String[]{}));
         return new TableBeans(Arrays.asList(new String[]{"姓名", "性别", "年龄", "户籍地", "居住地"}), childBeans);
     }
