@@ -29,11 +29,12 @@ public abstract class AbstractDefaultTableHandler implements ITableBeansHandler 
             throw new RuntimeException("请先初始化tableBeans ...");
         }
         List<Map<String, Object>> resultList = new ArrayList<>();
-        if (this.tableBeans.dataList.size() > 0 && !this.tableBeans.showHeader) {
+        if (this.tableBeans.dataList.size() > 0) {
             for (int i = 0; i < this.tableBeans.getDataList().size(); i++) {
                 resultList.add(this.createTableHandler(i));
             }
-        } else {
+        }
+        if (this.tableBeans.dataList.size() == 0 && this.tableBeans.showHeaderOfNoneList) {   // 只有在dataList数据为空时，showHeader生效
             resultList.add(this.createNullTable()); // 当数据为空时，也显示表头
         }
         return resultList;

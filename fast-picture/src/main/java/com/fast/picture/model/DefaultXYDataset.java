@@ -1,6 +1,9 @@
 package com.fast.picture.model;
 
+import com.fast.picture.model.builder.CreatorBuilder;
+
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -24,23 +27,20 @@ public class DefaultXYDataset extends BasicDataset {
     public DefaultXYDataset() {
     }
 
-    public DefaultXYDataset(List<String> legendNames, List<List<? extends Number>> YAxisLabelList, List<String> XAxisLabelList) {
-        this.legendNames = legendNames;
-        this.XAxisLabelList = XAxisLabelList;
-        this.YAxisLabelList = YAxisLabelList;
-    }
-
-    /**
-     * 默认构造
-     *
-     * @param legendName     图例名称
-     * @param YAxisLabelList 纵轴数据
-     * @param XAxisLabelList 横轴数据
-     */
     public DefaultXYDataset(String legendName, List<? extends Number> YAxisLabelList, List<String> XAxisLabelList) {
         super(legendName);
         this.YAxisLabelList = Collections.singletonList(YAxisLabelList);
         this.XAxisLabelList = XAxisLabelList;
+    }
+
+    public DefaultXYDataset(List<String> legendNames, List<List<? extends Number>> YAxisLabelList, List<String> XAxisLabelList) {
+        super(legendNames);
+        this.XAxisLabelList = XAxisLabelList;
+        this.YAxisLabelList = YAxisLabelList;
+    }
+
+    public DefaultXYDataset(List<String> legendNames, LinkedList<? super List<Object>> YAxisLabelList, List<String> XAxisLabelList) {
+        this(legendNames, CreatorBuilder.singletonYAxisList(YAxisLabelList), XAxisLabelList);
     }
 
     public List<List<? extends Number>> getYAxisLabelList() {

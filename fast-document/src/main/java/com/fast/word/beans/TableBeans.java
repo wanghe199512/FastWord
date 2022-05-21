@@ -18,9 +18,9 @@ public class TableBeans {
      */
     public List<List<String>> dataList;  // 1,2,3
     /**
-     * 是否总是显示表头（默认显示，false：当数据为空时不显示）
+     * 是否总是显示表头（默认显示，false：只有在dataList数据为空时，showHeader生效）
      */
-    public boolean showHeader = true;
+    public boolean showHeaderOfNoneList = true;
 
     public TableBeans() {
     }
@@ -56,12 +56,12 @@ public class TableBeans {
         return this;
     }
 
-    public boolean isShowHeader() {
-        return showHeader;
+    public boolean isShowHeaderOfNoneList() {
+        return showHeaderOfNoneList;
     }
 
-    public TableBeans setShowHeader(boolean showHeader) {
-        this.showHeader = showHeader;
+    public TableBeans setShowHeaderOfNoneList(boolean showHeaderOfNoneList) {
+        this.showHeaderOfNoneList = showHeaderOfNoneList;
         return this;
     }
 }

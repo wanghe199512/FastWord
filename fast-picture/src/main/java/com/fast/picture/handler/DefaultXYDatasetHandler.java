@@ -30,9 +30,6 @@ public class DefaultXYDatasetHandler implements IDatasetHandler {
                 if (YAxisLabelList.size() <= i) {  // 如果y轴的个数小于等于图例个数，后边的就不用画了
                     continue;
                 }
-                if (XAxisList.size() <= legends.size()) {  // 如果y轴的个数小于等于图例个数，后边的就不用画了
-                    throw new RuntimeException("legends size 不能大于 XAxisList size,绘制图表失败...");
-                }
                 for (int j = 0; j < ((List<?>) YAxisLabelList.get(i)).size(); j++) {  // 取嵌套循环list进行循环，
                     this.addValue(((List<?>) YAxisLabelList.get(i)).get(j), legends.get(i), XAxisList.get(j));
                 }

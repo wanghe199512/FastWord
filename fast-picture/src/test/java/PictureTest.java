@@ -18,13 +18,33 @@ public class PictureTest {
     @Test
     public void DrawBasicLinePicture1() {
         List<DefaultXYDataset> list = new ArrayList<>();
+        String[] legendList = new String[]{"TQI值", "平均速度"};
         List<List<? extends Number>> aaList = new ArrayList<>();
-        aaList.add(Arrays.asList(new Integer[]{2, 3, 4, 9, 6, 5, 1, 10}));
-        aaList.add(Arrays.asList(new Integer[]{3, 9, 5, 8, 5, 3, 11, 12}));
-        aaList.add(Arrays.asList(new Integer[]{0, 3, 2, 10, 3, 6, 3, 9}));
-        aaList.add(Arrays.asList(new Integer[]{1, 4, 3, 9, 5, 8, 5, 9}));
+        aaList.add(Arrays.asList(new Integer[]{2, 3, 4, 9, 6}));
+        aaList.add(Arrays.asList(new Integer[]{3, 9, 5, 8, 5}));
+        aaList.add(Arrays.asList(new Integer[]{0, 3, 2, 10, 3}));
+        aaList.add(Arrays.asList(new Integer[]{1, 4, 3, 9, 5}));
         aaList.add(Arrays.asList(new Integer[]{3, 5, 4, 11, 6, 5, 2, 7}));
-        DefaultXYDataset defaultDataSet = new DefaultXYDataset(Arrays.asList(new String[]{"水果", "蔬菜", "鸡蛋", "香烟", "奶茶", "衣服", "手机", "电脑"}),
+        DefaultXYDataset defaultDataSet = new DefaultXYDataset(Arrays.asList(legendList),
+                aaList, Arrays.asList(new String[]{"2021-06-23", "2021-06-24", "2021-06-25", "2021-06-26", "2021-06-27", "2021-06-28", "2021-06-29", "2021-06-30", "2021-06-29", "2021-06-30"}));
+        list.add(defaultDataSet);
+        File file = new DrawBasicLinePicture("2022年上半年销售额", "日期", "单位:(万元)",
+                new Picture("2022年上半年销售额.png")).addDefaultDataSet(list).saveAsPNG("d://临时图片/", Report.基础年报);
+        System.out.println(file.getAbsolutePath());
+    }
+
+
+    @Test
+    public void DrawBasicLinePicture2() {
+        List<DefaultXYDataset> list = new ArrayList<>();
+        String[] legendList = new String[]{"TQI值", "平均速度"};
+        List<List<? extends Number>> aaList = new ArrayList<>();
+        aaList.add(Arrays.asList(new Integer[]{2, 3, 4, 9, 6}));
+        aaList.add(Arrays.asList(new Integer[]{3, 9, 5, 8, 5}));
+        aaList.add(Arrays.asList(new Integer[]{0, 3, 2, 10, 3}));
+        aaList.add(Arrays.asList(new Integer[]{1, 4, 3, 9, 5}));
+        aaList.add(Arrays.asList(new Integer[]{3, 5, 4, 11, 6, 5, 2, 7}));
+        DefaultXYDataset defaultDataSet = new DefaultXYDataset(Arrays.asList(legendList),
                 aaList, Arrays.asList(new String[]{"2021-06-23", "2021-06-24", "2021-06-25", "2021-06-26", "2021-06-27", "2021-06-28", "2021-06-29", "2021-06-30", "2021-06-29", "2021-06-30"}));
         list.add(defaultDataSet);
         File file = new DrawBasicLinePicture("2022年上半年销售额", "日期", "单位:(万元)",
