@@ -10,7 +10,7 @@
     </modules>
     <groupId>com.fast</groupId>
     <artifactId>fast-word</artifactId>
-    <version>0.0.5-RELEASES</version>
+    <version>0.0.85-RELEASES</version>
     <name>fast-word</name>
     <description>fast-word报告生成</description>
     <developers>
@@ -47,6 +47,11 @@
                 <groupId>org.apache.poi</groupId>
                 <artifactId>poi-ooxml-schemas</artifactId>
                 <version>${poi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.fast</groupId>
+                <artifactId>fast-annotation</artifactId>
+                <version>0.0.1-RELEASES</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
