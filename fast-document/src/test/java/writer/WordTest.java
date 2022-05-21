@@ -38,13 +38,12 @@ public class WordTest {
 
     private TableBeans getTableBeans() {
         List<List<Object>> childBeans = new ArrayList<>();
-       // childBeans.add(Arrays.asList(new String[]{}));
-        TableBeans bean = new TableBeans(Arrays.asList(new String[]{"姓名", "性别", "年龄", "户籍地", "居住地"}), childBeans);
-        return bean;
+        // childBeans.add(Arrays.asList(new String[]{}));
+        return new TableBeans(Arrays.asList(new String[]{"姓名", "性别", "年龄", "户籍地", "居住地"}), childBeans);
     }
 
-    private List<Object> getBeanList() {
-        List<Object> childBeans = new ArrayList<>();
+    private List<User> getBeanList() {
+        List<User> childBeans = new ArrayList<>();
         User user = new User("王贺", "北京昌平", "27", "18812345678", "演技大学");
         User user2 = new User("王贺", "北京昌平", "27", "18812345678", "演技大学");
         childBeans.add(user);
