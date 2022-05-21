@@ -16,7 +16,7 @@ public class TableBeans {
     /**
      * 数据
      */
-    public List<List<String>> dataList;  // 1,2,3
+    public List<List<Object>> dataList;  // 1,2,3
     /**
      * 是否总是显示表头（默认显示，false：只有在dataList数据为空时，showHeader生效）
      */
@@ -25,7 +25,7 @@ public class TableBeans {
     public TableBeans() {
     }
 
-    public TableBeans(List<String> titles, List<List<String>> dataList) {
+    public TableBeans(List<String> titles, List<List<Object>> dataList) {
         this.titles = titles;
         this.dataList = dataList;
     }
@@ -35,7 +35,7 @@ public class TableBeans {
             throw new RuntimeException("tableList不能为空，本次进程终止....");
         }
         this.titles = Arrays.asList(titles);
-        this.dataList = tableList.stream().map(bean -> new ArrayList<>(new LinkedList<String>(bean.values()))).collect(Collectors.toList());
+        this.dataList = tableList.stream().map(bean -> new ArrayList<>(new LinkedList<Object>(bean.values()))).collect(Collectors.toList());
     }
 
     public List<String> getTitles() {
@@ -47,11 +47,11 @@ public class TableBeans {
         return this;
     }
 
-    public List<List<String>> getDataList() {
+    public List<List<Object>> getDataList() {
         return dataList;
     }
 
-    public TableBeans setDataList(List<List<String>> dataList) {
+    public TableBeans setDataList(List<List<Object>> dataList) {
         this.dataList = dataList;
         return this;
     }

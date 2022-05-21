@@ -2,26 +2,26 @@ package com.fast.word.handller;
 
 import com.fast.word.beans.TableBeans;
 
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * 默认的table表格数据处理器
  *
  * @author wanghe
  */
-public class DefaultTableBeansHandler extends AbstractDefaultTableHandler {
+public class DefaultTableBeansHandler extends AbstractTableHandler {
+
+    public DefaultTableBeansHandler() {
+        super();
+    }
 
     public DefaultTableBeansHandler(TableBeans tableBeans) {
         super(tableBeans);
     }
 
-    public DefaultTableBeansHandler(String[] titles, List<LinkedHashMap<String, String>> tableList) {
-        this.tableBeans = new TableBeans(titles, tableList);
-    }
-
     @Override
-    public Map<String, Object> createTableHandler(int index) throws ArrayIndexOutOfBoundsException {
+    public Map<String, Object> handler(int index) throws ArrayIndexOutOfBoundsException {
         Map<String, Object> resultLinkedMap = new LinkedHashMap<>();
         for (int j = 0; j < this.tableBeans.getTitles().size(); j++) {
             if (this.tableBeans.getTitles().size() != this.tableBeans.getDataList().get(index).size()) {

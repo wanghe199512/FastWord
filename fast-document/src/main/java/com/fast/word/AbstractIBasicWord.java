@@ -1,8 +1,6 @@
 package com.fast.word;
 
-import cn.hutool.poi.word.Word07Writer;
 import com.fast.word.enums.Document;
-import com.fast.word.handller.ITableBeansHandler;
 import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

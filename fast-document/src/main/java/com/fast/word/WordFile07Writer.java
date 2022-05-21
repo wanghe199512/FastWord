@@ -5,8 +5,9 @@ import cn.hutool.poi.word.PicType;
 import cn.hutool.poi.word.Word07Writer;
 import com.fast.word.beans.TableBeans;
 import com.fast.word.enums.Document;
+import com.fast.word.handller.DefaultAnnotationTableHandler;
 import com.fast.word.handller.DefaultTableBeansHandler;
-import com.fast.word.handller.ITableBeansHandler;
+import com.fast.word.handller.ITableBeans;
 import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
@@ -139,7 +140,7 @@ public class WordFile07Writer extends AbstractIBasicWord {
      * @param handler
      */
     @Override
-    public void addTable(ITableBeansHandler handler) {
+    public void addTable(ITableBeans handler) {
         try {
             this.writer.addTable(handler.createTable());
         } catch (Throwable e) {
@@ -173,8 +174,16 @@ public class WordFile07Writer extends AbstractIBasicWord {
         }
     }
 
+    public void addParagraphTableRows(List<Object> beans, Class<?> beanCls, String... texts) {
+        try {
+            this.addParagraphTableRows(new DefaultAnnotationTableHandler(beans, beanCls), texts);
+        } catch (Throwable e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
-    public void addParagraphTableRows(ITableBeansHandler handler, String... texts) {
+    public void addParagraphTableRows(ITableBeans handler, String... texts) {
         this.addParagraphRows(ParagraphAlignment.LEFT, this.defaultFont, texts);
         this.addTable(handler);
         this.addBlankRow();

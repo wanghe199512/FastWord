@@ -1,6 +1,6 @@
 package com.fast.word;
 
-import com.fast.word.handller.ITableBeansHandler;
+import com.fast.word.handller.ITableBeans;
 import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 
 import java.awt.*;
@@ -30,7 +30,7 @@ public interface IDocumentWriter {
 
     public void addBlankRow();
 
-    public void addTable(ITableBeansHandler handler);
+    public void addTable(ITableBeans handler);
 
-    public void addParagraphTableRows(ITableBeansHandler handler, String... texts);
+    public void addParagraphTableRows(ITableBeans handler, String... texts);
 }

@@ -9,17 +9,17 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
-public abstract class AbstractDefaultTableHandler implements ITableBeansHandler {
+public abstract class AbstractTableHandler implements ITableBeans {
     protected Logger logger = LoggerFactory.getLogger(getClass());
     /**
      * 表格数据实体
      */
     protected TableBeans tableBeans = null;
 
-    protected AbstractDefaultTableHandler() {
+    protected AbstractTableHandler() {
     }
 
-    protected AbstractDefaultTableHandler(TableBeans tableBeans) {
+    protected AbstractTableHandler(TableBeans tableBeans) {
         this.tableBeans = tableBeans;
     }
 
@@ -31,7 +31,7 @@ public abstract class AbstractDefaultTableHandler implements ITableBeansHandler 
         List<Map<String, Object>> resultList = new ArrayList<>();
         if (this.tableBeans.dataList.size() > 0) {
             for (int i = 0; i < this.tableBeans.getDataList().size(); i++) {
-                resultList.add(this.createTableHandler(i));
+                resultList.add(this.handler(i));
             }
         }
         if (this.tableBeans.dataList.size() == 0 && this.tableBeans.showHeaderOfNoneList) {   // 只有在dataList数据为空时，showHeader生效
@@ -55,5 +55,5 @@ public abstract class AbstractDefaultTableHandler implements ITableBeansHandler 
         return result;
     }
 
-    public abstract Map<String, Object> createTableHandler(int index) throws IndexOutOfBoundsException;
+    public abstract Map<String, Object> handler(int index) throws IndexOutOfBoundsException;
 }
