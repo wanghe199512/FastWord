@@ -7,6 +7,7 @@
         <module>fast-picture</module>
         <module>fast-document</module>
         <module>fast-annotation</module>
+        <module>fast-core</module>
     </modules>
     <groupId>com.fast</groupId>
     <artifactId>fast-word</artifactId>
@@ -75,6 +76,7 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>${slf4j.version}</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -86,7 +88,7 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>4.13.1</version>
-            <scope>test</scope>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
     <distributionManagement>
@@ -100,11 +102,11 @@
         </snapshotRepository>
 
     </distributionManagement>
-   <!-- <scm>
-        <connection>https://gitee.com/wanghe199512/FastWord.git</connection>
-        <developerConnection>https://gitee.com/wanghe199512/FastWord.git</developerConnection>
-        <url>https://gitee.com/wanghe199512/FastWord.git</url>
-    </scm>-->
+    <!-- <scm>
+         <connection>https://gitee.com/wanghe199512/FastWord.git</connection>
+         <developerConnection>https://gitee.com/wanghe199512/FastWord.git</developerConnection>
+         <url>https://gitee.com/wanghe199512/FastWord.git</url>
+     </scm>-->
 
     <build>
         <plugins>
@@ -125,6 +127,7 @@
                 <version>1.5</version>
                 <executions>
                     <execution>
+                        <id>fast-word</id>
                         <phase>verify</phase>
                         <goals>
                             <goal>sign</goal>

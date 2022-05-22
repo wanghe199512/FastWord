@@ -3,22 +3,22 @@ package writer;
 import com.fast.annotation.FastWordTabled;
 
 public class User {
-    @FastWordTabled(title = "姓名", order = 1)
+    @FastWordTabled(title = "姓名", sort = 1)
     public String name;
 
-    @FastWordTabled(title = "地址", order = 4)
+    @FastWordTabled(title = "地址", sort = 4)
     public String address;
 
-    @FastWordTabled(title = "年龄", order = 6)
+    @FastWordTabled(title = "年龄", sort = 6)
     public String age;
 
-    @FastWordTabled(title = "手机号码", order = 5)
+    @FastWordTabled(title = "手机号码", sort = 5)
     public String telPhone;
 
-    @FastWordTabled(title = "大学名称", order = 2)
+    @FastWordTabled(title = "大学名称", sort = 2)
     public String collage;
 
-    public User(String name, String address, String age, String telPhone,String collage) {
+    public User(String name, String address, String age, String telPhone, String collage) {
         this.name = name;
         this.address = address;
         this.age = age;

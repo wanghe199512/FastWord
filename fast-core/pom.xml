@@ -9,17 +9,25 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <packaging>jar</packaging>
 
-    <artifactId>fast-picture</artifactId>
-    <version>0.0.53-RELEASES</version>
-    <description>fast-word图片生成</description>
+    <artifactId>fast-core</artifactId>
+    <version>0.0.85-RELEASES</version>
+
     <dependencies>
         <dependency>
-            <groupId>org.jfree</groupId>
-            <artifactId>jfreechart</artifactId>
-            <version>1.0.19</version>
+            <groupId>com.fast</groupId>
+            <artifactId>fast-annotation</artifactId>
+            <version>0.0.1-RELEASES</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fast</groupId>
+            <artifactId>fast-document</artifactId>
+            <version>0.0.32-RELEASES</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fast</groupId>
+            <artifactId>fast-picture</artifactId>
+            <version>0.0.53-RELEASES</version>
         </dependency>
     </dependencies>
-
 </project>

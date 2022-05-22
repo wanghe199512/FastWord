@@ -13,7 +13,7 @@ public @interface FastWordTabled {
     String title();
 
     String description() default "";
-    
+
     @Deprecated
-    int order();
+    int sort();
 }

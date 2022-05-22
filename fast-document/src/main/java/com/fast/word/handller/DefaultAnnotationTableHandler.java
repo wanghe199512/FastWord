@@ -31,6 +31,11 @@ public class DefaultAnnotationTableHandler extends DefaultTableBeansHandler impl
         }).collect(Collectors.toList())).collect(Collectors.toList());
     }
 
+    // TODO 排序算法待实现
+    private void sorted() {
+
+    }
+
     @Override
     public List<String> getTabledColumnNames(Field[] declaredFields) {
         return new LinkedList<Field>(Arrays.asList(declaredFields)).stream().map(field -> this.getAnnotation(field).title()).collect(Collectors.toList());
