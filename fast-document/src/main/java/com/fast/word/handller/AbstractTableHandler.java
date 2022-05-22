@@ -9,6 +9,11 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * 抽象表格处理器
+ *
+ * @author wanghe
+ */
 public abstract class AbstractTableHandler implements ITableBeans {
     protected Logger logger = LoggerFactory.getLogger(getClass());
     /**

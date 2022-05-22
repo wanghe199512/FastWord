@@ -17,15 +17,21 @@ import java.io.File;
 import java.io.InputStream;
 import java.util.List;
 
+/**
+ * Word2007构建
+ *
+ * @author wanghe
+ */
 public class WordFile07Writer extends AbstractIBasicWord {
 
     private final Word07Writer writer = new Word07Writer();
 
     /**
+     * 文档标题
+     *
      * @param title   主标题
      * @param headers 副标题
      */
-
     @Override
     public void addHeader(String title, String... headers) {
         this.writer.addText(ParagraphAlignment.CENTER, this.defaultHeaderFont, title);
@@ -61,7 +67,7 @@ public class WordFile07Writer extends AbstractIBasicWord {
     }
 
     /**
-     * 使用默认配置添加文本（文字方向：左 字体：加粗，宋体）
+     * 使用默认配置添加段落文本（文字方向：左 字体：加粗，宋体）
      *
      * @param text 要添加的文本
      */
@@ -72,7 +78,7 @@ public class WordFile07Writer extends AbstractIBasicWord {
     }
 
     /**
-     * 添加段落及图片
+     * 添加文本段落及图片
      *
      * @param picture 图片路径
      * @param texts   文本
@@ -85,7 +91,7 @@ public class WordFile07Writer extends AbstractIBasicWord {
     }
 
     /**
-     * 添加图片
+     * 添加一张图片，使用默认宽高
      *
      * @param picture 图片路径
      */
@@ -99,9 +105,10 @@ public class WordFile07Writer extends AbstractIBasicWord {
     }
 
     /**
-     * 添加图片(输入流)
+     * 基于输入流添加图片
      *
-     * @param stream 图片路径
+     * @param stream   输入流
+     * @param fileName 文件名称
      */
     @Override
     public void addPicture(InputStream stream, String fileName) {
@@ -113,7 +120,7 @@ public class WordFile07Writer extends AbstractIBasicWord {
     }
 
     /**
-     * 自定义添加图片
+     * 添加一张图片，可在文档中自定义显示 宽度，高度
      *
      * @param picture       图片路径
      * @param defaultWidth  显示的宽度
@@ -135,9 +142,9 @@ public class WordFile07Writer extends AbstractIBasicWord {
     }
 
     /**
-     * 使用自定义ITableBeansHandler处理器构建表格
+     * 基于用户自定义ITableBeansHandler处理器构建表格
      *
-     * @param handler
+     * @param handler ITableBeans处理器
      */
     @Override
     public void addTable(ITableBeans handler) {
@@ -149,9 +156,9 @@ public class WordFile07Writer extends AbstractIBasicWord {
     }
 
     /**
-     * 使用table数据bean构建默认数据表格
+     * 基于TableBeans构建默认数据表格
      *
-     * @param tableBeans
+     * @param tableBeans TableBeans对象
      */
     public void addTable(TableBeans tableBeans) {
         try {
@@ -162,9 +169,10 @@ public class WordFile07Writer extends AbstractIBasicWord {
     }
 
     /**
-     * 使用table数据bean和段落文字构建默认数据表格
+     * 基于TableBeans构建默认数据表格及段落文本
      *
-     * @param tableBeans
+     * @param tableBeans TableBeans对象
+     * @param texts      段落文本
      */
     public void addParagraphTableRows(TableBeans tableBeans, String... texts) {
         try {
@@ -174,6 +182,13 @@ public class WordFile07Writer extends AbstractIBasicWord {
         }
     }
 
+    /**
+     * 基于注解的表格添加及段落文本添加
+     *
+     * @param beans   实体类集合
+     * @param beanCls 实体类实际Class
+     * @param texts   段落文本
+     */
     public void addParagraphTableRows(List<?> beans, Class<?> beanCls, String... texts) {
         try {
             this.addParagraphTableRows(new DefaultAnnotationTableHandler(beans, beanCls), texts);
@@ -183,6 +198,12 @@ public class WordFile07Writer extends AbstractIBasicWord {
         }
     }
 
+    /**
+     * 基于自定义的ITableBeans表格处理器及段落文本添加
+     *
+     * @param handler
+     * @param texts
+     */
     @Override
     public void addParagraphTableRows(ITableBeans handler, String... texts) {
         this.addParagraphRows(ParagraphAlignment.LEFT, this.defaultFont, texts);
@@ -190,6 +211,13 @@ public class WordFile07Writer extends AbstractIBasicWord {
         this.addBlankRow();
     }
 
+    /**
+     * 获取生成的文件
+     *
+     * @param fileName 保存的文件名称（不需要后缀名）
+     * @param savePath 保存的路径
+     * @return 导出文件全路径
+     */
     @Override
     public String getDocumentFile(String fileName, String savePath) {
         String file = this.getDocumentFile(fileName, savePath, Document.WORD);

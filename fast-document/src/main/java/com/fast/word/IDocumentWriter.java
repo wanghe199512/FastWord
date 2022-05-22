@@ -8,29 +8,29 @@ import java.io.File;
 import java.io.InputStream;
 
 /**
- * 文档实现能力清单（后续其他格式文档均继承）
+ * 文档实现能力清单
  *
  * @author wanghe
  */
 public interface IDocumentWriter {
 
-    public void addHeader(String title, String... headers);
+    void addHeader(String title, String... headers);
 
-    public void addParagraphRows(ParagraphAlignment alignment, Font defaultFont, String... texts);
+    void addParagraphRows(ParagraphAlignment alignment, Font defaultFont, String... texts);
 
-    public void addParagraphRows(String... text);
+    void addParagraphRows(String... text);
 
-    public void addParagraphPictureRows(File picture, String... texts);
+    void addParagraphPictureRows(File picture, String... texts);
 
-    public void addPicture(File picture);
+    void addPicture(File picture);
 
-    public void addPicture(InputStream stream, String fileName);
+    void addPicture(InputStream stream, String fileName);
 
-    public void addPicture(File picture, int defaultWidth, int defaultHeight);
+    void addPicture(File picture, int defaultWidth, int defaultHeight);
 
-    public void addBlankRow();
+    void addBlankRow();
 
-    public void addTable(ITableBeans handler);
+    void addTable(ITableBeans handler);
 
-    public void addParagraphTableRows(ITableBeans handler, String... texts);
+    void addParagraphTableRows(ITableBeans handler, String... texts);
 }

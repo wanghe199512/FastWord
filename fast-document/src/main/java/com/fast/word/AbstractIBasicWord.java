@@ -58,6 +58,14 @@ public abstract class AbstractIBasicWord implements IBasicWord, IDocumentWriter 
 
     public abstract void addBlankRow();
 
+    /**
+     * 默认获取文档
+     *
+     * @param fileName 文件名称
+     * @param savePath 文件路径
+     * @param document 文件类型（暂时只支持word）
+     * @return 文档输出全路径
+     */
     protected String getDocumentFile(String fileName, String savePath, Document document) {
         return savePath.concat(File.separator).concat("已生成报告").concat(File.separator).concat(document.getName())
                 .concat(File.separator).concat(fileName).concat(".docx");
