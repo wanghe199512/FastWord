@@ -28,7 +28,7 @@
             <artifactId>poi-ooxml-schemas</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.fast</groupId>
+            <groupId>com.fastword</groupId>
             <artifactId>fast-annotation</artifactId>
         </dependency>
     </dependencies>

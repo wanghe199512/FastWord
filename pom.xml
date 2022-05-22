@@ -25,10 +25,9 @@
         <slf4j.version>1.6.1</slf4j.version>
         <poi.version>4.1.2</poi.version>
         <hutool-all.version>5.8.0</hutool-all.version>
-        <fastjson.version>1.2.78</fastjson.version>
         <commons-beanutils.version>1.9.3</commons-beanutils.version>
         <commons-lang3.version>3.12.0</commons-lang3.version>
-        <fast-annotation.version>0.0.1-RELEASES</fast-annotation.version>
+        <fastword-annotation.version>0.0.1-RELEASES</fastword-annotation.version>
         <compile.version>8</compile.version>
     </properties>
 
@@ -50,7 +49,7 @@
                 <version>${poi.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.fast</groupId>
+                <groupId>com.fastword</groupId>
                 <artifactId>fast-annotation</artifactId>
                 <version>0.0.1-RELEASES</version>
             </dependency>

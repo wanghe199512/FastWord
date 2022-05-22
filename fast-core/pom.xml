@@ -15,17 +15,17 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.fast</groupId>
+            <groupId>com.fastword</groupId>
             <artifactId>fast-annotation</artifactId>
             <version>0.0.1-RELEASES</version>
         </dependency>
         <dependency>
-            <groupId>com.fast</groupId>
+            <groupId>com.fastword</groupId>
             <artifactId>fast-document</artifactId>
             <version>0.0.32-RELEASES</version>
         </dependency>
         <dependency>
-            <groupId>com.fast</groupId>
+            <groupId>com.fastword</groupId>
             <artifactId>fast-picture</artifactId>
             <version>0.0.53-RELEASES</version>
         </dependency>
