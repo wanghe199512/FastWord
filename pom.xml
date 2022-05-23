@@ -18,8 +18,15 @@
         <developer>
             <name>wanghe</name>
             <email>1280381827@qq.com</email>
+            <url>http://www.fastword.cn</url>
         </developer>
     </developers>
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
     <scm>
         <connection>scm:git@gitee.com/wanghe199512/FastWord.git</connection>
         <developerConnection>scm:git@gitee.com/wanghe199512/FastWord.git</developerConnection>
