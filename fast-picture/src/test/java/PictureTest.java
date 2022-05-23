@@ -1,11 +1,11 @@
-import com.fast.picture.basicDraw.DrawBasicBarPicture;
-import com.fast.picture.basicDraw.DrawBasicLinePicture;
-import com.fast.picture.basicDraw.DrawBasicPiePicture;
-import com.fast.picture.basicDraw.DrawBasicScatterPicture;
-import com.fast.picture.enums.Report;
-import com.fast.picture.model.DefaultCriteriaDataset;
-import com.fast.picture.model.DefaultXYDataset;
-import com.fast.picture.model.Picture;
+import cn.fastword.picture.basicDraw.DrawBasicBarPicture;
+import cn.fastword.picture.basicDraw.DrawBasicLinePicture;
+import cn.fastword.picture.basicDraw.DrawBasicPiePicture;
+import cn.fastword.picture.basicDraw.DrawBasicScatterPicture;
+import cn.fastword.picture.enums.Report;
+import cn.fastword.picture.model.DefaultCriteriaDataset;
+import cn.fastword.picture.model.DefaultXYDataset;
+import cn.fastword.picture.model.Picture;
 import org.junit.Test;
 
 import java.io.File;

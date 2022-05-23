@@ -1,9 +1,8 @@
 package writer;
 
-import cn.afterturn.easypoi.excel.entity.ExportParams;
-import com.fast.word.WordFile07Writer;
-import com.fast.word.beans.TableBeans;
-import com.fast.word.handller.DefaultAnnotationTableHandler;
+import cn.fastword.word.WordFile07Writer;
+import cn.fastword.word.beans.TableBeans;
+import cn.fastword.word.handller.DefaultAnnotationTableHandler;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

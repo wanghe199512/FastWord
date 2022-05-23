@@ -5,13 +5,13 @@
     <parent>
         <artifactId>fast-word</artifactId>
         <groupId>com.fastword</groupId>
-        <version>0.0.85-RELEASES</version>
+        <version>0.0.85</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>fast-core</artifactId>
-    <version>0.0.85-RELEASES</version>
+    <version>0.0.85</version>
 
     <dependencies>
         <dependency>

@@ -1,6 +1,6 @@
 package writer;
 
-import com.fast.annotation.FastWordTabled;
+import cn.fastword.annotation.FastWordTabled;
 
 public class User {
     @FastWordTabled(title = "姓名", sort = 1)
