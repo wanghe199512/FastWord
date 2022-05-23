@@ -7,18 +7,19 @@
         <module>fastword-picture</module>
         <module>fastword-document</module>
         <module>fastword-annotation</module>
-        <module>fastword-core</module>
     </modules>
     <groupId>cn.fastword</groupId>
     <artifactId>fast-word</artifactId>
     <version>0.0.85</version>
     <name>fast-word</name>
+    <url>http://www.fastword.cn</url>
     <description>fast-word报告生成</description>
     <developers>
         <developer>
             <name>wanghe</name>
             <email>1280381827@qq.com</email>
-            <url>http://www.fastword.cn</url>
+            <organization>fastword.con</organization>
+            <organizationUrl>http://www.fastword.cn</organizationUrl>
         </developer>
     </developers>
     <licenses>
