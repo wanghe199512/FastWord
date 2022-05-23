@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>fast-word</artifactId>
-        <groupId>com.fastword</groupId>
+        <groupId>cn.fastword</groupId>
         <version>0.0.85</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
@@ -15,17 +15,17 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.fastword</groupId>
+            <groupId>cn.fastword</groupId>
             <artifactId>fast-annotation</artifactId>
             <version>0.0.1-RELEASES</version>
         </dependency>
         <dependency>
-            <groupId>com.fastword</groupId>
+            <groupId>cn.fastword</groupId>
             <artifactId>fast-document</artifactId>
-            <version>0.0.32-RELEASES</version>
+            <version>0.0.33-RELEASES</version>
         </dependency>
         <dependency>
-            <groupId>com.fastword</groupId>
+            <groupId>cn.fastword</groupId>
             <artifactId>fast-picture</artifactId>
             <version>0.0.53-RELEASES</version>
         </dependency>
