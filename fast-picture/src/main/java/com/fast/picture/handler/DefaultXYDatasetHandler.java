@@ -8,6 +8,7 @@ import org.jfree.data.statistics.DefaultMultiValueCategoryDataset;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -18,37 +19,52 @@ import java.util.List;
  */
 public class DefaultXYDatasetHandler implements IDatasetHandler {
     private final Logger logger = LoggerFactory.getLogger(getClass());
-
+    /**
+     * Dataset
+     */
     private Object defaultDataset = null;
+    /**
+     * 横轴数据
+     */
+    private List<String> XAxisList = null;
+    /**
+     * 纵轴数据
+     */
+    private List<? extends LinkedList<? extends Number>> YAxisLabelList = null;
+    /**
+     * 图例数据
+     */
+    private List<String> legends = null;
 
     @Override
     public Dataset handler(List<? extends BasicDataset> dataSetList, Class<?> cls) throws IllegalAccessException, InstantiationException {
         this.defaultDataset = cls.newInstance();
         for (BasicDataset dataset : dataSetList) {
-            List<?> XAxisList = ((DefaultXYDataset) dataset).getXAxisLabelList(), YAxisLabelList = ((DefaultXYDataset) dataset).getYAxisLabelList(), legends = dataset.getLegendNames();
+            this.XAxisList = ((DefaultXYDataset) dataset).getXAxisLabelList();
+            this.YAxisLabelList = ((DefaultXYDataset) dataset).getYAxisLabelList();
+            this.legends = dataset.getLegendNames();
             for (int i = 0; i < legends.size(); i++) {     // 以图例个数为基准循环
-                if (YAxisLabelList.size() <= i) {  // 如果y轴的个数小于等于图例个数，后边的就不用画了
+                if (YAxisLabelList.size() <= i)   // 如果y轴的个数小于等于图例个数，后边的就不用画了
                     continue;
-                }
-                for (int j = 0; j < ((List<?>) YAxisLabelList.get(i)).size(); j++) {  // 取嵌套循环list进行循环，
-                    this.addValue(((List<?>) YAxisLabelList.get(i)).get(j), legends.get(i), XAxisList.get(j));
-                }
+                this.addDatasetValue(i);
             }
         }
         return (Dataset) this.defaultDataset;
     }
 
-    @Override
-    public void addValue(Object value, Object rowName, Object columnName) {
-        if (this.defaultDataset instanceof DefaultCategoryDataset) {
-            ((DefaultCategoryDataset) this.defaultDataset).addValue((Number) value, (String) rowName, (String) columnName);
+    /**
+     * 添加值
+     *
+     * @param i 图例下标
+     */
+    private void addDatasetValue(int i) {
+        for (int j = 0; j < (this.YAxisLabelList.get(i)).size(); j++) {  // 取嵌套循环list进行循环，
+            if (this.defaultDataset instanceof DefaultCategoryDataset) {
+                ((DefaultCategoryDataset) this.defaultDataset).addValue((this.YAxisLabelList.get(i)).get(j), legends.get(i), XAxisList.get(j));
+            }
+            if (this.defaultDataset instanceof DefaultMultiValueCategoryDataset) {
+                ((DefaultMultiValueCategoryDataset) this.defaultDataset).add((YAxisLabelList.get(i)), legends.get(i), XAxisList.get(i));
+            }
         }
-        if (this.defaultDataset instanceof DefaultMultiValueCategoryDataset) {
-            ((DefaultMultiValueCategoryDataset) this.defaultDataset).add((List<?>) value, (String) rowName, (String) columnName);
-        }
-    }
-
-    public Object getDefaultDataset() {
-        return defaultDataset;
     }
 }

@@ -14,5 +14,4 @@ public interface IDatasetHandler {
 
     Dataset handler(List<? extends BasicDataset> dataSetList, Class<?> cls) throws IllegalAccessException, InstantiationException;
 
-    void addValue(Object object, Object rowName, Object columnName);
 }

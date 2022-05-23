@@ -1,6 +1,7 @@
 package com.fast.picture.basicDraw;
 
 import com.fast.picture.handler.DefaultXYDatasetHandler;
+import com.fast.picture.handler.Values;
 import com.fast.picture.model.BasicDataset;
 import com.fast.picture.model.Picture;
 import org.jfree.chart.ChartFactory;
@@ -28,12 +29,10 @@ public class DrawBasicBarPicture extends AbstractDrawBasicPicture {
                 PlotOrientation.VERTICAL, true, true, false);
         super.setBarRenderer(chart.getCategoryPlot(), true);
         return chart;
-
     }
 
     @Override
     public AbstractDrawBasicPicture addDefaultDataSet(List<? extends BasicDataset> dataSetList) {
         return this.addDefaultDataSet(dataSetList, new DefaultXYDatasetHandler(), DefaultCategoryDataset.class);
     }
-
 }

@@ -15,7 +15,7 @@ public class BasicDataset {
     }
 
     public BasicDataset(String[] legendNames) {
-        this.legendNames = Stream.of(legendNames).collect(Collectors.toList());;
+        this.legendNames = Stream.of(legendNames).collect(Collectors.toList());
     }
 
     public BasicDataset(String legendName) {

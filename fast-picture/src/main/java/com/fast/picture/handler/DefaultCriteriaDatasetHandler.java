@@ -12,7 +12,7 @@ import java.util.List;
  *
  * @author wanghe
  */
-public class DefaultCriteriaDatasetHandler implements IDatasetHandler {
+public class DefaultCriteriaDatasetHandler implements IDatasetHandler, Values<String, Number> {
 
     private Object defaultDataset = null;
 
@@ -20,15 +20,16 @@ public class DefaultCriteriaDatasetHandler implements IDatasetHandler {
     public Dataset handler(List<? extends BasicDataset> dataSetList, Class<?> cls) throws IllegalAccessException, InstantiationException {
         this.defaultDataset = cls.newInstance();
         for (BasicDataset dataset : dataSetList) {
-            this.addValue("", dataset.getLegendNames().get(0), ((DefaultCriteriaDataset) dataset).getValue());
+            this.addDatasetValue(dataset.getLegendNames().get(0), ((DefaultCriteriaDataset) dataset).getValue(), "");
         }
         return (Dataset) this.defaultDataset;
     }
 
+
     @Override
-    public void addValue(Object value, Object rowName, Object columnName) {
+    public void addDatasetValue(String key, Number value, String labelName) {
         if (this.defaultDataset instanceof DefaultPieDataset) {
-            ((DefaultPieDataset) this.defaultDataset).setValue((String) rowName, (Number) columnName);
+            ((DefaultPieDataset) this.defaultDataset).setValue(key, value);
         }
     }
 }
