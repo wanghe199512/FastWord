@@ -10,24 +10,27 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>fast-core</artifactId>
-    <version>0.0.85</version>
+    <artifactId>fastword-document</artifactId>
+    <version>0.0.33-RELEASES</version>
+    <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
-            <groupId>cn.fastword</groupId>
-            <artifactId>fast-annotation</artifactId>
-            <version>0.0.1-RELEASES</version>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml-schemas</artifactId>
         </dependency>
         <dependency>
             <groupId>cn.fastword</groupId>
-            <artifactId>fast-document</artifactId>
-            <version>0.0.33-RELEASES</version>
-        </dependency>
-        <dependency>
-            <groupId>cn.fastword</groupId>
-            <artifactId>fast-picture</artifactId>
-            <version>0.0.53-RELEASES</version>
+            <artifactId>fastword-annotation</artifactId>
         </dependency>
     </dependencies>
+
 </project>
