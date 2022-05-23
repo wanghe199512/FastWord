@@ -1,5 +1,6 @@
 package writer;
 
+import cn.afterturn.easypoi.excel.entity.ExportParams;
 import com.fast.word.WordFile07Writer;
 import com.fast.word.beans.TableBeans;
 import com.fast.word.handller.DefaultAnnotationTableHandler;
@@ -72,5 +73,6 @@ public class WordTest {
         logger.info(" ===>{}", fileName);
 
     }
+
 
 }
