@@ -2,6 +2,7 @@ package com.fast.picture.model;
 
 import com.fast.picture.model.builder.CreatorBuilder;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
@@ -18,36 +19,36 @@ public class DefaultXYDataset extends BasicDataset {
     /**
      * x坐标数据
      */
-    public List<List<? extends Number>> YAxisLabelList;
+    private List<? extends LinkedList<? extends Number>> YAxisLabelList;
     /**
      * y轴坐标数据
      */
-    public List<String> XAxisLabelList;
+    private List<String> XAxisLabelList;
 
     public DefaultXYDataset() {
     }
 
-    public DefaultXYDataset(String legendName, List<? extends Number> YAxisLabelList, List<String> XAxisLabelList) {
+    public DefaultXYDataset(String legendName, LinkedList<? extends Number> YAxisLabelList, List<String> XAxisLabelList) {
         super(legendName);
         this.YAxisLabelList = Collections.singletonList(YAxisLabelList);
         this.XAxisLabelList = XAxisLabelList;
     }
 
-    public DefaultXYDataset(List<String> legendNames, List<List<? extends Number>> YAxisLabelList, List<String> XAxisLabelList) {
+    public DefaultXYDataset(String[] legendNames, List<? extends LinkedList<? extends Number>> YAxisLabelList, List<String> XAxisLabelList) {
         super(legendNames);
         this.XAxisLabelList = XAxisLabelList;
         this.YAxisLabelList = YAxisLabelList;
     }
 
-    public DefaultXYDataset(List<String> legendNames, LinkedList<? super List<Object>> YAxisLabelList, List<String> XAxisLabelList) {
+    public DefaultXYDataset(String[] legendNames, LinkedList<Collection<String>> YAxisLabelList, List<String> XAxisLabelList) {
         this(legendNames, CreatorBuilder.singletonYAxisList(YAxisLabelList), XAxisLabelList);
     }
 
-    public List<List<? extends Number>> getYAxisLabelList() {
+    public List getYAxisLabelList() {
         return YAxisLabelList;
     }
 
-    public DefaultXYDataset setYAxisLabelList(List<List<? extends Number>> YAxisLabelList) {
+    public DefaultXYDataset setYAxisLabelList(List<LinkedList<? extends Number>> YAxisLabelList) {
         this.YAxisLabelList = YAxisLabelList;
         return this;
     }

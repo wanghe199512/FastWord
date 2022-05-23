@@ -2,6 +2,8 @@ package com.fast.picture.model;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class BasicDataset {
     /**
@@ -12,8 +14,8 @@ public class BasicDataset {
     public BasicDataset() {
     }
 
-    public BasicDataset(List<String> legendNames) {
-        this.legendNames = legendNames;
+    public BasicDataset(String[] legendNames) {
+        this.legendNames = Stream.of(legendNames).collect(Collectors.toList());;
     }
 
     public BasicDataset(String legendName) {

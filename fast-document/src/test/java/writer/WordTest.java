@@ -2,6 +2,7 @@ package writer;
 
 import com.fast.word.WordFile07Writer;
 import com.fast.word.beans.TableBeans;
+import com.fast.word.handller.DefaultAnnotationTableHandler;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,22 +34,36 @@ public class WordTest {
         writer.addParagraphRows("fast-word当前版本是什么？");
         writer.addParagraphTableRows(this.getTableBeans(), "我是表格标题独占一行");
         writer.addParagraphTableRows(this.getBeanList(), User.class, "我是基于注解实体创建的表格");
+        writer.addParagraphTableRows(this.useDefaultAnnotationTableHandler(), "我是基于注解处理器创建的表格");
         return writer;
+    }
+
+    /**
+     * 使用注解处理器
+     * @return
+     */
+    private DefaultAnnotationTableHandler useDefaultAnnotationTableHandler() {
+        List<User> childBeans = new ArrayList<>();
+        User user = new User("王贺", "北京昌平", "27", "18812345678", "辣鸡大学");
+        User user2 = new User("张三", "北京昌平", "27", "18812345678", "辣鸡大学");
+        childBeans.add(user);
+        childBeans.add(user2);
+        return new DefaultAnnotationTableHandler(childBeans,User.class);
+    }
+
+    private List<User> getBeanList() {
+        List<User> childBeans = new ArrayList<>();
+        User user = new User("王贺", "北京昌平", "27", "18812345678", "辣鸡大学");
+        User user2 = new User("李四", "北京昌平", "27", "18812345678", "辣鸡大学");
+        childBeans.add(user);
+        childBeans.add(user2);
+        return childBeans;
     }
 
     private TableBeans getTableBeans() {
         List<List<String>> childBeans = new ArrayList<>();
         // childBeans.add(Arrays.asList(new String[]{}));
         return new TableBeans(Arrays.asList(new String[]{"姓名", "性别", "年龄", "户籍地", "居住地"}), childBeans);
-    }
-
-    private List<User> getBeanList() {
-        List<User> childBeans = new ArrayList<>();
-        User user = new User("王贺", "北京昌平", "27", "18812345678", "演技大学");
-        User user2 = new User("王贺", "北京昌平", "27", "18812345678", "演技大学");
-        childBeans.add(user);
-        childBeans.add(user2);
-        return childBeans;
     }
 
     @Test
