@@ -7,12 +7,11 @@
         <module>fastword-picture</module>
         <module>fastword-document</module>
         <module>fastword-annotation</module>
-        <module>fastword-all</module>
     </modules>
     <groupId>cn.fastword</groupId>
-    <artifactId>fast-word</artifactId>
+    <artifactId>fastword</artifactId>
     <version>1.0.0-RELEASES</version>
-    <name>fast-word</name>
+    <name>fastword</name>
     <url>http://www.fastword.cn</url>
     <description>fast-word报告生成</description>
     <developers>
@@ -65,7 +64,7 @@
             <dependency>
                 <groupId>cn.fastword</groupId>
                 <artifactId>fastword-annotation</artifactId>
-                <version>0.0.1.1-RELEASES</version>
+                <version>0.0.1.1b-RELEASES</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -74,11 +73,13 @@
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
             <version>${commons-lang3.version}</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>commons-beanutils</groupId>
             <artifactId>commons-beanutils</artifactId>
             <version>${commons-beanutils.version}</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
