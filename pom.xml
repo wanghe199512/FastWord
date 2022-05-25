@@ -7,10 +7,11 @@
         <module>fastword-picture</module>
         <module>fastword-document</module>
         <module>fastword-annotation</module>
+        <module>fastword-all</module>
     </modules>
     <groupId>cn.fastword</groupId>
     <artifactId>fast-word</artifactId>
-    <version>0.0.85</version>
+    <version>1.0.0-RELEASES</version>
     <name>fast-word</name>
     <url>http://www.fastword.cn</url>
     <description>fast-word报告生成</description>
@@ -64,7 +65,7 @@
             <dependency>
                 <groupId>cn.fastword</groupId>
                 <artifactId>fastword-annotation</artifactId>
-                <version>0.0.1-RELEASES</version>
+                <version>0.0.1.1-RELEASES</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

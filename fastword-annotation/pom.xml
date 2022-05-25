@@ -5,12 +5,13 @@
     <parent>
         <artifactId>fast-word</artifactId>
         <groupId>cn.fastword</groupId>
-        <version>0.0.85</version>
+        <version>1.0.0-RELEASES</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <version>0.0.1-RELEASES</version>
+    <version>0.0.1.1-RELEASES</version>
     <artifactId>fastword-annotation</artifactId>
+    <packaging>jar</packaging>
 
 </project>

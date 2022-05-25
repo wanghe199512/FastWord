@@ -6,31 +6,30 @@
         <artifactId>fast-word</artifactId>
         <groupId>cn.fastword</groupId>
         <version>1.0.0-RELEASES</version>
-        <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>fastword-document</artifactId>
-    <version>0.0.33.1-RELEASES</version>
+    <artifactId>fastword-all</artifactId>
+    <version>1.0.0-RELEASES</version>
     <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-all</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi-ooxml</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.poi</groupId>
-            <artifactId>poi-ooxml-schemas</artifactId>
+            <groupId>cn.fastword</groupId>
+            <artifactId>fastword-document</artifactId>
+            <version>0.0.33.1-RELEASES</version>
         </dependency>
         <dependency>
             <groupId>cn.fastword</groupId>
             <artifactId>fastword-annotation</artifactId>
+            <version>0.0.1.1-RELEASES</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.fastword</groupId>
+            <artifactId>fastword-picture</artifactId>
+            <version>0.0.53.1-RELEASES</version>
         </dependency>
     </dependencies>
+
 
 </project>
