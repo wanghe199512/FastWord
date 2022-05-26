@@ -1,6 +1,7 @@
 package cn.fastword.picture.echarts;
 
-import cn.fastword.picture.file.FileUniversalAvailable;
+import cn.fastword.picture.file.FileAvailable;
+import cn.fastword.picture.utils.ApplicationContext;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,7 +16,7 @@ import java.util.stream.Collectors;
  *
  * @author wanghe
  */
-public class EChartsBuilder {
+public class EChartsBuilder extends ApplicationContext {
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     private String phantomExePath = null;
@@ -25,6 +26,9 @@ public class EChartsBuilder {
     protected final String JSON_TEMP_PATH = "临时数据";
 
     public EChartsBuilder(String phantomExePath) {
+        if (StringUtils.isEmpty(phantomExePath)) {
+            throw new RuntimeException("本环境依赖于第三方PhantomJS，务必传入PhantomJS可用的执行文件路径...");
+        }
         this.phantomExePath = phantomExePath;
     }
 
@@ -38,7 +42,7 @@ public class EChartsBuilder {
         if (StringUtils.isEmpty(relativePath)) {
             throw new RuntimeException("Please use relativePath,but it isEmpty...");
         }
-        return System.getProperty("user.home").concat(this.createPathBuilder("fastword", relativePath).concat(File.separator));
+        return this.createPathBuilder(this.getApplicationContext(), relativePath).concat(File.separator);
     }
 
 
@@ -48,7 +52,7 @@ public class EChartsBuilder {
      * @param filePath 查找的文件名称路径
      * @return 文件
      */
-    protected String getPhantomJs(String filePath) throws Exception {
+    private String getPhantomJs(String filePath) throws Exception {
         return new File(Thread.currentThread().getContextClassLoader()
                 .getResource("").getPath().concat(this.createPathBuilder("bin", "echarts", filePath))).getAbsolutePath();
     }
@@ -63,7 +67,7 @@ public class EChartsBuilder {
         String generatorJsonFile = this.createJsonFile(options);
         String fileName = this.getBasicRootPath(this.PICTURE_TEMP_PATH).concat(this.getUUID().concat(".png"));
         try {
-            FileUniversalAvailable.createNewFile(new File(fileName));
+            FileAvailable.createNewFile(new File(fileName));
             String exec = this.phantomExePath.concat(" ") +
                     this.getPhantomJs(this.createPathBuilder("core.js ") + " -infile " + generatorJsonFile + " -outfile " + fileName);
             logger.info("<== Preparing: {}", exec);
@@ -92,7 +96,7 @@ public class EChartsBuilder {
             if (StringUtils.isEmpty(options)) {
                 throw new RuntimeException("options图表数据为空,请检查参数，本次进程终止...");
             }
-            FileUniversalAvailable.createNewFile(fileName);
+            FileAvailable.createNewFile(fileName);
             BufferedWriter out = new BufferedWriter(new FileWriter(fileName));
             out.write(options);
             out.flush();
@@ -116,13 +120,13 @@ public class EChartsBuilder {
     /**
      * 文件路径批处理
      *
-     * @param content 文件夹名称数组
+     * @param dirArr 文件夹名称数组
      * @return 文件路径
      */
-    private String createPathBuilder(String... content) {
+    private String createPathBuilder(String... dirArr) {
         StringBuilder builder = new StringBuilder(64);
-        for (String s : content) {
-            builder.append(File.separator).append(s);
+        for (String dir : dirArr) {
+            builder.append(File.separator).append(dir);
         }
         return builder.toString();
     }

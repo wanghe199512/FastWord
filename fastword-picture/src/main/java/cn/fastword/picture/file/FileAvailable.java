@@ -14,7 +14,7 @@ import java.io.IOException;
  *
  * @author wanghe
  */
-public class FileUniversalAvailable {
+public class FileAvailable {
     private final Logger logger = LoggerFactory.getLogger(getClass());
     /**
      * 报告存储类型
@@ -25,10 +25,10 @@ public class FileUniversalAvailable {
      */
     private String outputPath;
 
-    public FileUniversalAvailable() {
+    public FileAvailable() {
     }
 
-    public FileUniversalAvailable(String outputPath, Report report) {
+    public FileAvailable(String outputPath, Report report) {
         this.outputPath = outputPath;
         this.report = report;
     }
