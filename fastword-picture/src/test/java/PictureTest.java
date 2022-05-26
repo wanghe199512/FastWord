@@ -1,9 +1,8 @@
-import cn.fastword.picture.basicDraw.DrawBasicBarPicture;
-import cn.fastword.picture.basicDraw.DrawBasicLinePicture;
-import cn.fastword.picture.basicDraw.DrawBasicPiePicture;
-import cn.fastword.picture.basicDraw.DrawBasicScatterPicture;
+import cn.fastword.picture.echarts.DrawBasicBarPicture;
+import cn.fastword.picture.echarts.DrawBasicLinePicture;
+import cn.fastword.picture.echarts.DrawBasicPiePicture;
+import cn.fastword.picture.echarts.DrawBasicScatterPicture;
 import cn.fastword.picture.enums.Report;
-import cn.fastword.picture.model.DefaultCriteriaDataset;
 import cn.fastword.picture.model.DefaultXYDataset;
 import cn.fastword.picture.model.Picture;
 import org.junit.Test;

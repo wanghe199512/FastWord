@@ -1,13 +1,12 @@
-package cn.fastword.picture.basicDraw;
+package cn.fastword.picture.echarts;
 
 import cn.fastword.picture.enums.Report;
-import cn.fastword.picture.model.BasicDataset;
 import org.jfree.chart.JFreeChart;
 
 import java.io.File;
 import java.util.List;
 
-public interface IDrawBasicPicture {
+public interface IBasicECharts {
 
     JFreeChart createChart();
 

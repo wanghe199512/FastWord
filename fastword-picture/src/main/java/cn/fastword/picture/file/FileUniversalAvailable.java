@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.io.IOException;
 
 /**
  * 基础文件操作
@@ -75,6 +76,20 @@ public class FileUniversalAvailable {
         File file = new File(availableName);
         if (file.isFile() && file.exists()) {
             file.delete();
+        }
+    }
+
+    /**
+     * 创建文件
+     *
+     * @param fileName 文件名称
+     * @throws IOException 文件创建失败
+     */
+    public static void createNewFile(File fileName) throws IOException {
+        if (!fileName.exists()) {
+            File directory = new File(fileName.getParent());
+            directory.mkdirs();
+            fileName.createNewFile();
         }
     }
 
