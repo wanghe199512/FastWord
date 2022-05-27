@@ -26,7 +26,7 @@ public class ApplicationContext {
      * @return 上下文路径
      */
     protected String getApplicationContext() {
-        return System.getProperty("user.home").concat(this.applicationContext).concat(File.separator);
+        return System.getProperty("user.home").concat(File.separator).concat(this.applicationContext).concat(File.separator);
     }
 
 }

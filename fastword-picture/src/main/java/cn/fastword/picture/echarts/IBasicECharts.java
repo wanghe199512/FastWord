@@ -8,10 +8,6 @@ import java.util.List;
 
 public interface IBasicECharts {
 
-    JFreeChart createChart();
-
-    AbstractDrawBasicPicture addDefaultDataSet(List<? extends BasicDataset> dataSetList);
-
-    File saveAsPNG(String savePath, Report report);
+    File saveAsPNG(String savePath, Report report) throws Exception;
 
 }

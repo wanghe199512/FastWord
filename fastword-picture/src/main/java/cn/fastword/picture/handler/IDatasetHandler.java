@@ -1,7 +1,8 @@
 package cn.fastword.picture.handler;
 
-import org.jfree.data.general.Dataset;
+import cn.fastword.picture.model.DefaultEChartsDataset;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 
 /**
@@ -9,8 +10,8 @@ import java.util.List;
  *
  * @author wanghe
  */
-public interface IDatasetHandler {
+public interface IDatasetHandler<T> {
 
-    Dataset handler(List<? extends BasicDataset> dataSetList, Class<?> cls) throws IllegalAccessException, InstantiationException;
+    T handler() throws Exception;
 
 }
