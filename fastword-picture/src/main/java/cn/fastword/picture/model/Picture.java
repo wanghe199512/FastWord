@@ -1,27 +1,37 @@
 package cn.fastword.picture.model;
 
+import java.util.UUID;
+
 /**
  * 基础
  */
 public class Picture {
     /**
-     * 生成图片宽度
+     * 图片标题
      */
-    public int defaultWidth = 1300;
-    /**
-     * 生成图片高度
-     */
-    public int defaultHeight = 500;
-    /**
-     * 生成图片名称
-     */
-    public String fileName;
+    private String[] title;
 
+    /**
+     * 图片宽度
+     */
+    private int defaultWidth = 1300;
+    /**
+     * 图片高度
+     */
+    private int defaultHeight = 500;
+    /**
+     * 图片名称
+     */
+    private String fileName;
 
     public Picture() {
+        this(UUID.randomUUID().toString());
     }
 
-    public Picture(String fileName) {
+    public Picture(String fileName, String... title) {
+        if (title.length > 2) {
+            throw new RuntimeException("仅可设置主标题、子标题，title长度超出...");
+        }
         this.fileName = fileName;
     }
 
@@ -55,6 +65,15 @@ public class Picture {
 
     public Picture setFileName(String fileName) {
         this.fileName = fileName;
+        return this;
+    }
+
+    public String[] getTitle() {
+        return title;
+    }
+
+    public Picture setTitle(String[] title) {
+        this.title = title;
         return this;
     }
 }

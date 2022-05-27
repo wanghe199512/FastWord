@@ -39,8 +39,8 @@ public class DefaultXYDatasetHandler implements IDatasetHandler {
     public Dataset handler(List<? extends BasicDataset> dataSetList, Class<?> cls) throws IllegalAccessException, InstantiationException {
         this.defaultDataset = cls.newInstance();
         for (BasicDataset dataset : dataSetList) {
-            this.XAxisList = ((DefaultXYDataset) dataset).getXAxisLabelList();
-            this.YAxisLabelList = ((DefaultXYDataset) dataset).getYAxisLabelList();
+            this.XAxisList = ((DefaultXYDataset) dataset).getLabelList();
+            this.YAxisLabelList = ((DefaultXYDataset) dataset).getDataList();
             this.legends = dataset.getLegendNames();
             for (int i = 0; i < legends.size(); i++) {     // 以图例个数为基准循环
                 if (YAxisLabelList.size() <= i)   // 如果y轴的个数小于等于图例个数，后边的就不用画了
