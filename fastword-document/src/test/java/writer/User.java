@@ -3,19 +3,17 @@ package writer;
 import cn.fastword.annotation.FastWordTabled;
 
 public class User {
-    @FastWordTabled(title = "姓名", sort = 1)
+    @FastWordTabled(title = "姓名", sort = 0)
     private String name;
 
-    @FastWordTabled(title = "地址", sort = 4)
+    @FastWordTabled(title = "地址", sort = 0)
     private String address;
 
-    @FastWordTabled(title = "年龄", sort = 6)
     private String age;
 
-    @FastWordTabled(title = "手机号码", sort = 5)
     private String telPhone;
 
-    @FastWordTabled(title = "大学名称", sort = 2)
+    @FastWordTabled(title = "大学名称", sort = 0)
     private String collage;
 
     public User(String name, String address, String age, String telPhone, String collage) {

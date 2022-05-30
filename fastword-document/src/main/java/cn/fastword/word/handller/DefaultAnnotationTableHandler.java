@@ -39,7 +39,10 @@ public class DefaultAnnotationTableHandler extends DefaultTableBeansHandler impl
 
     @Override
     public List<String> getTabledColumnNames(Field[] declaredFields) {
-        return new LinkedList<Field>(Arrays.asList(declaredFields)).stream().map(field -> this.getAnnotation(field).title()).collect(Collectors.toList());
+        return new LinkedList<Field>(Arrays.asList(declaredFields)).stream().map(field -> {
+            field.setAccessible(true);
+            return this.getAnnotation(field) == null ? null : this.getAnnotation(field).title();
+        }).filter(s -> Objects.nonNull(s)).collect(Collectors.toList());
     }
 
     @Override
