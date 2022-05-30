@@ -3,18 +3,18 @@ package writer;
 import cn.fastword.annotation.FastWordTabled;
 
 public class User {
-    @FastWordTabled(title = "姓名", sort = 0)
+    @FastWordTabled(title = "姓名", sort = 1)
     private String name;
 
-    @FastWordTabled(title = "地址", sort = 0)
+    @FastWordTabled(title = "地址", sort = 11)
     private String address;
-
     private String age;
-
+    @FastWordTabled(title = "电话", sort = 5)
     private String telPhone;
 
-    @FastWordTabled(title = "大学名称", sort = 0)
+    @FastWordTabled(title = "大学名称", sort = 12)
     private String collage;
+
 
     public User(String name, String address, String age, String telPhone, String collage) {
         this.name = name;
@@ -32,7 +32,6 @@ public class User {
         this.name = name;
         return this;
     }
-
 
     public String getAddress() {
         return address;

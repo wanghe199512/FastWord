@@ -4,9 +4,11 @@ import cn.fastword.word.annotation.IFastWordTabled;
 import cn.fastword.annotation.FastWordTabled;
 import cn.fastword.word.beans.TableBeans;
 
+import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * 默认基于注解的表格处理
@@ -21,9 +23,8 @@ public class DefaultAnnotationTableHandler extends DefaultTableBeansHandler impl
 
     @Override
     public List<List<?>> geTabledColumnList(List<?> beans, Field[] declaredFields) {
-        return new LinkedList<Object>(beans).stream().map(bean -> new LinkedList<Field>(Arrays.asList(declaredFields)).stream().map(field -> {
+        return new LinkedList<Object>(beans).stream().map(bean -> new LinkedList<>(Arrays.asList(declaredFields)).stream().map(field -> {
             try {
-                field.setAccessible(true);
                 return field.get(bean);
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
@@ -32,22 +33,19 @@ public class DefaultAnnotationTableHandler extends DefaultTableBeansHandler impl
         }).collect(Collectors.toList())).collect(Collectors.toList());
     }
 
-    // TODO 排序算法待实现
-    private void sorted() {
-
+    private Field[] sorted(Field[] fields) {
+        return Arrays.stream(fields).filter(a -> this.getAnnotation(a) != null).sorted(Comparator.comparingInt(a -> this.getAnnotation(a).sort())).toArray(Field[]::new);
     }
 
     @Override
     public List<String> getTabledColumnNames(Field[] declaredFields) {
-        return new LinkedList<Field>(Arrays.asList(declaredFields)).stream().map(field -> {
-            field.setAccessible(true);
-            return this.getAnnotation(field) == null ? null : this.getAnnotation(field).title();
-        }).filter(s -> Objects.nonNull(s)).collect(Collectors.toList());
+        return new LinkedList<>(Arrays.asList(declaredFields)).stream().map(field -> this.getAnnotation(field).title() // 排除字段没有注解的问题。
+        ).collect(Collectors.toList());
     }
 
     @Override
     public Field[] getDeclaredFields(Class<?> cls) {
-        return cls.getDeclaredFields();
+        return this.sorted(cls.getDeclaredFields());
     }
 
     @Override

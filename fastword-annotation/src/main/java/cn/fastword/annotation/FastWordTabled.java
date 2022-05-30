@@ -10,10 +10,9 @@ import java.lang.annotation.*;
  * @deprecated 作用于实体
  */
 public @interface FastWordTabled {
-    String title();
+    String title() default "";
 
     String description() default "";
 
-    @Deprecated
-    int sort();
+    int sort() default 0;
 }
