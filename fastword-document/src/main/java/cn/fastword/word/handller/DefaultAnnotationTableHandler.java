@@ -1,14 +1,12 @@
 package cn.fastword.word.handller;
 
-import cn.fastword.word.annotation.IFastWordTabled;
 import cn.fastword.annotation.FastWordTabled;
+import cn.fastword.word.annotation.IFastWordTabled;
 import cn.fastword.word.beans.TableBeans;
 
-import java.lang.reflect.Array;
 import java.lang.reflect.Field;
 import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 /**
  * 默认基于注解的表格处理
@@ -29,8 +27,8 @@ public class DefaultAnnotationTableHandler extends DefaultTableBeansHandler impl
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
-            return field;
-        }).collect(Collectors.toList())).collect(Collectors.toList());
+            return null;
+        }).filter(Objects::isNull).collect(Collectors.toList())).collect(Collectors.toList());
     }
 
     private Field[] sorted(Field[] fields) {
@@ -39,8 +37,7 @@ public class DefaultAnnotationTableHandler extends DefaultTableBeansHandler impl
 
     @Override
     public List<String> getTabledColumnNames(Field[] declaredFields) {
-        return new LinkedList<>(Arrays.asList(declaredFields)).stream().map(field -> this.getAnnotation(field).title() // 排除字段没有注解的问题。
-        ).collect(Collectors.toList());
+        return new LinkedList<>(Arrays.asList(declaredFields)).stream().map(field -> this.getAnnotation(field).title()).collect(Collectors.toList());
     }
 
     @Override
