@@ -49,6 +49,7 @@ public class DefaultAnnotationTableHandler extends DefaultTableBeansHandler impl
 
     @Override
     public FastWordTabled getAnnotation(Field field) {
+        field.setAccessible(true);
         return field.getAnnotation(FastWordTabled.class);
     }
 }
