@@ -23,6 +23,7 @@ public class DefaultAnnotationTableHandler extends DefaultTableBeansHandler impl
     public List<List<?>> geTabledColumnList(List<?> beans, Field[] declaredFields) {
         return new LinkedList<Object>(beans).stream().map(bean -> new LinkedList<Field>(Arrays.asList(declaredFields)).stream().map(field -> {
             try {
+                field.setAccessible(true);
                 return field.get(bean);
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
@@ -48,7 +49,6 @@ public class DefaultAnnotationTableHandler extends DefaultTableBeansHandler impl
 
     @Override
     public FastWordTabled getAnnotation(Field field) {
-        field.setAccessible(true);
         return field.getAnnotation(FastWordTabled.class);
     }
 }

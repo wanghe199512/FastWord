@@ -4,19 +4,19 @@ import cn.fastword.annotation.FastWordTabled;
 
 public class User {
     @FastWordTabled(title = "姓名", sort = 1)
-    public String name;
+    private String name;
 
     @FastWordTabled(title = "地址", sort = 4)
-    public String address;
+    private String address;
 
     @FastWordTabled(title = "年龄", sort = 6)
-    public String age;
+    private String age;
 
     @FastWordTabled(title = "手机号码", sort = 5)
-    public String telPhone;
+    private String telPhone;
 
     @FastWordTabled(title = "大学名称", sort = 2)
-    public String collage;
+    private String collage;
 
     public User(String name, String address, String age, String telPhone, String collage) {
         this.name = name;
