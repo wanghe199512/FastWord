@@ -24,14 +24,6 @@ public abstract class AbstractDrawBasicPicture extends BasicDrawPictureUniversal
      */
     protected String title;
     /**
-     * 图片宽度
-     */
-    protected int defaultWidth;
-    /**
-     * 图片高度
-     */
-    protected int defaultHeight;
-    /**
      * x轴显示名称
      */
     protected String XAxisLabel;
@@ -63,7 +55,6 @@ public abstract class AbstractDrawBasicPicture extends BasicDrawPictureUniversal
     protected AbstractDrawBasicPicture(String title, String XAxisLabel, String YAxisLabel, Picture picture) {
         this(title, XAxisLabel, YAxisLabel);
         this.picture = picture;
-        this.setDefaultPictureWidthHeight();
     }
 
     @Override
@@ -95,19 +86,6 @@ public abstract class AbstractDrawBasicPicture extends BasicDrawPictureUniversal
     }
 
     /**
-     * 设置图像宽高
-     */
-    private void setDefaultPictureWidthHeight() {
-        if (this.picture != null) {
-            if (this.picture.getDefaultHeight() <= 0 && this.picture.getDefaultWidth() <= 0) {
-                throw new RuntimeException("Picture对象 要设置的 图片尺寸宽度或高度不能小于或等于0");
-            }
-            this.defaultHeight = this.picture.getDefaultHeight();
-            this.defaultWidth = this.picture.getDefaultWidth();
-        }
-    }
-
-    /**
      * 保存图片（根据报告类型，目录结构创建保存）
      */
     @Override
@@ -115,7 +93,7 @@ public abstract class AbstractDrawBasicPicture extends BasicDrawPictureUniversal
         File availableFile = new FileUniversalAvailable(outputRootPath, report).getFileAvailable(this.picture.getFileName());
         JFreeChart drawPicture = this.createChart();
         try {
-            ChartUtilities.saveChartAsPNG(availableFile, drawPicture, this.defaultWidth, this.defaultHeight);
+            ChartUtilities.saveChartAsPNG(availableFile, drawPicture, this.picture.defaultWidth, this.picture.defaultHeight);
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -1,5 +1,7 @@
 package cn.fastword.picture.model;
 
+import java.util.UUID;
+
 /**
  * 基础
  */
@@ -15,7 +17,7 @@ public class Picture {
     /**
      * 生成图片名称
      */
-    public String fileName;
+    public String fileName = UUID.randomUUID().toString();
 
 
     public Picture() {
