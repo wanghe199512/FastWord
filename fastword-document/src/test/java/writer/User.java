@@ -1,16 +1,16 @@
 package writer;
 
 import cn.fastword.annotation.FastWordTabled;
-import cn.fastword.annotation.enums.DesensitizedRule;
+import cn.fastword.annotation.enums.DstRule;
 
 public class User {
-    @FastWordTabled(title = "姓名", sort = 1, dstRule = DesensitizedRule.BANK_CARD)
+    @FastWordTabled(title = "姓名", sort = 1)
     private String name;
 
     @FastWordTabled(title = "地址", sort = 11)
     private String address;
     private String age;
-    @FastWordTabled(title = "电话", sort = 5)
+    @FastWordTabled(title = "电话", sort = 5, dstRule = DstRule.MOBILE_PHONE)
     private String telPhone;
 
     @FastWordTabled(title = "大学名称", sort = 12)

@@ -30,4 +30,16 @@ public enum Document {
         this.name = name;
         return this;
     }
+
+    public static String getDocumentPix(Document document) {
+        final String WORD_PIX = ".docx", PDF_PIX = ".pdf";
+        switch (document) {
+            case PDF:
+                return PDF_PIX;
+            case WORD:
+                return WORD_PIX;
+            default:
+                return null;
+        }
+    }
 }

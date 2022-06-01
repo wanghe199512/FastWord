@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import java.awt.*;
 import java.io.File;
 import java.io.InputStream;
+import java.util.Objects;
 
 /**
  * 基础word
@@ -67,8 +68,8 @@ public abstract class AbstractIBasicWord implements IBasicWord, IDocumentWriter 
      * @return 文档输出全路径
      */
     protected String getDocumentFile(String fileName, String savePath, Document document) {
-        return savePath.concat(File.separator).concat("已生成报告").concat(File.separator).concat(document.getName())
-                .concat(File.separator).concat(fileName).concat(".docx");
+        return savePath.concat(File.separator).concat("已生成报告").concat(File.separator).concat(document.getName()).concat(File.separator)
+                .concat(fileName).concat(Objects.requireNonNull(Document.getDocumentPix(document)));
     }
 
     public abstract String getDocumentFile(String fileName, String savePath);

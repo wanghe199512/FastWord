@@ -14,7 +14,7 @@ import java.util.Map;
  *
  * @author wanghe
  */
-public abstract class AbstractTableHandler implements ITableBeans {
+public abstract class AbstractTableHandler implements ITableBeans<Map<String, Object>> {
     protected Logger logger = LoggerFactory.getLogger(getClass());
     /**
      * 表格数据实体

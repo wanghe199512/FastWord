@@ -3,9 +3,9 @@ package cn.fastword.word.handller;
 import java.util.List;
 import java.util.Map;
 
-public interface ITableBeans {
+public interface ITableBeans<T> {
 
-    List<Map<String, Object>> createTable();
+    List<T> createTable();
 
-    Map<String, Object> handler(int index) throws ArrayIndexOutOfBoundsException;
+    T handler(int index) throws ArrayIndexOutOfBoundsException;
 }

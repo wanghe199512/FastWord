@@ -24,6 +24,9 @@ public class DefaultTableBeansHandler extends AbstractTableHandler {
     public Map<String, Object> handler(int index) throws ArrayIndexOutOfBoundsException {
         Map<String, Object> resultLinkedMap = new LinkedHashMap<>();
         for (int j = 0; j < this.tableBeans.getTitles().size(); j++) {
+            if (this.tableBeans.getDataList().get(index).size() == 0) {
+                break;
+            }
             resultLinkedMap.put(this.tableBeans.getTitles().get(j), this.tableBeans.getDataList().get(index).get(j));
         }
         logger.info("==> Preparing: {}", resultLinkedMap.toString());

@@ -1,12 +1,15 @@
 package cn.fastword.word.handller;
 
 import cn.fastword.annotation.FastWordTabled;
+import cn.fastword.annotation.enums.DstRule;
 import cn.fastword.word.annotation.IFastWordTabled;
 import cn.fastword.word.beans.TableBeans;
-import cn.hutool.core.util.DesensitizedUtil;
 
 import java.lang.reflect.Field;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -20,6 +23,13 @@ public class DefaultAnnotationTableHandler extends DefaultTableBeansHandler impl
         this.tableBeans = new TableBeans(this.getTabledColumnNames(this.getDeclaredFields(beanCls)), this.geTabledColumnList(beans, this.getDeclaredFields(beanCls)));
     }
 
+    /**
+     * 获取表格列数据
+     *
+     * @param beans          实体对象list
+     * @param declaredFields 反射获取的Field对象
+     * @return 列数据
+     */
     @Override
     public List<List<?>> geTabledColumnList(List<?> beans, Field[] declaredFields) {
         return new LinkedList<Object>(beans).stream().map(bean -> new LinkedList<>(Arrays.asList(declaredFields)).stream().map(field -> {
@@ -29,17 +39,36 @@ public class DefaultAnnotationTableHandler extends DefaultTableBeansHandler impl
                 e.printStackTrace();
             }
             return null;
-        }).filter(Objects::isNull).collect(Collectors.toList())).collect(Collectors.toList());
+        }).collect(Collectors.toList())).collect(Collectors.toList());
     }
 
+    /**
+     * 列排序
+     *
+     * @param fields 反射字段
+     * @return 排序后字段
+     */
     private Field[] sorted(Field[] fields) {
         return Arrays.stream(fields).filter(a -> this.getAnnotation(a) != null).sorted(Comparator.comparingInt(a -> this.getAnnotation(a).sort())).toArray(Field[]::new);
     }
 
-    private Object desensitized(Field field, String str) {
-        return str;
+    /**
+     * 数据脱敏
+     *
+     * @param field   反射字段
+     * @param content 脱敏数据
+     * @return 脱敏后数据
+     */
+    private Object desensitized(Field field, String content) {
+        return DstRule.dstRuleFormat(this.getAnnotation(field).dstRule(), content);
     }
 
+    /**
+     * 获取表格列标题
+     *
+     * @param declaredFields 反射获取的Field对象
+     * @return  表格头数据
+     */
     @Override
     public List<String> getTabledColumnNames(Field[] declaredFields) {
         return new LinkedList<>(Arrays.asList(declaredFields)).stream().map(field -> this.getAnnotation(field).title()).collect(Collectors.toList());

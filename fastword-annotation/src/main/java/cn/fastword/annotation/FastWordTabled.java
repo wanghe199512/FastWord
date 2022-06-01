@@ -1,6 +1,6 @@
 package cn.fastword.annotation;
 
-import cn.fastword.annotation.enums.DesensitizedRule;
+import cn.fastword.annotation.enums.DstRule;
 
 import java.lang.annotation.*;
 
@@ -9,7 +9,11 @@ import java.lang.annotation.*;
 @Documented
 /**
  * 定义文档导出表格注解
- * @deprecated 作用于实体
+ * title:标识表格头名称
+ * desc：字段描述说明
+ * dstRule：数据脱敏规则，默认不处理，支持手机号，车牌号等脱敏
+ * sort：自定义表格排序
+ * @deprecated 作用于实体字段
  */
 public @interface FastWordTabled {
 
@@ -17,7 +21,7 @@ public @interface FastWordTabled {
 
     String desc() default "";
 
-    DesensitizedRule dstRule() default DesensitizedRule.NONE;
+    DstRule dstRule() default DstRule.NONE;
 
     int sort() default 0;
 }
