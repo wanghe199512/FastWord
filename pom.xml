@@ -40,7 +40,7 @@
         <hutool-all.version>5.8.0</hutool-all.version>
         <commons-beanutils.version>1.9.3</commons-beanutils.version>
         <commons-lang3.version>3.12.0</commons-lang3.version>
-        <fastword-annotation.version>0.0.1-RELEASES</fastword-annotation.version>
+        <fastword-annotation.version>0.0.1.2</fastword-annotation.version>
         <compile.version>8</compile.version>
     </properties>
 
@@ -64,7 +64,7 @@
             <dependency>
                 <groupId>cn.fastword</groupId>
                 <artifactId>fastword-annotation</artifactId>
-                <version>0.0.1.1b-RELEASES</version>
+                <version>${fastword-annotation.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

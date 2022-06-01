@@ -9,15 +9,16 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
+    <artifactId>fastword-annotation</artifactId>
+    <packaging>jar</packaging>
+    <version>0.0.1.2</version>
 
-    <version>0.0.1.1b-RELEASES</version>
     <dependencies>
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>
         </dependency>
     </dependencies>
-    <artifactId>fastword-annotation</artifactId>
-    <packaging>jar</packaging>
+
 
 </project>
