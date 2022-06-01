@@ -6,6 +6,8 @@ import cn.fastword.picture.enums.Report;
 import cn.fastword.picture.model.DefaultCriteriaDataset;
 import cn.fastword.picture.model.DefaultXYDataset;
 import cn.fastword.picture.model.Picture;
+import org.jfree.data.time.Month;
+import org.jfree.data.time.TimeSeriesCollection;
 import org.junit.Test;
 
 import java.io.File;

@@ -3,6 +3,7 @@ package cn.fastword.word.handller;
 import cn.fastword.annotation.FastWordTabled;
 import cn.fastword.word.annotation.IFastWordTabled;
 import cn.fastword.word.beans.TableBeans;
+import cn.hutool.core.util.DesensitizedUtil;
 
 import java.lang.reflect.Field;
 import java.util.*;
@@ -23,7 +24,7 @@ public class DefaultAnnotationTableHandler extends DefaultTableBeansHandler impl
     public List<List<?>> geTabledColumnList(List<?> beans, Field[] declaredFields) {
         return new LinkedList<Object>(beans).stream().map(bean -> new LinkedList<>(Arrays.asList(declaredFields)).stream().map(field -> {
             try {
-                return field.get(bean);
+                return this.desensitized(field, (String) field.get(bean));
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
@@ -33,6 +34,10 @@ public class DefaultAnnotationTableHandler extends DefaultTableBeansHandler impl
 
     private Field[] sorted(Field[] fields) {
         return Arrays.stream(fields).filter(a -> this.getAnnotation(a) != null).sorted(Comparator.comparingInt(a -> this.getAnnotation(a).sort())).toArray(Field[]::new);
+    }
+
+    private Object desensitized(Field field, String str) {
+        return str;
     }
 
     @Override

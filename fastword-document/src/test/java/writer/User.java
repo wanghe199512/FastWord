@@ -1,9 +1,10 @@
 package writer;
 
 import cn.fastword.annotation.FastWordTabled;
+import cn.fastword.annotation.enums.DesensitizedRule;
 
 public class User {
-    @FastWordTabled(title = "姓名", sort = 1)
+    @FastWordTabled(title = "姓名", sort = 1, dstRule = DesensitizedRule.BANK_CARD)
     private String name;
 
     @FastWordTabled(title = "地址", sort = 11)
