@@ -1,6 +1,6 @@
 package cn.fastword.word;
 
-import cn.fastword.word.enums.Document;
+import cn.fastword.word.enums.FastDocument;
 import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +17,7 @@ import java.util.Objects;
  * @author wanghe
  * addParagraphPictureRows, addParagraphTableRows 组合使用时，在word中表现形式为各输出独占一行，且文字优先排列
  */
-public abstract class AbstractIBasicWord implements IBasicWord, IDocumentWriter {
+public abstract class AbstractIBasicWord<E> implements IBasicWord, IDocumentWriter<E> {
     protected final Logger logger = LoggerFactory.getLogger(this.getClass());
     /**
      * 全局字体
@@ -45,7 +45,7 @@ public abstract class AbstractIBasicWord implements IBasicWord, IDocumentWriter 
 
     public abstract void addHeader(String title, String... headers);
 
-    public abstract void addParagraphRows(ParagraphAlignment alignment, Font defaultFont, String... texts);
+    public abstract void  addParagraphRows(E alignment, Font defaultFont, String... texts);
 
     public abstract void addParagraphRows(String... text);
 
@@ -67,10 +67,10 @@ public abstract class AbstractIBasicWord implements IBasicWord, IDocumentWriter 
      * @param document 文件类型（暂时只支持word）
      * @return 文档输出全路径
      */
-    protected String getDocumentFile(String fileName, String savePath, Document document) {
+    protected String getDocumentFile(String fileName, String savePath, FastDocument document) {
         return savePath.concat(File.separator).concat("已生成报告").concat(File.separator).concat(document.getName()).concat(File.separator)
-                .concat(fileName).concat(Objects.requireNonNull(Document.getDocumentPix(document)));
+                .concat(fileName).concat(Objects.requireNonNull(FastDocument.getDocumentPix(document)));
     }
 
-    public abstract String getDocumentFile(String fileName, String savePath);
+    public String getDocumentFile(String fileName, String savePath){return null;};
 }

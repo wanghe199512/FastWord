@@ -12,11 +12,11 @@ import java.io.InputStream;
  *
  * @author wanghe
  */
-public interface IDocumentWriter {
+public interface IDocumentWriter<E> {
 
     void addHeader(String title, String... headers);
 
-    void addParagraphRows(ParagraphAlignment alignment, Font defaultFont, String... texts);
+    void addParagraphRows(E alignment, Font defaultFont, String... texts);
 
     void addParagraphRows(String... text);
 
@@ -30,7 +30,7 @@ public interface IDocumentWriter {
 
     void addBlankRow();
 
-    void addTable(ITableBeans handler);
+    void addTable(ITableBeans<?> handler);
 
-    void addParagraphTableRows(ITableBeans handler, String... texts);
+    void addParagraphTableRows(ITableBeans<?> handler, String... texts);
 }

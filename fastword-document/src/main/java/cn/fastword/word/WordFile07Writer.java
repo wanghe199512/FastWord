@@ -1,6 +1,6 @@
 package cn.fastword.word;
 
-import cn.fastword.word.enums.Document;
+import cn.fastword.word.enums.FastDocument;
 import cn.fastword.word.handller.DefaultAnnotationTableHandler;
 import cn.fastword.word.handller.ITableBeans;
 import cn.hutool.core.io.FileUtil;
@@ -22,9 +22,9 @@ import java.util.List;
  *
  * @author wanghe
  */
-public class WordFile07Writer extends AbstractIBasicWord {
+public class WordFile07Writer extends AbstractIBasicWord<ParagraphAlignment> {
 
-    private final Word07Writer writer = new Word07Writer();
+    private final Word07Writer wordWriter = new Word07Writer();
 
     /**
      * 文档标题
@@ -34,11 +34,11 @@ public class WordFile07Writer extends AbstractIBasicWord {
      */
     @Override
     public void addHeader(String title, String... headers) {
-        this.writer.addText(ParagraphAlignment.CENTER, this.defaultHeaderFont, title);
+        this.wordWriter.addText(ParagraphAlignment.CENTER, this.defaultHeaderFont, title);
         if (headers.length > 0) {
             this.addParagraphRows(ParagraphAlignment.RIGHT, this.defaultFont, headers);
         }
-        List<XWPFParagraph> paragraphs = this.writer.getDoc().getParagraphs();
+        List<XWPFParagraph> paragraphs = this.wordWriter.getDoc().getParagraphs();
         XWPFParagraph paragraph = paragraphs.get(0);
         paragraph.removeRun(0);
         XWPFRun xwpfRun = paragraph.createRun();
@@ -62,7 +62,7 @@ public class WordFile07Writer extends AbstractIBasicWord {
     public void addParagraphRows(ParagraphAlignment alignment, Font defaultFont, String... texts) {
         this.defaultFont = defaultFont;
         for (String paragraph : texts) {
-            this.writer.addText(alignment, this.defaultFont, paragraph);
+            this.wordWriter.addText(alignment, this.defaultFont, paragraph);
         }
     }
 
@@ -98,7 +98,7 @@ public class WordFile07Writer extends AbstractIBasicWord {
     @Override
     public void addPicture(File picture) {
         try {
-            this.writer.addPicture(picture, this.defaultWidth, this.defaultHeight);
+            this.wordWriter.addPicture(picture, this.defaultWidth, this.defaultHeight);
         } catch (Throwable e) {
             e.printStackTrace();
         }
@@ -113,7 +113,7 @@ public class WordFile07Writer extends AbstractIBasicWord {
     @Override
     public void addPicture(InputStream stream, String fileName) {
         try {
-            this.writer.addPicture(stream, PicType.PNG, fileName, this.defaultWidth, this.defaultHeight);
+            this.wordWriter.addPicture(stream, PicType.PNG, fileName, this.defaultWidth, this.defaultHeight);
         } catch (Throwable e) {
             e.printStackTrace();
         }
@@ -138,7 +138,7 @@ public class WordFile07Writer extends AbstractIBasicWord {
      */
     @Override
     public void addBlankRow() {
-        this.writer.addText(ParagraphAlignment.LEFT, this.defaultFont, "");
+        this.wordWriter.addText(ParagraphAlignment.LEFT, this.defaultFont, "");
     }
 
     /**
@@ -147,9 +147,9 @@ public class WordFile07Writer extends AbstractIBasicWord {
      * @param handler ITableBeans处理器
      */
     @Override
-    public void addTable(ITableBeans handler) {
+    public void addTable(ITableBeans<?> handler) {
         try {
-            this.writer.addTable(handler.createTable());
+            this.wordWriter.addTable(handler.createTable());
         } catch (Throwable e) {
             e.printStackTrace();
         }
@@ -201,11 +201,11 @@ public class WordFile07Writer extends AbstractIBasicWord {
     /**
      * 基于自定义的ITableBeans表格处理器及段落文本添加
      *
-     * @param handler
-     * @param texts
+     * @param handler 处理器
+     * @param texts 段落文本
      */
     @Override
-    public void addParagraphTableRows(ITableBeans handler, String... texts) {
+    public void addParagraphTableRows(ITableBeans<?> handler, String... texts) {
         this.addParagraphRows(ParagraphAlignment.LEFT, this.defaultFont, texts);
         this.addTable(handler);
         this.addBlankRow();
@@ -220,14 +220,18 @@ public class WordFile07Writer extends AbstractIBasicWord {
      */
     @Override
     public String getDocumentFile(String fileName, String savePath) {
-        String file = this.getDocumentFile(fileName, savePath, Document.WORD);
+        String file = this.getDocumentFile(fileName, savePath, FastDocument.WORD);
         try {
-            this.writer.flush(FileUtil.file(file));
-            this.writer.close();
+            this.wordWriter.flush(FileUtil.file(file));
+            this.wordWriter.close();
             logger.info("==> Preparing: {}", file);
         } catch (Exception e) {
             e.fillInStackTrace();
         }
         return file;
+    }
+
+    public Word07Writer getWordWriter() {
+        return wordWriter;
     }
 }
