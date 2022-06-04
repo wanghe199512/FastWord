@@ -1,9 +1,7 @@
 package cn.fastword.word;
 
 import cn.fastword.word.handller.ITableBeans;
-import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 
-import java.awt.*;
 import java.io.File;
 import java.io.InputStream;
 
@@ -12,11 +10,11 @@ import java.io.InputStream;
  *
  * @author wanghe
  */
-public interface IDocumentWriter<E> {
+public interface IDocumentWriter {
 
     void addHeader(String title, String... headers);
 
-    void addParagraphRows(E alignment, Font defaultFont, String... texts);
+    <A, B> void addParagraphRows(A alignment, B defaultFont, String... texts);
 
     void addParagraphRows(String... text);
 

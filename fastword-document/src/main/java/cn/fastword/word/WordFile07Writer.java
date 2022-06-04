@@ -1,13 +1,13 @@
 package cn.fastword.word;
 
+import cn.fastword.word.beans.TableBeans;
 import cn.fastword.word.enums.FastDocument;
 import cn.fastword.word.handller.DefaultAnnotationTableHandler;
+import cn.fastword.word.handller.DefaultTableBeansHandler;
 import cn.fastword.word.handller.ITableBeans;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.poi.word.PicType;
 import cn.hutool.poi.word.Word07Writer;
-import cn.fastword.word.beans.TableBeans;
-import cn.fastword.word.handller.DefaultTableBeansHandler;
 import org.apache.poi.xwpf.usermodel.ParagraphAlignment;
 import org.apache.poi.xwpf.usermodel.XWPFParagraph;
 import org.apache.poi.xwpf.usermodel.XWPFRun;
@@ -22,9 +22,20 @@ import java.util.List;
  *
  * @author wanghe
  */
-public class WordFile07Writer extends AbstractIBasicWord<ParagraphAlignment> {
-
+public class WordFile07Writer extends AbstractIBasicWord {
+    /**
+     * 默认正文字体
+     */
+    private Font defaultFont = new Font(FONT_NAME, DEFAULT_BOLD ? Font.BOLD : Font.PLAIN, DEFAULT_SIZE);
+    /**
+     * 默认标题头字体
+     */
+    private final Font defaultHeaderFont = new Font(FONT_NAME, DEFAULT_BOLD ? Font.BOLD : Font.PLAIN, TITLE_SIZE);
+    /**
+     * word操作对象
+     */
     private final Word07Writer wordWriter = new Word07Writer();
+
 
     /**
      * 文档标题
@@ -43,7 +54,7 @@ public class WordFile07Writer extends AbstractIBasicWord<ParagraphAlignment> {
         paragraph.removeRun(0);
         XWPFRun xwpfRun = paragraph.createRun();
         xwpfRun.setText(title);
-        xwpfRun.setColor("CE0000");   // 设置主标题颜色
+        xwpfRun.setColor(TITLE_COLOR);   // 设置主标题颜色
         xwpfRun.setFontSize(this.defaultHeaderFont.getSize());
         xwpfRun.setBold(this.defaultHeaderFont.isBold());
         xwpfRun.setFontFamily(this.defaultHeaderFont.getFamily());
@@ -59,10 +70,10 @@ public class WordFile07Writer extends AbstractIBasicWord<ParagraphAlignment> {
      * @param texts       要添加的文本(独占一行 )
      */
     @Override
-    public void addParagraphRows(ParagraphAlignment alignment, Font defaultFont, String... texts) {
-        this.defaultFont = defaultFont;
+    public <A, B> void addParagraphRows(A alignment, B defaultFont, String... texts) {
+        this.defaultFont = (Font) defaultFont;
         for (String paragraph : texts) {
-            this.wordWriter.addText(alignment, this.defaultFont, paragraph);
+            this.wordWriter.addText((ParagraphAlignment) alignment, (Font) this.defaultFont, paragraph);
         }
     }
 
@@ -202,7 +213,7 @@ public class WordFile07Writer extends AbstractIBasicWord<ParagraphAlignment> {
      * 基于自定义的ITableBeans表格处理器及段落文本添加
      *
      * @param handler 处理器
-     * @param texts 段落文本
+     * @param texts   段落文本
      */
     @Override
     public void addParagraphTableRows(ITableBeans<?> handler, String... texts) {
@@ -219,8 +230,20 @@ public class WordFile07Writer extends AbstractIBasicWord<ParagraphAlignment> {
      * @return 导出文件全路径
      */
     @Override
-    public String getDocumentFile(String fileName, String savePath) {
-        String file = this.getDocumentFile(fileName, savePath, FastDocument.WORD);
+    public File getDocumentFile(String fileName, String savePath) {
+        return this.saveWordFile(this.getDocumentFile(fileName, savePath, FastDocument.WORD));
+    }
+
+    public File getDocumentFile(File file) {
+        return this.saveWordFile(super.getDocumentFile(file));
+    }
+
+    /**
+     * 保存文件
+     *
+     * @param file 文档文件
+     */
+    private File saveWordFile(File file) {
         try {
             this.wordWriter.flush(FileUtil.file(file));
             this.wordWriter.close();

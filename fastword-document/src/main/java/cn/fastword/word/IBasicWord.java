@@ -1,5 +1,9 @@
 package cn.fastword.word;
 
+import cn.fastword.word.enums.FastDocument;
+
+import java.io.File;
+
 /**
  * 报告基础获取接口
  *
@@ -7,5 +11,5 @@ package cn.fastword.word;
  */
 public interface IBasicWord {
 
-    String getDocumentFile(String fileName, String savePath);
+    File getDocumentFile(String fileName, String savePath, FastDocument document);
 }

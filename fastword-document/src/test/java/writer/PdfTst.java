@@ -1,6 +1,6 @@
 package writer;
 
-import cn.fastword.pdf.PdfFileWriter;
+import cn.fastword.word.PdfFileWriter;
 import org.junit.Test;
 
 public class PdfTst {
