@@ -34,7 +34,7 @@
     </scm>
     <properties>
         <java.version>1.8</java.version>
-        <log4j.version>1.2.17</log4j.version>
+        <slf4j.version>1.7.36</slf4j.version>
         <poi.version>4.1.2</poi.version>
         <hutool-all.version>5.8.0</hutool-all.version>
         <commons-beanutils.version>20020520</commons-beanutils.version>
@@ -81,9 +81,9 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-core</artifactId>
-            <version>2.17.1</version>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
