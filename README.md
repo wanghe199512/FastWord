@@ -81,5 +81,9 @@ fastword-document自0.0.33.1b-RELEASES，fastword-picture自0.0.53.1b-RELEASES�
 
 #### 参与贡献
 
+
+
 #### 联系我
  有任何使用问题或报错请发邮箱 1280381827@qq.com 看到后我会及时回复，开源不易，感谢支持
+ 
+ [![OSCS Status](https://www.oscs1024.com/platform/badge/wanghe199512/FastWord.svg?size=small)](https://www.oscs1024.com/project/wanghe199512/FastWord?ref=badge_small)
