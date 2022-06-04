@@ -229,13 +229,9 @@ public class WordFile07Writer extends AbstractIBasicWord {
      * @param savePath 保存的路径
      * @return 导出文件全路径
      */
-    @Override
     public File getDocumentFile(String fileName, String savePath) {
-        return this.saveWordFile(this.getDocumentFile(fileName, savePath, FastDocument.WORD));
-    }
-
-    public File getDocumentFile(File file) {
-        return this.saveWordFile(super.getDocumentFile(file));
+        File documentFile = this.getDocumentFile(fileName, savePath, FastDocument.WORD);
+        return this.saveWordFile(documentFile);
     }
 
     /**
@@ -243,7 +239,8 @@ public class WordFile07Writer extends AbstractIBasicWord {
      *
      * @param file 文档文件
      */
-    private File saveWordFile(File file) {
+    @Override
+    protected File saveWordFile(File file) {
         try {
             this.wordWriter.flush(FileUtil.file(file));
             this.wordWriter.close();

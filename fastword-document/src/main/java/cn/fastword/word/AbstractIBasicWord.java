@@ -54,18 +54,16 @@ public abstract class AbstractIBasicWord extends Constants implements IBasicWord
     @Override
     public abstract void addBlankRow();
 
-    protected File getDocumentFile(File file) {
-        return this.getDocumentFile(file.getName(), file.getParentFile().getAbsolutePath());
-    }
+    protected abstract File saveWordFile(File file);
 
-    protected File getDocumentFile(String fileName, String savePath) {
-        return new File(savePath, fileName);
+    public File getDocumentFile(File file) {
+        return this.saveWordFile(file);
     }
 
     @Override
     public File getDocumentFile(String fileName, String savePath, FastDocument document) {
-        return this.getDocumentFile(savePath.concat(File.separator).concat("已生成报告").concat(File.separator).concat(document.getName()).concat(File.separator),
-                fileName.concat(Objects.requireNonNull(FastDocument.getDocumentPix(document))));
+        return new File(savePath.concat(File.separator).concat("已生成报告").concat(File.separator).concat(document.getName()).concat(File.separator).concat(fileName)
+                .concat(Objects.requireNonNull(FastDocument.getDocumentPix(document))));
     }
 
     ;

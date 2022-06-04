@@ -95,6 +95,7 @@ public class PdfFileWriter extends AbstractIBasicWord {
 
     }
 
+
     @Override
     public void addTable(ITableBeans<?> handler) {
 
@@ -115,16 +116,21 @@ public class PdfFileWriter extends AbstractIBasicWord {
         this.writer.setPdfVersion(PdfWriter.VERSION_1_7);
     }
 
-    public String getDocumentFile() {
+    @Override
+    protected File saveWordFile(File file) {
         try {
-            this.addDocumentExtra();
             this.document.close();
             this.writer.close();
             logger.info("==> Preparing: {}", this.documentFile);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return documentFile.getAbsolutePath();
+        return file;
+    }
+
+    public String getDocumentFile() {
+        this.addDocumentExtra();
+        return this.saveWordFile(this.documentFile).getAbsolutePath();
     }
 
     public Document getDocument() {

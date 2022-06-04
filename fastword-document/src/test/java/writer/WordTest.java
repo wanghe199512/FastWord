@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.File;
 import java.util.*;
 
 /**
@@ -68,7 +69,7 @@ public class WordTest {
 
     @Test
     public void genWord() {
-        String fileName = new WordTest().reportWriter().getDocumentFile("分析报告", "d://aa");
+        File fileName = new WordTest().reportWriter().getDocumentFile("分析aaa报告", "d://aa");
         logger.info(" ===>{}", fileName);
 
     }
