@@ -11,7 +11,7 @@ import java.util.List;
  * @author wanghe
  * @see IFastWord
  */
-public interface IFastWordTabled extends IFastWord<FastWordTabled> {
+public interface IFastWordColumn extends IFastWord<FastWordTabled> {
     /**
      * 获取表格列数据
      *

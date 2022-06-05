@@ -2,7 +2,7 @@ package cn.fastword.word.handller;
 
 import cn.fastword.annotation.FastWordTabled;
 import cn.fastword.annotation.enums.DstRule;
-import cn.fastword.word.annotation.IFastWordTabled;
+import cn.fastword.word.annotation.IFastWordColumn;
 import cn.fastword.word.beans.TableBeans;
 
 import java.lang.reflect.Field;
@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
  *
  * @author wanghe
  */
-public class DefaultAnnotationTableHandler extends DefaultTableBeansHandler implements IFastWordTabled {
+public class DefaultAnnotationTableHandler extends DefaultTableBeansHandler implements IFastWordColumn {
 
     public DefaultAnnotationTableHandler(List<?> beans, Class<?> beanCls) {
         this.tableBeans = new TableBeans(this.getTabledColumnNames(this.getDeclaredFields(beanCls)), this.geTabledColumnList(beans, this.getDeclaredFields(beanCls)));

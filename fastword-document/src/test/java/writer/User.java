@@ -25,6 +25,13 @@ public class User {
         this.collage = collage;
     }
 
+    public User(String name, String address, String telPhone, String collage) {
+        this.name = name;
+        this.address = address;
+        this.telPhone = telPhone;
+        this.collage = collage;
+    }
+
     public String getName() {
         return name;
     }
