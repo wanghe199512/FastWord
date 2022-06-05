@@ -35,5 +35,4 @@ public class Constants {
      */
     public static final boolean DEFAULT_BOLD = true;
 
-
 }

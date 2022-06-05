@@ -1,6 +1,7 @@
 package cn.fastword.word;
 
 import cn.fastword.word.common.Constants;
+import cn.fastword.word.enums.FastArchive;
 import cn.fastword.word.enums.FastDocument;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +27,15 @@ public abstract class AbstractIBasicWord extends Constants implements IBasicWord
      * 图片高度
      */
     protected int defaultHeight = 130;
+
+    /**
+     * 默认子目录生成路径
+     */
+    public final String filePath = "已生成报告";
+    /**
+     * 归档类型(默认，按天)
+     */
+    protected FastArchive archive = FastArchive.DAY;
 
     public AbstractIBasicWord() {
     }
@@ -62,9 +72,13 @@ public abstract class AbstractIBasicWord extends Constants implements IBasicWord
 
     @Override
     public File getDocumentFile(String fileName, String savePath, FastDocument document) {
-        return new File(savePath.concat(File.separator).concat("已生成报告").concat(File.separator).concat(document.getName()).concat(File.separator).concat(fileName)
-                .concat(Objects.requireNonNull(FastDocument.getDocumentPix(document))));
+        return new File(savePath.concat(File.separator).concat(filePath).concat(File.separator).concat(document.getName()).concat(File.separator).concat(this.archive.archive()).concat(File.separator)
+                .concat(fileName).concat(Objects.requireNonNull(FastDocument.getDocumentPix(document))));
     }
 
-    ;
+
+    public AbstractIBasicWord setArchive(FastArchive archive) {
+        this.archive = archive;
+        return this;
+    }
 }
