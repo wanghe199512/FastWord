@@ -9,7 +9,7 @@
     </modules>
     <groupId>cn.fastword</groupId>
     <artifactId>fastword</artifactId>
-    <version>1.0.0-RELEASES</version>
+    <version>1.0.5</version>
     <name>fastword</name>
     <url>http://www.fastword.cn</url>
     <description>fast-word报告生成</description>
