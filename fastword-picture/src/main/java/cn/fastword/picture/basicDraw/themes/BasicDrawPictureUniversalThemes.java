@@ -98,7 +98,8 @@ public class BasicDrawPictureUniversalThemes {
             renderer.setBaseItemLabelGenerator(new StandardCategoryItemLabelGenerator(StandardCategoryItemLabelGenerator.DEFAULT_LABEL_FORMAT_STRING, NumberFormat.getInstance()));
             renderer.setBasePositiveItemLabelPosition(new ItemLabelPosition(ItemLabelAnchor.OUTSIDE1, TextAnchor.BOTTOM_CENTER));
         }
-        renderer.setBaseShapesVisible(showShapeVisible);// 数据点绘制形状
+        if (showShapeVisible)
+            renderer.setBaseShapesVisible(showShapeVisible);// 数据点绘制形状
         setXAxisThemes(plot);
         setYAxisThemes(plot);
     }

@@ -16,6 +16,14 @@ import java.util.List;
  * 折线图
  */
 public class DrawBasicLinePicture extends AbstractDrawBasicPicture {
+    /**
+     * 是否显示数值
+     */
+    private boolean showLabels = true;
+    /**
+     * 是否显示标签
+     */
+    private boolean showShapeVisible = true;
 
     public DrawBasicLinePicture(String title, String XAxisLabel, String YAxisLabel, Picture picture) {
         super(title, XAxisLabel, YAxisLabel, picture);
@@ -25,7 +33,7 @@ public class DrawBasicLinePicture extends AbstractDrawBasicPicture {
     public JFreeChart createChart() {
         JFreeChart chart = ChartFactory.createLineChart(this.title, this.XAxisLabel, this.YAxisLabel, (CategoryDataset) this.dataset,
                 PlotOrientation.VERTICAL, true, true, false);
-        super.setLineRender(chart.getCategoryPlot(), true, true);
+        super.setLineRender(chart.getCategoryPlot(), this.showLabels, this.showShapeVisible);
         chart.setTextAntiAlias(true);
         return chart;
     }
@@ -35,4 +43,13 @@ public class DrawBasicLinePicture extends AbstractDrawBasicPicture {
         return this.addDefaultDataSet(dataSetList, new DefaultXYDatasetHandler(), DefaultCategoryDataset.class);
     }
 
+    public DrawBasicLinePicture showLabels(boolean showLabels) {
+        this.showLabels = showLabels;
+        return this;
+    }
+
+    public DrawBasicLinePicture showShapeVisible(boolean showShapeVisible) {
+        this.showShapeVisible = showShapeVisible;
+        return this;
+    }
 }
