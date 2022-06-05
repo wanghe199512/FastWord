@@ -33,6 +33,6 @@ public class Constants {
     /**
      * 默认正文是否加粗
      */
-    public static final boolean DEFAULT_BOLD = true;
+    public static final boolean DEFAULT_BASE_BOLD = false;
 
 }

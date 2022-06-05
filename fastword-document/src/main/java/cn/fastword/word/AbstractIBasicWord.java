@@ -31,7 +31,7 @@ public abstract class AbstractIBasicWord extends Constants implements IBasicWord
     /**
      * 默认子目录生成路径
      */
-    public final String filePath = "已生成报告";
+    protected final String filePath = "已生成报告";
     /**
      * 归档类型(默认，按天)
      */

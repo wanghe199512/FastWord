@@ -2,6 +2,7 @@ package cn.fastword.word.table;
 
 import cn.fastword.word.beans.TableBeans;
 import cn.fastword.word.handller.ITableBeans;
+import com.itextpdf.text.BaseColor;
 
 import java.util.List;
 

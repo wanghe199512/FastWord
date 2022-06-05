@@ -28,11 +28,11 @@ public class WordFile07Writer extends AbstractIBasicWord implements IFastDocumen
     /**
      * 默认正文字体
      */
-    private Font defaultFont = new Font(FONT_NAME, DEFAULT_BOLD ? Font.BOLD : Font.PLAIN, DEFAULT_SIZE);
+    private Font defaultFont = new Font(FONT_NAME, DEFAULT_BASE_BOLD ? Font.BOLD : Font.PLAIN, DEFAULT_SIZE);
     /**
      * 默认标题头字体
      */
-    private final Font defaultHeaderFont = new Font(FONT_NAME, DEFAULT_BOLD ? Font.BOLD : Font.PLAIN, TITLE_SIZE);
+    private final Font defaultHeaderFont = new Font(FONT_NAME, DEFAULT_BASE_BOLD ? Font.BOLD : Font.PLAIN, TITLE_SIZE);
     /**
      * word操作对象
      */
@@ -73,9 +73,8 @@ public class WordFile07Writer extends AbstractIBasicWord implements IFastDocumen
      */
     @Override
     public <A, B> void addParagraphRows(A alignment, B defaultFont, String... texts) {
-        this.defaultFont = (Font) defaultFont;
         for (String paragraph : texts) {
-            this.wordWriter.addText((ParagraphAlignment) alignment, (Font) this.defaultFont, paragraph);
+            this.wordWriter.addText((ParagraphAlignment) alignment, (Font) defaultFont, paragraph);
         }
     }
 
@@ -256,5 +255,10 @@ public class WordFile07Writer extends AbstractIBasicWord implements IFastDocumen
 
     public Word07Writer getWordWriter() {
         return wordWriter;
+    }
+
+    public WordFile07Writer setDefaultFont(Font defaultFont) {
+        this.defaultFont = defaultFont;
+        return this;
     }
 }
