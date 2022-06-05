@@ -3,14 +3,14 @@
     <parent>
         <artifactId>fastword</artifactId>
         <groupId>cn.fastword</groupId>
-        <version>1.0.5</version>
+        <version>1.0.5-RELEASES</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <packaging>jar</packaging>
 
     <artifactId>fastword-picture</artifactId>
-    <version>0.0.53.1b-RELEASES</version>
+    <version>0.0.54</version>
     <description>fast-word图片生成</description>
     <dependencies>
         <dependency>

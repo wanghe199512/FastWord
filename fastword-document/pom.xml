@@ -3,13 +3,13 @@
     <parent>
         <artifactId>fastword</artifactId>
         <groupId>cn.fastword</groupId>
-        <version>1.0.5</version>
+        <version>1.0.5-RELEASES</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>fastword-document</artifactId>
-    <version>0.0.34</version>
+    <version>0.0.56</version>
     <packaging>jar</packaging>
 
     <dependencies>
@@ -32,11 +32,6 @@
         <dependency>
             <groupId>com.itextpdf</groupId>
             <artifactId>itextpdf</artifactId>
-            <version>5.5.12</version>
-        </dependency>
-        <dependency>
-            <groupId>com.itextpdf.tool</groupId>
-            <artifactId>xmlworker</artifactId>
             <version>5.5.12</version>
         </dependency>
         <dependency>
