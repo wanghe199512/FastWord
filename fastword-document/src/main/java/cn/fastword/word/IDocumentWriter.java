@@ -1,7 +1,5 @@
 package cn.fastword.word;
 
-import cn.fastword.word.handller.ITableBeans;
-
 import java.io.File;
 import java.io.InputStream;
 
@@ -27,8 +25,4 @@ public interface IDocumentWriter {
     void addPicture(File picture, int defaultWidth, int defaultHeight);
 
     void addBlankRow();
-
-    void addTable(ITableBeans<?> handler);
-
-    void addParagraphTableRows(ITableBeans<?> handler, String... texts);
 }

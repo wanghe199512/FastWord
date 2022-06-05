@@ -76,7 +76,6 @@ public abstract class AbstractIBasicWord extends Constants implements IBasicWord
                 .concat(fileName).concat(Objects.requireNonNull(FastDocument.getDocumentPix(document))));
     }
 
-
     public AbstractIBasicWord setArchive(FastArchive archive) {
         this.archive = archive;
         return this;

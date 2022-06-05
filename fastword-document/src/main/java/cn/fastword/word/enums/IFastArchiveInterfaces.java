@@ -1,7 +1,7 @@
 package cn.fastword.word.enums;
 
 /**
- * 归档接口
+ * 归档枚举接口
  *
  * @author wanghe
  */

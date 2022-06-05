@@ -5,6 +5,7 @@ import cn.fastword.word.enums.FastDocument;
 import cn.fastword.word.handller.DefaultAnnotationTableHandler;
 import cn.fastword.word.handller.DefaultTableBeansHandler;
 import cn.fastword.word.handller.ITableBeans;
+import cn.fastword.word.table.IFastDocumentTable;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.poi.word.PicType;
 import cn.hutool.poi.word.Word07Writer;
@@ -16,13 +17,14 @@ import java.awt.*;
 import java.io.File;
 import java.io.InputStream;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Word2007构建
  *
  * @author wanghe
  */
-public class WordFile07Writer extends AbstractIBasicWord {
+public class WordFile07Writer extends AbstractIBasicWord implements IFastDocumentTable<Map<String, Object>> {
     /**
      * 默认正文字体
      */
@@ -158,7 +160,7 @@ public class WordFile07Writer extends AbstractIBasicWord {
      * @param handler ITableBeans处理器
      */
     @Override
-    public void addTable(ITableBeans<?> handler) {
+    public void addTable(ITableBeans<Map<String, Object>> handler) {
         try {
             this.wordWriter.addTable(handler.createTable());
         } catch (Throwable e) {
@@ -185,6 +187,7 @@ public class WordFile07Writer extends AbstractIBasicWord {
      * @param tableBeans TableBeans对象
      * @param texts      段落文本
      */
+    @Override
     public void addParagraphTableRows(TableBeans tableBeans, String... texts) {
         try {
             this.addParagraphTableRows(new DefaultTableBeansHandler(tableBeans), texts);
@@ -200,10 +203,10 @@ public class WordFile07Writer extends AbstractIBasicWord {
      * @param beanCls 实体类实际Class
      * @param texts   段落文本
      */
+    @Override
     public void addParagraphTableRows(List<?> beans, Class<?> beanCls, String... texts) {
         try {
             this.addParagraphTableRows(new DefaultAnnotationTableHandler(beans, beanCls), texts);
-
         } catch (Throwable e) {
             e.printStackTrace();
         }
@@ -216,7 +219,7 @@ public class WordFile07Writer extends AbstractIBasicWord {
      * @param texts   段落文本
      */
     @Override
-    public void addParagraphTableRows(ITableBeans<?> handler, String... texts) {
+    public void addParagraphTableRows(ITableBeans<Map<String, Object>> handler, String... texts) {
         this.addParagraphRows(ParagraphAlignment.LEFT, this.defaultFont, texts);
         this.addTable(handler);
         this.addBlankRow();
