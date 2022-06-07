@@ -39,7 +39,7 @@
         <hutool-all.version>5.8.0</hutool-all.version>
         <commons-beanutils.version>20020520</commons-beanutils.version>
         <commons-lang3.version>3.12.0</commons-lang3.version>
-        <fastword-annotation.version>0.0.1.2</fastword-annotation.version>
+        <fastword-annotation.version>0.0.1.3</fastword-annotation.version>
         <compile.version>8</compile.version>
     </properties>
 

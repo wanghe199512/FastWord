@@ -36,6 +36,7 @@ public class WordTest {
         writer.addParagraphTableRows(this.getTableBeans(), "我是表格标题独占一行");
         writer.addParagraphTableRows(this.getBeanList(), User.class, "我是基于注解实体创建的表格");
         writer.addParagraphTableRows(this.useDefaultAnnotationTableHandler(), "我是基于注解处理器创建的表格");
+        writer.close();
         return writer;
     }
 
@@ -45,8 +46,8 @@ public class WordTest {
      */
     private DefaultAnnotationTableHandler useDefaultAnnotationTableHandler() {
         List<User> childBeans = new ArrayList<>();
-        User user = new User("王贺", "北京昌平", "27", "18810243420", "辣鸡大学");
-        User user2 = new User("张三", "北京昌平", "27", "15278987656", "辣鸡大学");
+        User user = new User("王贺", "北京昌平", "27", "18810243420", "辣鸡大学",80d);
+        User user2 = new User("张三", "北京昌平", "27", "15278987656", "辣鸡大学",10d);
         childBeans.add(user);
         childBeans.add(user2);
         return new DefaultAnnotationTableHandler(childBeans,User.class);
@@ -54,8 +55,8 @@ public class WordTest {
 
     private List<User> getBeanList() {
         List<User> childBeans = new ArrayList<>();
-        User user = new User("王贺", "北京昌平", "27", "15278987656", "辣鸡大学");
-        User user2 = new User("李四", "北京昌平", "27", "15278987656", "辣鸡大学");
+        User user = new User("王贺", "北京昌平", "27", "15278987656", "辣鸡大学",5d);
+        User user2 = new User("李四", "北京昌平", "27", "15278987656", "辣鸡大学",3d);
         childBeans.add(user);
         childBeans.add(user2);
         return childBeans;

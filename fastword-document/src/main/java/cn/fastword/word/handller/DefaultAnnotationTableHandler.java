@@ -6,6 +6,7 @@ import cn.fastword.word.annotation.IFastWordColumn;
 import cn.fastword.word.beans.TableBeans;
 
 import java.lang.reflect.Field;
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.LinkedList;
@@ -34,7 +35,7 @@ public class DefaultAnnotationTableHandler extends DefaultTableBeansHandler impl
     public List<List<?>> geTabledColumnList(List<?> beans, Field[] declaredFields) {
         return new LinkedList<Object>(beans).stream().map(bean -> new LinkedList<>(Arrays.asList(declaredFields)).stream().map(field -> {
             try {
-                return this.desensitized(field, (String) field.get(bean));
+                return this.desensitized(field, field.get(bean));
             } catch (IllegalAccessException e) {
                 e.printStackTrace();
             }
@@ -59,7 +60,7 @@ public class DefaultAnnotationTableHandler extends DefaultTableBeansHandler impl
      * @param content 脱敏数据
      * @return 脱敏后数据
      */
-    private Object desensitized(Field field, String content) {
+    private Object desensitized(Field field, Object content) {
         return DstRule.dstRuleFormat(this.getAnnotation(field).dstRule(), content);
     }
 
@@ -67,7 +68,7 @@ public class DefaultAnnotationTableHandler extends DefaultTableBeansHandler impl
      * 获取表格列标题
      *
      * @param declaredFields 反射获取的Field对象
-     * @return  表格头数据
+     * @return 表格头数据
      */
     @Override
     public List<String> getTabledColumnNames(Field[] declaredFields) {

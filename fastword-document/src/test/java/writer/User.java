@@ -12,15 +12,18 @@ public class User {
     private String age;
     @FastWordTabled(title = "电话", sort = 5, dstRule = DstRule.MOBILE_PHONE)
     private String telPhone;
+    @FastWordTabled(title = "编号", sort = 5)
+    private Double number;
 
     @FastWordTabled(title = "大学名称", sort = 12)
     private String collage;
 
 
-    public User(String name, String address, String age, String telPhone, String collage) {
+    public User(String name, String address, String age, String telPhone, String collage,Double number) {
         this.name = name;
         this.address = address;
         this.age = age;
+        this.number = number;
         this.telPhone = telPhone;
         this.collage = collage;
     }

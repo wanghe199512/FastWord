@@ -29,22 +29,22 @@ public enum DstRule {
      * @param content 脱敏文本
      * @return
      */
-    public static String dstRuleFormat(DstRule dstRule, String content) {
+    public static Object dstRuleFormat(DstRule dstRule, Object content) {
         switch (dstRule) {
             case ADDRESS:
-                return DesensitizedUtil.address(content, 1);
+                return DesensitizedUtil.address((String) content, 1);
             case EMAIL:
-                return DesensitizedUtil.email(content);
+                return DesensitizedUtil.email((String) content);
             case ID_CARD:
-                return DesensitizedUtil.idCardNum(content, 3, 2);
+                return DesensitizedUtil.idCardNum((String) content, 3, 2);
             case CAR_CARD:
-                return DesensitizedUtil.carLicense(content);
+                return DesensitizedUtil.carLicense((String) content);
             case PASSWORD:
-                return DesensitizedUtil.password(content);
+                return DesensitizedUtil.password((String) content);
             case BANK_CARD:
-                return DesensitizedUtil.bankCard(content);
+                return DesensitizedUtil.bankCard((String) content);
             case MOBILE_PHONE:
-                return DesensitizedUtil.mobilePhone(content);
+                return DesensitizedUtil.mobilePhone((String) content);
             default:
                 return content;
         }
