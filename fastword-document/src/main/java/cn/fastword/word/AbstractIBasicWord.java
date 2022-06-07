@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Objects;
 
@@ -66,7 +67,7 @@ public abstract class AbstractIBasicWord extends Constants implements IBasicWord
 
     protected abstract File saveWordFile(File file);
 
-    public File getDocumentFile(File file) {
+    public File getDocumentFile(File file) throws IOException {
         return this.saveWordFile(file);
     }
 
@@ -74,6 +75,14 @@ public abstract class AbstractIBasicWord extends Constants implements IBasicWord
     public File getDocumentFile(String fileName, String savePath, FastDocument document) {
         return new File(savePath.concat(File.separator).concat(filePath).concat(File.separator).concat(document.getName()).concat(File.separator).concat(this.archive.archive()).concat(File.separator)
                 .concat(fileName).concat(Objects.requireNonNull(FastDocument.getDocumentPix(document))));
+    }
+
+    protected File createNewFile(File file) throws IOException {
+        if (file.exists()) {
+            file.getParentFile().mkdirs();
+            file.createNewFile();
+        }
+        return file;
     }
 
     public AbstractIBasicWord setArchive(FastArchive archive) {

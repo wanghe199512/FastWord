@@ -244,11 +244,13 @@ public class WordFile07Writer extends AbstractIBasicWord implements IFastDocumen
     @Override
     protected File saveWordFile(File file) {
         try {
-            this.wordWriter.flush(FileUtil.file(file));
+            this.wordWriter.flush(FileUtil.file(this.createNewFile(file)));
             this.wordWriter.close();
             logger.info("==> Preparing: {}", file);
         } catch (Exception e) {
-            e.fillInStackTrace();
+            e.printStackTrace();
+        } finally {
+            this.wordWriter.close();
         }
         return file;
     }

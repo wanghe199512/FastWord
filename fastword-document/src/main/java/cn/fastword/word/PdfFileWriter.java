@@ -28,17 +28,15 @@ import java.util.Objects;
  * @author wanghe
  */
 public class PdfFileWriter extends AbstractIBasicWord implements IFastDocumentTable<Map<String, Object>> {
-    private Logger log = LoggerFactory.getLogger(getClass());
-
     private final BaseFont CHINESE_FONT = BaseFont.createFont("STSong-Light", "UniGB-UCS2-H", BaseFont.NOT_EMBEDDED);
     /**
      * 常规字体
      */
-    private Font baseFont = new Font(this.CHINESE_FONT, (DEFAULT_SIZE - 4), DEFAULT_BASE_BOLD ? Font.BOLD : Font.NORMAL);
+    private Font BASE_FONT = new Font(this.CHINESE_FONT, (DEFAULT_SIZE - 4), DEFAULT_BASE_BOLD ? Font.BOLD : Font.NORMAL);
     /**
      * 加粗字体
      */
-    private final Font boldFont = new Font(this.CHINESE_FONT, DEFAULT_SIZE, Font.BOLD);
+    private final Font BOLD_FONT = new Font(this.CHINESE_FONT, DEFAULT_SIZE, Font.BOLD);
     /**
      * 默认标题头字体-加粗
      */
@@ -70,7 +68,7 @@ public class PdfFileWriter extends AbstractIBasicWord implements IFastDocumentTa
     public <A, B> void addParagraphRows(final A alignment, final B defaultFont, String... contents) {
         for (int i = 0; i < contents.length; i++) {
             try {
-                Paragraph elements = new Paragraph(contents[i], i == 0 ? this.boldFont : (Font) defaultFont);  // 默认首行加粗
+                Paragraph elements = new Paragraph(contents[i], i == 0 ? this.BOLD_FONT : (Font) defaultFont);  // 默认首行加粗
                 this.document.add(elements);
             } catch (DocumentException e) {
                 throw new RuntimeException("==> Preparing:添加段落失败(ERROR): ", e);
@@ -80,7 +78,7 @@ public class PdfFileWriter extends AbstractIBasicWord implements IFastDocumentTa
 
     @Override
     public void addParagraphRows(String... contents) {
-        this.addParagraphRows(TabStop.Alignment.LEFT, this.baseFont, contents);
+        this.addParagraphRows(Element.ALIGN_LEFT, this.BASE_FONT, contents);
     }
 
     @Override
@@ -133,7 +131,7 @@ public class PdfFileWriter extends AbstractIBasicWord implements IFastDocumentTa
 
     @Override
     public void addParagraphTableRows(TableBeans tableBeans, String... contents) {
-        this.addParagraphRows(TabStop.Alignment.LEFT, this.baseFont, contents);
+        this.addParagraphRows(Element.ALIGN_LEFT, this.BASE_FONT, contents);
         this.addBlankRow();
         this.addTable(tableBeans);
     }
@@ -145,7 +143,7 @@ public class PdfFileWriter extends AbstractIBasicWord implements IFastDocumentTa
 
     @Override
     public void addParagraphTableRows(ITableBeans<Map<String, Object>> handler, String... contents) {
-        this.addParagraphRows(TabStop.Alignment.LEFT, this.baseFont, contents);
+        this.addParagraphRows(Element.ALIGN_LEFT, this.BASE_FONT, contents);
         this.addBlankRow();
         this.addTable(handler);
     }
@@ -162,7 +160,7 @@ public class PdfFileWriter extends AbstractIBasicWord implements IFastDocumentTa
                 PdfPTable table = this.addHeader(Objects.requireNonNull(tableList).get(0));
                 for (int i = 0; i < tableList.size(); i++)
                     tableList.get(i).values().forEach(header -> table.addCell(this.addCell(header, new Font(this.CHINESE_FONT,
-                            this.baseFont.getSize(), Font.NORMAL), false)));
+                            this.BASE_FONT.getSize(), Font.NORMAL), false)));
                 table.setWidthPercentage(100);
                 this.addTable(table);
             } catch (DocumentException e) {
@@ -171,7 +169,7 @@ public class PdfFileWriter extends AbstractIBasicWord implements IFastDocumentTa
         }
     }
 
-    public void addWatermark(String watermark) throws IOException, DocumentException {
+    public void addWatermark(String watermark){
         PdfContentByte content = this.writer.getDirectContent();
         content.setGState(new PdfGState());
         content.beginText();
@@ -190,7 +188,7 @@ public class PdfFileWriter extends AbstractIBasicWord implements IFastDocumentTa
     protected PdfPTable addHeader(Map<String, Object> headers) {
         LinkedList<String> headerList = new LinkedList<>(headers.keySet());
         PdfPTable table = new PdfPTable(headerList.size());
-        headerList.forEach(header -> table.addCell(this.addCell(header, new Font(this.CHINESE_FONT, this.boldFont.getSize(), Font.BOLD), true)));
+        headerList.forEach(header -> table.addCell(this.addCell(header, new Font(this.CHINESE_FONT, this.BOLD_FONT.getSize(), Font.BOLD), true)));
         return table;
     }
 
@@ -208,10 +206,6 @@ public class PdfFileWriter extends AbstractIBasicWord implements IFastDocumentTa
             cell.setBackgroundColor(new BaseColor(221, 126, 107));
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
         cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
-        cell.setBorderWidthTop(0.1f);
-        cell.setBorderWidthBottom(0.1f);
-        cell.setBorderWidthLeft(0.1f);
-        cell.setBorderWidthRight(0.1f);
         cell.setBorderColorBottom(new BaseColor(0, 0, 0));
         cell.setBorderColorLeft(new BaseColor(0, 0, 0));
         cell.setBorderColorRight(new BaseColor(0, 0, 0));
@@ -232,6 +226,7 @@ public class PdfFileWriter extends AbstractIBasicWord implements IFastDocumentTa
     @Override
     protected File saveWordFile(File file) {
         try {
+            this.addDocumentExtra();
             this.document.close();
             this.writer.close();
             logger.info("==> Preparing: {}", this.documentFile);
@@ -241,16 +236,8 @@ public class PdfFileWriter extends AbstractIBasicWord implements IFastDocumentTa
         return file;
     }
 
-    // 不添加水印
-    public String getDocumentFile() throws IOException, DocumentException {
-        return this.getDocumentFile("");
-    }
-
-    // 添加水印
-    public String getDocumentFile(String waterMark) throws IOException, DocumentException {
-        this.addDocumentExtra();
-        this.addWatermark(waterMark);
-        return this.saveWordFile(this.documentFile).getAbsolutePath();
+    public String getDocumentFile() throws IOException {
+        return this.saveWordFile(this.createNewFile(this.documentFile)).getAbsolutePath();
     }
 
     public Document getDocument() {
@@ -261,8 +248,8 @@ public class PdfFileWriter extends AbstractIBasicWord implements IFastDocumentTa
         return writer;
     }
 
-    public PdfFileWriter setBaseFont(Font baseFont) {
-        this.baseFont = baseFont;
+    public PdfFileWriter setBASE_FONT(Font BASE_FONT) {
+        this.BASE_FONT = BASE_FONT;
         return this;
     }
 }
