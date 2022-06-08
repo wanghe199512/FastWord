@@ -61,7 +61,7 @@ public class DefaultAnnotationTableHandler extends DefaultTableBeansHandler impl
      * @return 脱敏后数据
      */
     private Object desensitized(Field field, Object content) {
-        return DstRule.dstRuleFormat(this.getAnnotation(field).dstRule(), content);
+        return this.getAnnotation(field).dstRule().result(content);
     }
 
     /**

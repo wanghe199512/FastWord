@@ -36,7 +36,6 @@ public class WordTest {
         writer.addParagraphTableRows(this.getTableBeans(), "我是表格标题独占一行");
         writer.addParagraphTableRows(this.getBeanList(), User.class, "我是基于注解实体创建的表格");
         writer.addParagraphTableRows(this.useDefaultAnnotationTableHandler(), "我是基于注解处理器创建的表格");
-        writer.close();
         return writer;
     }
 
