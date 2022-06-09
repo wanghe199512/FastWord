@@ -1,14 +1,13 @@
 package cn.fastword.picture.basicDraw;
 
-import cn.fastword.picture.handler.DefaultXYDatasetHandler;
+import cn.fastword.picture.handler.DefaultCriteriaDatasetHandler;
 import cn.fastword.picture.model.BasicDataset;
 import cn.fastword.picture.model.Picture;
+import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
-import org.jfree.chart.axis.CategoryAxis;
-import org.jfree.chart.axis.NumberAxis;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.renderer.category.ScatterRenderer;
-import org.jfree.data.statistics.DefaultMultiValueCategoryDataset;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.data.xy.XYSeriesCollection;
 import org.jfree.ui.RectangleInsets;
 
 import java.util.List;
@@ -25,15 +24,18 @@ public class DrawBasicScatterPicture extends AbstractDrawBasicPicture {
 
     @Override
     public JFreeChart createChart() {
-        JFreeChart chart = new JFreeChart(this.title, new CategoryPlot((DefaultMultiValueCategoryDataset) this.dataset, new CategoryAxis(this.XAxisLabel), new NumberAxis(this.YAxisLabel), new ScatterRenderer()));
-        CategoryPlot scatterPlot = (CategoryPlot) chart.getPlot();
+        JFreeChart chart = ChartFactory.createScatterPlot(
+                this.title, this.XAxisLabel, this.YAxisLabel, (XYSeriesCollection) this.dataset, PlotOrientation.VERTICAL, true, true, false
+        );
+        XYPlot scatterPlot = (XYPlot) chart.getPlot();
         scatterPlot.setInsets(new RectangleInsets(5, 10, 10, 10), true);
         return chart;
     }
 
     @Override
     public AbstractDrawBasicPicture addDefaultDataSet(List<? extends BasicDataset> dataSetList) {
-        return this.addDefaultDataSet(dataSetList, new DefaultXYDatasetHandler(), DefaultMultiValueCategoryDataset.class);
+        return this.addDefaultDataSet(dataSetList, new DefaultCriteriaDatasetHandler(), XYSeriesCollection.class);
+
     }
 
 }

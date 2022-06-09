@@ -82,15 +82,20 @@ public class PictureTest {
 
     @Test
     public void DrawBasicScatterPicture() {
-        List<DefaultXYDataset> list = new ArrayList<>();
-        List<LinkedList<Integer>> aaList = new ArrayList<>();
-        LinkedList<Integer> collect1 = Stream.of(new Integer[]{2, 3, 4, 9, 6}).collect(Collectors.toCollection(LinkedList::new));
-        LinkedList<Integer> collect2 = Stream.of(new Integer[]{3, 5, 4, 11, 6, 5, 2, 7}).collect(Collectors.toCollection(LinkedList::new));
-        aaList.add(collect1);
-        aaList.add(collect2);
-        DefaultXYDataset defaultDataSet = new DefaultXYDataset(new String[]{"测试","测试2"}, aaList, Arrays.asList(new String[]{"水果", "蔬菜"}));
-
+        List<DefaultCriteriaDataset> list = new ArrayList<>();
+        DefaultCriteriaDataset defaultDataSet = new DefaultCriteriaDataset("水果", 30, 20);
+        DefaultCriteriaDataset defaultDataSet2 = new DefaultCriteriaDataset("水果", 234, 45);
         list.add(defaultDataSet);
+        DefaultCriteriaDataset defaultDataSet3 = new DefaultCriteriaDataset("水果", 13, 43);
+        list.add(defaultDataSet2);
+        DefaultCriteriaDataset defaultDataSet4 = new DefaultCriteriaDataset("水果", 534, 256);
+        list.add(defaultDataSet3);
+        list.add(defaultDataSet4);
+        DefaultCriteriaDataset defaultDataSet5= new DefaultCriteriaDataset("水果1", 537, 256);
+        list.add(defaultDataSet5);
+        DefaultCriteriaDataset defaultDataSet6 = new DefaultCriteriaDataset("水果1", 1094, 256);
+        list.add(defaultDataSet6);
+
         File file = new DrawBasicScatterPicture("测试", "测试", "测试",
                 new Picture("测试散点图.png")).addDefaultDataSet(list).saveAsPNG("d://临时图片/", Report.基础年报);
         System.out.println(file.getAbsolutePath());

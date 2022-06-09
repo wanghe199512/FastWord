@@ -78,7 +78,7 @@ public abstract class AbstractIBasicWord extends Constants implements IBasicWord
     }
 
     protected File createNewFile(File file) throws IOException {
-        if (file.exists()) {
+        if (!file.exists()) {
             file.getParentFile().mkdirs();
             file.createNewFile();
         }

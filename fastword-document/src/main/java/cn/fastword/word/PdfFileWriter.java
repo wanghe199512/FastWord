@@ -54,7 +54,7 @@ public class PdfFileWriter extends AbstractIBasicWord implements IFastDocumentTa
 
     public PdfFileWriter(String fileName, String savePath) throws DocumentException, IOException {
         this.documentFile = this.getDocumentFile(fileName, savePath, FastDocument.PDF);
-        this.writer = PdfWriter.getInstance(this.document, new FileOutputStream(FileUtil.file(this.documentFile)));
+        this.writer = PdfWriter.getInstance(this.document, new FileOutputStream(FileUtil.file(this.createNewFile(this.documentFile))));
         this.document.open();
         this.document.newPage();
     }
@@ -169,7 +169,7 @@ public class PdfFileWriter extends AbstractIBasicWord implements IFastDocumentTa
         }
     }
 
-    public void addWatermark(String watermark){
+    public void addWatermark(String watermark) {
         PdfContentByte content = this.writer.getDirectContent();
         content.setGState(new PdfGState());
         content.beginText();
@@ -201,7 +201,7 @@ public class PdfFileWriter extends AbstractIBasicWord implements IFastDocumentTa
      */
     protected PdfPCell addCell(Object content, Font defaultFont, boolean backgroundColor) {
         PdfPCell cell = new PdfPCell();
-        cell.setPhrase(new Phrase((String) content, defaultFont));
+        cell.setPhrase(new Phrase(content + "", defaultFont));
         if (backgroundColor)
             cell.setBackgroundColor(new BaseColor(221, 126, 107));
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);

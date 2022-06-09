@@ -44,27 +44,15 @@ public class DefaultXYDatasetHandler implements IDatasetHandler {
             this.YAxisLabelList = ((DefaultXYDataset) dataset).getYAxisLabelList();
             this.legends = dataset.getLegendNames();
             for (int i = 0; i < legends.size(); i++) {     // 以图例个数为基准循环
-                if (YAxisLabelList.size() <= i)   // 如果y轴的个数小于等于图例个数，后边的就不用画了
-                    continue;
-                this.addDatasetValue(i);
+                for (int j = 0; j < this.XAxisList.size(); j++) {  // 取嵌套循环list进行循环，
+                    if (this.YAxisLabelList.get(i).size() > j) {
+                        if (this.defaultDataset instanceof DefaultCategoryDataset) {
+                            ((DefaultCategoryDataset) this.defaultDataset).addValue((this.YAxisLabelList.get(i)).get(j), legends.get(i), XAxisList.get(j));
+                        }
+                    }
+                }
             }
         }
         return (Dataset) this.defaultDataset;
-    }
-
-    /**
-     * 添加值
-     *
-     * @param i 图例下标
-     */
-    private void addDatasetValue(int i) {
-        for (int j = 0; j < (this.YAxisLabelList.get(i)).size(); j++) {  // 取嵌套循环list进行循环，
-            if (this.defaultDataset instanceof DefaultCategoryDataset) {
-                ((DefaultCategoryDataset) this.defaultDataset).addValue((this.YAxisLabelList.get(i)).get(j), legends.get(i), XAxisList.get(j));
-            }
-            if (this.defaultDataset instanceof DefaultMultiValueCategoryDataset) {
-                ((DefaultMultiValueCategoryDataset) this.defaultDataset).add((YAxisLabelList.get(i)), legends.get(i), XAxisList.get(i));
-            }
-        }
     }
 }
