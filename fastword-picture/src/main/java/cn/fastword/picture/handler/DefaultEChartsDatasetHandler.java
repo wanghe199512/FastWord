@@ -38,7 +38,7 @@ public class DefaultEChartsDatasetHandler implements IDatasetHandler<Option> {
             series.name(this.dataset.getLegendList()[i]);
             option.series(series);
         }
-        CategoryAxis category = new CategoryAxis().data(this.dataset.getLabelList());// 轴分类
+        CategoryAxis category = new CategoryAxis().data((Object) this.dataset.getLabelList());// 轴分类
         this.option.xAxis(category);
         return this.option;
     }
