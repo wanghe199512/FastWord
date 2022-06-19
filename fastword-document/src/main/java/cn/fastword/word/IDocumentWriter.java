@@ -12,8 +12,6 @@ public interface IDocumentWriter {
 
     void addHeader(String title, String... headers);
 
-    <A, B> void addParagraphRows(A alignment, B defaultFont, String... texts);
-
     void addParagraphRows(String... text);
 
     void addParagraphPictureRows(File picture, String... texts);

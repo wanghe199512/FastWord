@@ -1,21 +1,22 @@
 package writer;
 
+import cn.fastword.annotation.FastWordColumn;
 import cn.fastword.annotation.FastWordTabled;
 import cn.fastword.annotation.enums.DstRule;
-
+@FastWordTabled(rowHeight = 200,margin = {100,100,100,100},cellWidth = 300)
 public class User {
-    @FastWordTabled(title = "姓名", sort = 1)
+    @FastWordColumn(title = "姓名", sort = 1)
     private String name;
 
-    @FastWordTabled(title = "地址", sort = 11)
+    @FastWordColumn(title = "地址", sort = 11)
     private String address;
     private String age;
-    @FastWordTabled(title = "电话", sort = 5, dstRule = DstRule.MOBILE_PHONE)
+    @FastWordColumn(title = "电话", sort = 5, dstRule = DstRule.MOBILE_PHONE)
     private String telPhone;
-    @FastWordTabled(title = "编号", sort = 5)
+    @FastWordColumn(title = "编号", sort = 5)
     private Double number;
 
-    @FastWordTabled(title = "大学名称", sort = 12)
+    @FastWordColumn(title = "大学名称", sort = 12)
     private String collage;
 
 

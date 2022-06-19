@@ -1,8 +1,9 @@
 package writer;
 
-import cn.fastword.word.WordFile07Writer;
+import cn.fastword.word.common.DefaultTableThemes;
+import cn.fastword.word.docx.WordFile07Writer;
 import cn.fastword.word.beans.TableBeans;
-import cn.fastword.word.handller.DefaultAnnotationTableHandler;
+import cn.fastword.word.handler.table.TableEClassHandler;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,6 +33,7 @@ public class WordTest {
         );
 
         /*writer.addParagraphPictureRows(new File("D:\\2.png"), "四、啦啦啦啦啦啦");*/
+        DefaultTableThemes defaultTableThemes = new DefaultTableThemes();
         writer.addParagraphRows("fast-word当前版本是什么？");
         writer.addParagraphTableRows(this.getTableBeans(), "我是表格标题独占一行");
         writer.addParagraphTableRows(this.getBeanList(), User.class, "我是基于注解实体创建的表格");
@@ -43,13 +45,13 @@ public class WordTest {
      * 使用注解处理器
      * @return
      */
-    private DefaultAnnotationTableHandler useDefaultAnnotationTableHandler() {
+    private TableEClassHandler useDefaultAnnotationTableHandler() {
         List<User> childBeans = new ArrayList<>();
         User user = new User("王贺", "北京昌平", "27", "18810243420", "辣鸡大学",80d);
         User user2 = new User("张三", "北京昌平", "27", "15278987656", "辣鸡大学",10d);
         childBeans.add(user);
         childBeans.add(user2);
-        return new DefaultAnnotationTableHandler(childBeans,User.class);
+        return new TableEClassHandler(childBeans,User.class);
     }
 
     private List<User> getBeanList() {

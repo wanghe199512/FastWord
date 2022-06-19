@@ -9,7 +9,7 @@ import java.io.File;
  *
  * @author 王贺
  */
-public interface IBasicWord {
+public interface IBasicWord extends IDocumentWriter{
 
     File getDocumentFile(String fileName, String savePath, FastDocument document);
 }

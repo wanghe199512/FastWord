@@ -1,7 +1,7 @@
 package writer;
 
 import cn.fastword.word.PdfFileWriter;
-import cn.fastword.word.handller.DefaultAnnotationTableHandler;
+import cn.fastword.word.handler.table.TableEClassHandler;
 import com.itextpdf.text.DocumentException;
 import org.junit.Test;
 
@@ -31,13 +31,13 @@ public class PdfTst {
      *
      * @return
      */
-    private DefaultAnnotationTableHandler useDefaultAnnotationTableHandler() {
+    private TableEClassHandler useDefaultAnnotationTableHandler() {
         List<User> childBeans = new ArrayList<>();
         User user = new User("王贺", "北京昌平", "27", "18810243420", "辣鸡大学", 4d);
         User user2 = new User("张三", "北京昌平", "15278987000", "辣鸡大学");
         childBeans.add(user);
         childBeans.add(user2);
-        return new DefaultAnnotationTableHandler(childBeans, User.class);
+        return new TableEClassHandler(childBeans, User.class);
     }
 
     private List<User> getBeanList() {

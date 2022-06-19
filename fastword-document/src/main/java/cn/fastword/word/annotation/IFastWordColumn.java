@@ -1,5 +1,6 @@
 package cn.fastword.word.annotation;
 
+import cn.fastword.annotation.FastWordColumn;
 import cn.fastword.annotation.FastWordTabled;
 
 import java.lang.reflect.Field;
@@ -11,7 +12,7 @@ import java.util.List;
  * @author wanghe
  * @see IFastWord
  */
-public interface IFastWordColumn extends IFastWord<FastWordTabled> {
+public interface IFastWordColumn extends IFastWord<FastWordColumn> {
     /**
      * 获取表格列数据
      *
@@ -28,4 +29,7 @@ public interface IFastWordColumn extends IFastWord<FastWordTabled> {
      * @return 表格头数据
      */
     List<String> getTabledColumnNames(Field[] declaredFields);
+
+
+
 }

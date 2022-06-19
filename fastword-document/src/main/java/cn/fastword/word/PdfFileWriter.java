@@ -2,16 +2,14 @@ package cn.fastword.word;
 
 import cn.fastword.word.beans.TableBeans;
 import cn.fastword.word.enums.FastDocument;
-import cn.fastword.word.handller.DefaultAnnotationTableHandler;
-import cn.fastword.word.handller.DefaultTableBeansHandler;
-import cn.fastword.word.handller.ITableBeans;
-import cn.fastword.word.table.IFastDocumentTable;
+import cn.fastword.word.handler.table.IFastDocumentTable;
+import cn.fastword.word.handler.table.TableEClassHandler;
+import cn.fastword.word.handler.table.ITableBeans;
+import cn.fastword.word.handler.table.TableBeansHandler;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.io.IoUtil;
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -27,20 +25,20 @@ import java.util.Objects;
  *
  * @author wanghe
  */
-public class PdfFileWriter extends AbstractIBasicWord implements IFastDocumentTable<Map<String, Object>> {
+public class PdfFileWriter extends AbstractIBasicDocument implements IFastDocumentTable<Map<String, Object>> {
     private final BaseFont CHINESE_FONT = BaseFont.createFont("STSong-Light", "UniGB-UCS2-H", BaseFont.NOT_EMBEDDED);
     /**
      * 常规字体
      */
-    private Font BASE_FONT = new Font(this.CHINESE_FONT, (DEFAULT_SIZE - 4), DEFAULT_BASE_BOLD ? Font.BOLD : Font.NORMAL);
+    private Font BASE_FONT = new Font(this.CHINESE_FONT, (baseFont.size - 4), Font.NORMAL);
     /**
      * 加粗字体
      */
-    private final Font BOLD_FONT = new Font(this.CHINESE_FONT, DEFAULT_SIZE, Font.BOLD);
+    private final Font BOLD_FONT = new Font(this.CHINESE_FONT, baseFont.size, Font.BOLD);
     /**
      * 默认标题头字体-加粗
      */
-    private final Font DEFAULT_HEADER_FONT = new Font(this.CHINESE_FONT, (TITLE_SIZE - 2), Font.BOLD);
+    private final Font DEFAULT_HEADER_FONT = new Font(this.CHINESE_FONT, (baseFont.size + 18), Font.BOLD);
 
     private final Document document = new Document();
 
@@ -64,11 +62,11 @@ public class PdfFileWriter extends AbstractIBasicWord implements IFastDocumentTa
         this.addParagraphRows(title);
     }
 
-    @Override
-    public <A, B> void addParagraphRows(final A alignment, final B defaultFont, String... contents) {
+    public void addParagraphRows(final int alignment, final Font defaultFont, String... contents) {
         for (int i = 0; i < contents.length; i++) {
             try {
-                Paragraph elements = new Paragraph(contents[i], i == 0 ? this.BOLD_FONT : (Font) defaultFont);  // 默认首行加粗
+                Paragraph elements = new Paragraph(contents[i], i == 0 ? this.BOLD_FONT : defaultFont);  // 默认首行加粗
+                elements.setAlignment(alignment);
                 this.document.add(elements);
             } catch (DocumentException e) {
                 throw new RuntimeException("==> Preparing:添加段落失败(ERROR): ", e);
@@ -126,7 +124,7 @@ public class PdfFileWriter extends AbstractIBasicWord implements IFastDocumentTa
     }
 
     public void addTable(TableBeans tableBeans) {
-        this.addTable(new DefaultTableBeansHandler(tableBeans));
+        this.addTable(new TableBeansHandler(tableBeans));
     }
 
     @Override
@@ -138,7 +136,7 @@ public class PdfFileWriter extends AbstractIBasicWord implements IFastDocumentTa
 
     @Override
     public void addParagraphTableRows(List<?> beans, Class<?> beanCls, String... contents) {
-        this.addParagraphTableRows(new DefaultAnnotationTableHandler(beans, beanCls), contents);
+        this.addParagraphTableRows(new TableEClassHandler(beans, beanCls), contents);
     }
 
     @Override
@@ -158,9 +156,10 @@ public class PdfFileWriter extends AbstractIBasicWord implements IFastDocumentTa
         if (tableList != null && tableList.size() > 0) {
             try {
                 PdfPTable table = this.addHeader(Objects.requireNonNull(tableList).get(0));
-                for (int i = 0; i < tableList.size(); i++)
+                for (int i = 0; i < tableList.size(); i++) {
                     tableList.get(i).values().forEach(header -> table.addCell(this.addCell(header, new Font(this.CHINESE_FONT,
                             this.BASE_FONT.getSize(), Font.NORMAL), false)));
+                }
                 table.setWidthPercentage(100);
                 this.addTable(table);
             } catch (DocumentException e) {
@@ -202,8 +201,9 @@ public class PdfFileWriter extends AbstractIBasicWord implements IFastDocumentTa
     protected PdfPCell addCell(Object content, Font defaultFont, boolean backgroundColor) {
         PdfPCell cell = new PdfPCell();
         cell.setPhrase(new Phrase(content + "", defaultFont));
-        if (backgroundColor)
+        if (backgroundColor) {
             cell.setBackgroundColor(new BaseColor(221, 126, 107));
+        }
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
         cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
         cell.setBorderColorBottom(new BaseColor(0, 0, 0));
@@ -248,8 +248,8 @@ public class PdfFileWriter extends AbstractIBasicWord implements IFastDocumentTa
         return writer;
     }
 
-    public PdfFileWriter setBASE_FONT(Font BASE_FONT) {
-        this.BASE_FONT = BASE_FONT;
+    public PdfFileWriter setBaseFont(Font baseFont) {
+        this.BASE_FONT = baseFont;
         return this;
     }
 }
